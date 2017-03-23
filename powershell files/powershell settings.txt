@@ -1,0 +1,29 @@
+Setup Powershell for VIM
+1. Check & Set execution policy to run scripts
+Get-ExecutionPolicy
+	This will probably tell you it’s restricted, in which case you need to tell it to run scripts by typing (or pasting):
+
+2.  set execution policy (run PS in Administrator mode)
+Set-ExecutionPolicy RemoteSigned
+
+3. create a PowerShell profile (if it doesnt exist)
+new-item -path $profile -itemtype file -force
+4. Past the following to the PS profile:
+
+	set-alias vim "C:/Program Files (x86)/Vim/Vim74/./vim.exe"
+
+	# To edit the Powershell Profile
+	# (Not that I'll remember this)
+	Function Edit-Profile
+	{
+		vim $profile
+	}
+
+	# To edit Vim settings
+	Function Edit-Vimrc
+	{
+		vim $HOME\_vimrc
+	}
+
+Sources
+	http://www.expatpaul.eu/2014/04/vim-in-powershell/
