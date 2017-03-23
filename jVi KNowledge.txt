@@ -1,0 +1,68 @@
+jVi knowledge
+
+http://jvi.sourceforge.net/ReadmeNetBeans.html
+https://spin.atomicobject.com/2016/04/19/vim-commands-cheat-sheet/
+http://bullium.com/support/vim.html
+http://www.radford.edu/~mhtay/CPSC120/VIM_Editor_Commands.htm
+https://www.fprintf.net/vimCheatSheet.html
+
+
+Telepítés utáni beállítások jVi-ben
+	imap jk <esc>
+	shiftwidth=2, tabstop=2 	Netbeans-t is visszaállítani a tabokra sw / ts
+	ctrl-, és ctrl-. kikapcsolása, mert az kell a könyvjlezők/bugokra ugrálásnál
+	CTRL-I visszaadása jVI-nek, mert az a next location 
+	cb unnamed pipa - a sima rendszer vágólapról is lehet p-vel beilleszteni!
+	
+Egyedi mappingeg
+	imap jk <esc>
+	map <c-h> gT>
+	map <c-l> gt
+	map <c-f> :e#
+	
+:set beállítások
+:set nu 	- numbered lines
+:set sw=2 	- shiftwidth 2 (behúzás)
+:set ts=2 	- tabstop 2
+
+c-s-DEL		- leállítja az éppen futó programot	
+%			- a zárójel másik részére ugrik, működik ({[ ]})
+v%			- rögtön kijelöli a jelek közötti részt
+vi"			- a "" közötti részt jelöli ki "teszt"  - inside
+{}			- a következő / előző üres sorra ugrigk
+V21G		- a kurzor pozíciójától a 21. sorig kijelöli
+[]mM		- nyitó vagy záró részére ugrik az előző/következő Metódusnak
+
+CTRL-R * 	- Insert módban a vágólapról másolja be a tartalmat
+			  http://vimcasts.org/episodes/pasting-from-insert-mode/
+jk			- ESC (átmappolva: imap jk <esc>)
+0$ 			- sor eleje / vége
+^			- sor első karaktere
+CTRL-U/D 	- PgUP/PgDown
+[num]g		- sorra ugrik
+HML			- HIgh- MIddle-Low - a képernyő tetejére, közepére, aljára ugrik
+CTRL-O/I	- Jump back/forward in history  - :jumps kiírja a jump historyt
+.			- repeat prevous commands
+yy			- yank line
+yw			- yank word
+pP			- paste previous yank (P fölfelé szúr be)
+CTRL - T/D	- insert módban indent de-indent
+<>			- normal módban indent, de-indent
+*#			- a kurzor alatti szó következő/előző előfordulására ugrik
+?			- keresés
+nN			- a következő-előző keresési találatra ugrik
+:noh		- no highlight - ha volt keresés, akkor a találat kijelölést szüntetni meg
+m[az]		- mark
+'[az]		- a markhoz ugrik
+m.			- jVI-ben az adott sort Netbeans-ben bookmarkol!
+c			- change
+cw			- change word - az aktuális szót cseréli másra
+J			- Join line - a köv sort visszahúzza
+fF[karakter]- FIND. A megadott karakterRE ugrik. 
+tT[karakter]- TO. A megadott karakter ELÉ ugrik. Példa: vt[karakter]d - a megadott karakterig kijelöli a szöveget és törli (de a karakter már NINCS benne a törlésben)
+,;			- megismétli az előző t/f parancsot
+r 			- replace egy karaktert
+R			- replace amíg ki nem lépek
+daw			- Delete A Word
+z.			- A kurzor aktuális pozícióját állítja a képernyő közepére (zt/zb -ugyanez top, bottom)
+

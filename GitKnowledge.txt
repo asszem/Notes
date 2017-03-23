@@ -1,5 +1,17 @@
-Create a new repository 
+Create a new local repository & setting an upstream tracking branch
 	git init
 	git remote add origin URL
-	[make one commit]
+		[make one commit so HEAD will point to master]
 	git push -u origin master
+
+git reflog
+	Show all SHA checksums of every commit
+	Reflog is a mechanism to record when the tip of branches are updated. This command is to manage the information recorded in it.
+	http://gitready.com/intermediate/2009/02/09/reflog-your-safety-net.html
+	
+git reset
+	https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified
+	
+The HEAD
+	HEAD is the pointer to the current branch reference, which is in turn a pointer to the last commit made on that branch. That means HEAD will be the parent of the next commit that is created. It’s generally simplest to think of HEAD as the snapshot of your last commit.
+	
