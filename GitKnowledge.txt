@@ -1,0 +1,5 @@
+Create a new repository 
+	git init
+	git remote add origin URL
+	[make one commit]
+	git push -u origin master
