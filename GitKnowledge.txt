@@ -13,8 +13,47 @@ git reflog
 git reset
 	tutorials on reset
 		https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified
-	git reset --soft HEAD~
-		When you reset back to HEAD~ (the parent of HEAD), you are moving the branch back to where it was, without changing the Index or Working Directory.
+	reset vs checkout	
+		Reset will move the branch that HEAD points to, checkout will move HEAD itself to point to another branch.
+	format
+		git reset [options] target
+			git reset --soft target
+			git reset target
+			git reset --hard target
+	examples:
+		git reset --soft HEAD~
+			Undo last commit, dont change Index and Working Directory
+			When you reset back to HEAD~ (the parent of HEAD), you are moving the branch back to where it was, without changing the Index or Working Directory.
+		git reset  [--mixed] HEAD~
+			Undo last commit, unstage Index (everything).
+			You rolled back to before you ran all your git add and git commit commands.
+			The next thing reset will do is to update the Index with the contents of whatever snapshot HEAD now points to.
+		git reset --hard HEAD~
+			Undo last commit, Update Index and Working directory with the contents of whatever HEAD now points to
+			Note: to restore WD content after a hard reset, use git reflog
+git rebase
+	tutorials on rebase
+		https://git-scm.com/book/en/v2/Git-Branching-Rebasing
+	description
+		reapplies a series of commits to a new parent commit then moves the current branch pointer
+		the log of a rebased branch looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
+
+git checkout
+	description
+		git checkout newbranchname - switches to newbranchname
+		git checkout -b newbranchname - creates and switches to newbranchname (same as "git branch newbranchname")
+		Moves the HEAD to the branch
+		When you switch branches in Git, files in your working directory will change. 
+		If you switch to an older branch, your working directory will be reverted to look like it did the last time you committed on that branch. 
+		If Git cannot do it cleanly, it will not let you switch at all.
+
+git merge
+	tips & tricks
+		create a test_merge branch before merging
+			http://think-like-a-git.net/sections/testing-out-merges/the-scout-pattern.html
+		create a savepoint branch before merging 
+			(but don't change to it, and git reset --hard savepoint if something goes wron)
+			http://think-like-a-git.net/sections/testing-out-merges/the-savepoint-pattern.html
 
 git clean
 	Cleans the workspace
@@ -22,19 +61,44 @@ git clean
 	-n dry run
 	-f force 
 	
-git alias	
+git alias (copy-paste below commands to set the alias)	
 	 git config --global alias.last 'log -1 HEAD'
-	 
-	 https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
-	 
-gitk
-	visual representation of the repository / commits / branches
+	 git config --global alias.logf 'log --pretty=format:\"%h - %an, %ar : %s\"'
+	 source(s)
+		 https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+
+git diff 
+	Examples:
+		git diff HEAD
+			Shows all diffs of current head
+		git diff file
+			Shows the diff of the unstaged file
+		git diff --cached file 
+			Shows the diff of a staged file
+*****************Visual Tools*********************** 
+	gitk
+		read-only visual representation of the repository / commits / branches
+	git gui
+		visual tool to review changes, sign-off commits and perform many tasks	
 
 ****************KEYWORDS***********************
 The HEAD
 	HEAD is the pointer to the current branch reference, which is in turn a pointer to the last commit made on that branch. That means HEAD will be the parent of the next commit that is created. It’s generally simplest to think of HEAD as the snapshot of your last commit.
-	HEAD~ - The perent of HEAD
+	HEAD~ - The PARENT of HEAD
 	HEAD^ - 
+	HEAD^^ - HEAD with 2 steps before
+	HEAD^3 - HEAD with 3 steps before
+
+	Detached HEAD
+		HEAD refers to a specific commit, as opposed to referring to a named branch.
+
+********************Netbeans Versioning Considerations********************
+	The build (or nbbuild), dist (or nbdist), and the nbproject/private folders should not be checked into that version control system.
+	Though nbproject/private should be ignored, nbproject should be checked into the version control system.
+	Nbproject contains project metadata that enables others users to open the project in NetBeans without having to import the project first.
+
+	source
+		http://docs.oracle.com/cd/E50453_01/doc.80/e50452/create_japps.htm#NBDAG2974
 
 ********************SOURCES********************
 	http://ndpsoftware.com/git-cheatsheet.html	
