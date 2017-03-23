@@ -1,1 +1,2 @@
 this file is to test the git reset command
+this is the second line, to be added in a new commit
