@@ -12,6 +12,30 @@ git reflog
 git reset
 	https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified
 	
+git clean
+	Cleans the workspace
+	-i interactive
+	-n dry run
+	-f force 
+	
+git alias	
+	 git config --global alias.last 'log -1 HEAD'
+	 
+	 https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+	 
+gitk
+	visual representation of the repository / commits / branches
+
+****************KEYWORDS***********************
 The HEAD
 	HEAD is the pointer to the current branch reference, which is in turn a pointer to the last commit made on that branch. That means HEAD will be the parent of the next commit that is created. It’s generally simplest to think of HEAD as the snapshot of your last commit.
 	
+
+********************SOURCES********************
+	http://ndpsoftware.com/git-cheatsheet.html	
+		Excellent visual representation of Stash/Workspace/Index/Local repository/Upstream repository and how commands move content between stages
+
+	https://git-scm.com/book/en/v2
+		Comprehensive Guide for Git
+
+		
