@@ -1,3 +1,4 @@
+****************GITTING STARTED*****************
 Create a new local repository & setting an upstream tracking branch
 	git init
 	git remote add origin URL
@@ -75,6 +76,11 @@ git diff
 			Shows the diff of the unstaged file
 		git diff --cached file 
 			Shows the diff of a staged file
+
+	Sources
+		Comprehensive Guide to understand how diff works. Not easy.
+		http://www.gnu.org/software/diffutils/manual/html_node/index.html#SEC_Contents
+
 *****************Visual Tools*********************** 
 	gitk
 		read-only visual representation of the repository / commits / branches
@@ -101,11 +107,14 @@ The HEAD
 		http://docs.oracle.com/cd/E50453_01/doc.80/e50452/create_japps.htm#NBDAG2974
 
 ********************SOURCES********************
-	http://ndpsoftware.com/git-cheatsheet.html	
-		Excellent visual representation of Stash/Workspace/Index/Local repository/Upstream repository and how commands move content between stages
+	https://www.kernel.org/pub/software/scm/git/docs/user-manual.html
+		Comprehensive Documentation of Git
 
 	https://git-scm.com/book/en/v2
 		Comprehensive Guide for Git
+
+	http://ndpsoftware.com/git-cheatsheet.html	
+		Excellent visual representation of Stash/Workspace/Index/Local repository/Upstream repository and how commands move content between stages
 
 	http://marklodato.github.io/visual-git-guide/index-en.html#basic-usage
 		This page gives brief, visual reference for the most common commands in git. Once you know a bit about how git works, this site may solidify your understanding
