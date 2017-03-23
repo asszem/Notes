@@ -1,0 +1,4 @@
+Methods 		- starts with a verb and lower case
+Variables		- starts with lower case, every new word with an uppercase
+Final variables - ALL CAPS
+Class names		- Starts with a Capital letter
