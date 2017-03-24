@@ -1,3 +1,0 @@
-this file is to test the git reset command
-this is the second line, to be added in a new commit
-this is the third line, made by the 3rd eddit and to be added by a third commit
