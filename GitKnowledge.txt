@@ -6,10 +6,38 @@ Create a new local repository & setting an upstream tracking branch
 	git push -u origin master
 
 ****************COMMANDS***********************
-git reflog
-	Show all SHA checksums of every commit
-	Reflog is a mechanism to record when the tip of branches are updated. This command is to manage the information recorded in it.
-	http://gitready.com/intermediate/2009/02/09/reflog-your-safety-net.html
+git branch
+	tutorial on branch:
+		https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+		https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches
+	List Branches
+		git branch
+	See latest commits on each branch
+		git branch -v
+	See all branches that are merged/not merged to the CURRENT branch
+		git branch --merged
+		git branch --no-merged
+	Create new branch
+		git branch newbranchname
+	Delete a branch
+		git branch -d branchname
+	Delete a branch even if there are unmerged files on that branch (DANGEROUS! Unmerged files will be lost)
+		git branch -D branchname
+	Push to a remote branch
+		git push remotename/branchname
+	Set a remote branch to track an already existing local branch
+		git checkout localbranch
+		git branch -u remotename/remotebranchname
+
+git checkout
+	description
+		git checkout newbranchname - switches to newbranchname
+		git checkout -b newbranchname - creates and switches to newbranchname (same as "git branch newbranchname")
+		Moves the HEAD to the branch
+		When you switch branches in Git, files in your working directory will change. 
+		If you switch to an older branch, your working directory will be reverted to look like it did the last time you committed on that branch. 
+		If Git cannot do it cleanly, it will not let you switch at all.
+
 	
 git reset
 	tutorials on reset
@@ -32,21 +60,13 @@ git reset
 		git reset --hard HEAD~
 			Undo last commit, Update Index and Working directory with the contents of whatever HEAD now points to
 			Note: to restore WD content after a hard reset, use git reflog
+
 git rebase
 	tutorials on rebase
 		https://git-scm.com/book/en/v2/Git-Branching-Rebasing
 	description
 		reapplies a series of commits to a new parent commit then moves the current branch pointer
 		the log of a rebased branch looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
-
-git checkout
-	description
-		git checkout newbranchname - switches to newbranchname
-		git checkout -b newbranchname - creates and switches to newbranchname (same as "git branch newbranchname")
-		Moves the HEAD to the branch
-		When you switch branches in Git, files in your working directory will change. 
-		If you switch to an older branch, your working directory will be reverted to look like it did the last time you committed on that branch. 
-		If Git cannot do it cleanly, it will not let you switch at all.
 
 git merge
 	tips & tricks
@@ -55,6 +75,11 @@ git merge
 		create a savepoint branch before merging 
 			(but don't change to it, and git reset --hard savepoint if something goes wron)
 			http://think-like-a-git.net/sections/testing-out-merges/the-savepoint-pattern.html
+
+git reflog
+	Show all SHA checksums of every commit
+	Reflog is a mechanism to record when the tip of branches are updated. This command is to manage the information recorded in it.
+	http://gitready.com/intermediate/2009/02/09/reflog-your-safety-net.html
 
 git clean
 	Cleans the workspace
