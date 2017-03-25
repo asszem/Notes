@@ -16,6 +16,23 @@ Branching Strategies
 				-Feature_2
 	- see git flow:https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/git-flow
 
+Git Log Formats
+	git log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'
+		Source: http://www.deadcoderising.com/my-favorite-git-log-explained/
+	git log -1 HEAD
+	git log --pretty=format:\"%h - %an, %ar : %s\"
+
+Git Log Alias Samples
+	git last
+		git config --global alias.last 'log -1 HEAD'
+	git lg
+		git config --global alias.lg "log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'"  
+		Source: http://www.deadcoderising.com/my-favorite-git-log-explained/
+	git logf
+		git config --global alias.logf 'log --pretty=format:\"%h - %an, %ar : %s\"'
+		Source: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+
+Best Bractices
 Source:
 	Learn Version Control with Git
 	https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices#start

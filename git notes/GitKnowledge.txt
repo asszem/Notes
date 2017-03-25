@@ -89,11 +89,14 @@ git clean
 	-n dry run
 	-f force 
 	
-git alias (copy-paste below commands to set the alias)	
-	 git config --global alias.last 'log -1 HEAD'
-	 git config --global alias.logf 'log --pretty=format:\"%h - %an, %ar : %s\"'
-	 source(s)
-		 https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+git alias 
+	Set an alias to list all aliases:
+ 	git config --global alias.alias "config --get-regexp ^alias\."
+		source:http://stackoverflow.com/questions/7066325/list-git-aliases
+git log
+	--stat
+	-p
+	See GitBestPractices for git log formats set to aliases
 
 git diff 
 	Examples:
