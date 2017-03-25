@@ -2,6 +2,20 @@ Tipps:
 	- make a stash before a checkout
 	- create a "savepoint" branch before merge. If merge goes wrong, reset to savepoint
 
+Branching Strategies
+	- Topic Branches - single topic, short lived, delete after topic implemented	
+	- Long Running Branch(es) - don't work on these, don't commit to these, keep in sync with remote, merge the topic branches here
+		- Possible hierarchy
+			- Master
+			- User Acceptance
+			- Bugfix
+				- Bugfix_1
+				- Bugfix_2
+			- Development
+				-Feature_1
+				-Feature_2
+	- see git flow:https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/git-flow
+
 Source:
 	Learn Version Control with Git
 	https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices#start

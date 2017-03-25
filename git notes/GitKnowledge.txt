@@ -113,7 +113,7 @@ git diff
 		visual tool to review changes, sign-off commits and perform many tasks	
 
 ****************KEYWORDS***********************
-The HEAD
+HEAD
 	HEAD is the pointer to the current branch reference, which is in turn a pointer to the last commit made on that branch. That means HEAD will be the parent of the next commit that is created. It’s generally simplest to think of HEAD as the snapshot of your last commit.
 	HEAD~ - The PARENT of HEAD
 	HEAD^ - 
@@ -122,6 +122,8 @@ The HEAD
 
 	Detached HEAD
 		HEAD refers to a specific commit, as opposed to referring to a named branch.
+CONFLICT
+	When the exact same line was modified in two different ways - git can't determine which version to keep
 
 ********************Netbeans Versioning Considerations********************
 	The build (or nbbuild), dist (or nbdist), and the nbproject/private folders should not be checked into that version control system.
