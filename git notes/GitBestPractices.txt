@@ -22,15 +22,21 @@ Git Log Formats
 	git log -1 HEAD
 	git log --pretty=format:\"%h - %an, %ar : %s\"
 
-Git Log Alias Samples
-	git last
+Git Alias Samples
+	git last - show last commit
 		git config --global alias.last 'log -1 HEAD'
-	git lg
+	git lg - show decorated log
 		git config --global alias.lg "log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'"  
 		Source: http://www.deadcoderising.com/my-favorite-git-log-explained/
-	git logf
+	git logf - show decorated log
 		git config --global alias.logf 'log --pretty=format:\"%h - %an, %ar : %s\"'
 		Source: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+	git br - show branches 
+		git config --global alias.br "branch -va"
+	git brm - show merged branches
+		git config --global alias.brn "branch -va --merged"
+	git brnm - show not merged branches
+		git config --global alias.brnm "branch -va --no-merged"
 
 Best Bractices
 Source:
