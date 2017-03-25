@@ -111,8 +111,11 @@ git diff
 *****************Visual Tools*********************** 
 	gitk
 		read-only visual representation of the repository / commits / branches
+		To visualize All Branch History:
+			gitk -all
+
 	git gui
-		visual tool to review changes, sign-off commits and perform many tasks	
+		visual tool to review changes, sign-off commits and perform many tasks, like merge, commit, reset, etc
 
 ****************KEYWORDS***********************
 HEAD
