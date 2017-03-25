@@ -90,13 +90,25 @@ git clean
 	-f force 
 	
 git alias 
-	Set an alias to list all aliases:
- 	git config --global alias.alias "config --get-regexp ^alias\."
+	git alias
+		Set an alias to list all aliases:
+		git config --global alias.alias "config --get-regexp ^alias\."
 		source:http://stackoverflow.com/questions/7066325/list-git-aliases
 git log
-	--stat
-	-p
+	To display the number of deletions/additions in commits
+		git log --stat
+	To display the patch (diff) of commits
+		git log -p
+	To find commits in specific files
+		git log -- filename
+	To find new commits between branch1 and branch 2. The range contains all of the commits that are in branch2, but aren’t in branch1. Changing order will give different result
+		git log branch1..branch2
+	To find commits containing a specific string
+		git log -S"string to find"
+		git log -G<regexp>
 	See GitBestPractices for git log formats set to aliases
+	Source:
+		https://www.atlassian.com/git/tutorials/git-log
 
 git diff 
 	Examples:
@@ -108,8 +120,10 @@ git diff
 			Shows the diff of a staged file
 
 	Sources
+		Excellent description on how to read diff output. Recommended to start with
+			https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/diffs#start
 		Comprehensive Guide to understand how diff works. Not easy.
-		http://www.gnu.org/software/diffutils/manual/html_node/index.html#SEC_Contents
+			http://www.gnu.org/software/diffutils/manual/html_node/index.html#SEC_Contents
 
 *****************Visual Tools*********************** 
 	gitk
