@@ -37,7 +37,9 @@ git checkout
 		When you switch branches in Git, files in your working directory will change. 
 		If you switch to an older branch, your working directory will be reverted to look like it did the last time you committed on that branch. 
 		If Git cannot do it cleanly, it will not let you switch at all.
-
+	Scenarios (Repo-Staging-WorkingDir)
+		- unstaged files will not be deleted when changing branches
+		- staged files will not be deleted when changing branches
 	
 git reset
 	tutorials on reset

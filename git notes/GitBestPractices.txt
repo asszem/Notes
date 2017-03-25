@@ -5,7 +5,7 @@ Tipps:
 Branching Strategies
 	- Topic Branches - single topic, short lived, delete after topic implemented	
 	- Long Running Branch(es) - don't work on these, don't commit to these, keep in sync with remote, merge the topic branches here
-		- Possible hierarchy
+		Possible branch hierarch
 			- Master
 			- User Acceptance
 			- Bugfix
