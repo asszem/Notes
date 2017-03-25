@@ -1,0 +1,53 @@
+Scenario 1  
+	Summary
+		Checkout to other branch does not impact untracked files in WD
+	Test case
+		Test whether a checkout will impact untracked files in working directory
+	Initial setup
+		Create a test file in working directory test.txt
+	Test steps
+		Checkout to other branch
+	Expected result
+		The test file is still available in the working directory
+	Actual result
+		Success. 	
+
+Scenario 2
+	Summary
+		Checkout to other branch does not impact tracked files in WD
+	Test case
+		Test whether a checkout will impact tracked, not modified files in working directory
+	Initial setup
+		1. Create a test file in working directory
+		2. Add it to be tracked
+	Test steps
+		Checkout to other branch where the test file did not exist in the working directory
+	Expected result
+		The test file should be available in the other branch as well
+	Actual result
+		Success.
+
+Scenario 3
+	Summary
+		Checkout to other branch updates(/deletes) committed files in WD
+	Test case
+		Test whether a checkout will impact committed files in working directory
+	Initial setup
+		1. Create a test file in working directory
+		2. Add it to be tracked
+		3. Make a commit
+	Test steps
+		Checkout to other branch where the test file did not exist in the working directory
+	Expected result
+		The test file should not be present in the other branch
+	Actual result
+		Success.
+
+
+Scenario 1
+	Summary
+	Test case
+	Initial setup
+	Test steps
+	Expected result
+	Actual result
