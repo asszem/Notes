@@ -42,18 +42,16 @@ git checkout
 		- staged files will not be deleted when changing branches
 	
 git reset
-	tutorials on reset
-		https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified
-	reset vs checkout	
-		Reset will move the branch that HEAD points to, checkout will move HEAD itself to point to another branch.
 	format
-		git reset [options] target
-			git reset --soft target
-			git reset target
-			git reset --hard target
+		git reset [--mixed] target
+			The staged snapshot is updated to match the specified commit, but the working directory is not affected. This is the default option.
+		git reset --soft target
+			The staged snapshot and working directory are not altered in any way.
+		git reset --hard target
+			The staged snapshot and the working directory are both updated to match the specified commit.
 	examples:
 		git reset --soft HEAD~
-			Undo last commit, dont change Index and Working Directory
+			Undo last commit (move Head back 1), dont change Index and Working Directory
 			When you reset back to HEAD~ (the parent of HEAD), you are moving the branch back to where it was, without changing the Index or Working Directory.
 		git reset  [--mixed] HEAD~
 			Undo last commit, unstage Index (everything).
@@ -62,6 +60,12 @@ git reset
 		git reset --hard HEAD~
 			Undo last commit, Update Index and Working directory with the contents of whatever HEAD now points to
 			Note: to restore WD content after a hard reset, use git reflog
+	tutorials on reset
+		https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified
+		Source: https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
+	reset vs checkout	
+		Reset will move the branch that HEAD points to
+		Checkout will move HEAD itself to point to another branch.
 
 git rebase
 	tutorials on rebase
@@ -112,12 +116,19 @@ git log
 
 git diff 
 	Examples:
+		git diff
+			Shows the changes in the unstaged (but tracked) files
+		git diff --cached or git diff --staged
+			Shows the changes in the staged files
 		git diff HEAD
 			Shows all diffs of current head
+		git diff HEAD~3
+			Shos the diff of Head 3 steps before
 		git diff file
-			Shows the diff of the unstaged file
+			Shows the diff of a specific unstaged file
 		git diff --cached file 
-			Shows the diff of a staged file
+			Shows the diff of a staged specific file
+
 
 	Sources
 		Excellent description on how to read diff output. Recommended to start with
@@ -137,10 +148,10 @@ git diff
 ****************KEYWORDS***********************
 HEAD
 	HEAD is the pointer to the current branch reference, which is in turn a pointer to the last commit made on that branch. That means HEAD will be the parent of the next commit that is created. It’s generally simplest to think of HEAD as the snapshot of your last commit.
-	HEAD~ - The PARENT of HEAD
+	HEAD~ - The PARENT of HEAD (1 step before)
+	HEAD~3 - Head 3 steps before
 	HEAD^ - 
 	HEAD^^ - HEAD with 2 steps before
-	HEAD^3 - HEAD with 3 steps before
 
 	Detached HEAD
 		HEAD refers to a specific commit, as opposed to referring to a named branch.

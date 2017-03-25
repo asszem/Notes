@@ -37,6 +37,8 @@ Git Alias Samples
 		git config --global alias.brn "branch -va --merged"
 	git brnm - show not merged branches
 		git config --global alias.brnm "branch -va --no-merged"
+	git cm - commit with message
+		git config --global alias.cm "commit -am"
 
 Best Bractices
 Source:
