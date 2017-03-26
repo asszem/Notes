@@ -6,6 +6,16 @@ Create a new local repository & setting an upstream tracking branch
 	git push -u origin master
 
 ****************COMMANDS***********************
+git status
+	git st
+		alias for git status
+	git st -s
+		show short status. Left column: Index, right column:WD
+		Example: 
+		MM - modified file in Index and WD
+		 M - modified file in WD
+		?? - untracked file
+
 git branch
 	tutorial on branch:
 		https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
@@ -41,6 +51,72 @@ git checkout
 		- unstaged files will not be deleted when changing branches
 		- staged files will not be deleted when changing branches
 	
+git log
+	To display the number of deletions/additions in commits
+		git log --stat
+	To display the patch (diff) of commits
+		git log -p
+	To find commits in specific files
+		git log -- filename
+	To find new commits between branch1 and branch 2. The range contains all of the commits that are in branch2, but aren’t in branch1. Changing order will give different result
+		git log branch1..branch2
+	To find commits containing a specific string
+		git log -S"string to find"
+		git log -G<regexp>
+	To find commit differences between two commits (2 dots)
+		git log commit1..commit2
+		Example
+			A - B - E - F --Commit1
+			      \	C - D --Commit2
+			git log commit1..commit2
+				shows the commits that are included in commit2 but not in commit 1: CD
+			git log commit2..commit1
+				shows the commits that are included in commit1 but not in commit2: EF
+	To find all commits that are not common between two commits (3 dots)
+		git log commit1...commit2
+		git log --left-right commit1-commit2
+			to show which commit belongs to which
+	See GitBestPractices for git log formats set to aliases
+	Source:
+		https://www.atlassian.com/git/tutorials/git-log
+		https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection
+
+git diff 
+	Explanation of a sample diff:
+		diff --git a/git notes/GitKnowledge.txt b/git notes/GitKnowledge.txt
+			displays the input of diff
+		index 5047418..24a5e72 100644
+			The SHA checksum of old/new files. These are NOT commit checksums
+		--- a/git notes/GitKnowledge.txt
+		+++ b/git notes/GitKnowledge.txt
+			--- is for file a (can be considered the OLD version)
+			+++ is for file b (can be considered the NEW version)
+		@@ -88,7 +88,7 @@ git reflog
+			@@ marks a (c)hunk, that is a part that changed. Also some lines displayed before/after the change to provide context
+			88,7 marks 7 lines from line 88 in file a (-)
+			-- marks file a (OLD)
+			++ marks file b (NEW)
+		If there is only + in a hunk, it means that part is only part in the second file -> an addition in the second file
+		If there is only - in a hunk, it means that it is not part of the second file ->a deletion in the second file
+	Examples:
+		git diff
+			Shows the changes in the unstaged (but tracked) files
+		git diff --cached or git diff --staged
+			Shows the changes in the staged files
+		git diff HEAD
+			Shows all diffs of current head
+		git diff HEAD~3
+			Shos the diff of Head 3 steps before
+		git diff file
+			Shows the diff of a specific unstaged file
+		git diff --cached file 
+			Shows the diff of a staged specific file
+	Sources
+		Excellent description on how to read diff output. Recommended to start with
+			https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/diffs#start
+		Comprehensive Guide to understand how diff works. Not easy.
+			http://www.gnu.org/software/diffutils/manual/html_node/index.html#SEC_Contents
+
 git reset
 	format
 		git reset [--mixed] target
@@ -88,7 +164,7 @@ git reflog
 	http://gitready.com/intermediate/2009/02/09/reflog-your-safety-net.html
 
 git clean
-	Cleans the workspace
+	Cleans the workspace, remove untracked files (can not be recovered!)
 	-i interactive
 	-n dry run
 	-f force 
@@ -98,43 +174,29 @@ git alias
 		Set an alias to list all aliases:
 		git config --global alias.alias "config --get-regexp ^alias\."
 		source:http://stackoverflow.com/questions/7066325/list-git-aliases
-git log
-	To display the number of deletions/additions in commits
-		git log --stat
-	To display the patch (diff) of commits
-		git log -p
-	To find commits in specific files
-		git log -- filename
-	To find new commits between branch1 and branch 2. The range contains all of the commits that are in branch2, but aren’t in branch1. Changing order will give different result
-		git log branch1..branch2
-	To find commits containing a specific string
-		git log -S"string to find"
-		git log -G<regexp>
-	See GitBestPractices for git log formats set to aliases
-	Source:
-		https://www.atlassian.com/git/tutorials/git-log
 
-git diff 
-	Examples:
-		git diff
-			Shows the changes in the unstaged (but tracked) files
-		git diff --cached or git diff --staged
-			Shows the changes in the staged files
-		git diff HEAD
-			Shows all diffs of current head
-		git diff HEAD~3
-			Shos the diff of Head 3 steps before
-		git diff file
-			Shows the diff of a specific unstaged file
-		git diff --cached file 
-			Shows the diff of a staged specific file
-
+git stash
+	Description
+		Stashing takes the dirty state of your working directory – that is, your modified tracked files and staged changes – and saves it on a stack of unfinished changes that you can reapply at any time.
+	git stash list
+		List all stashes
+	git stash
+		stashes modified and staged changes of current branch
+	git stash -u --include-untracked
+		stashes untracked files as well
+	git stash --patch
+		opens an interactive session to stash only specific stashes of files
+	git stash apply
+		restores from last stash, but keep it in the stash. Everything is restored to WD, even those files that were Staged
+	git stash apply --index
+		restores from stash, keeping files indexed that were staged when the stash was created
+	git stash pop
+		restores from last stash, removes it from stash list
+	git stash branch newbranchname
+		creates a new branch and reapplies the stash content ot that branch
 
 	Sources
-		Excellent description on how to read diff output. Recommended to start with
-			https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/diffs#start
-		Comprehensive Guide to understand how diff works. Not easy.
-			http://www.gnu.org/software/diffutils/manual/html_node/index.html#SEC_Contents
+		https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning	
 
 *****************Visual Tools*********************** 
 	gitk
@@ -148,13 +210,22 @@ git diff
 ****************KEYWORDS***********************
 HEAD
 	HEAD is the pointer to the current branch reference, which is in turn a pointer to the last commit made on that branch. That means HEAD will be the parent of the next commit that is created. It’s generally simplest to think of HEAD as the snapshot of your last commit.
-	HEAD~ - The PARENT of HEAD (1 step before)
-	HEAD~3 - Head 3 steps before
-	HEAD^ - 
-	HEAD^^ - HEAD with 2 steps before
+	Ancestry references
+		^  - If you place a ^ at the end of a reference, Git resolves it to mean the parent of that commit. 
+		^2 - The 2nd parent, if a commit had more parents (a merge commit for example, ^1 is the merged to branch, ^2 is the merged from branch)
+		~  - the parent of the reference
+		~n - the nth parent of a reference (grandparents)
+	Examples:
+		HEAD~   - The PARENT of HEAD (1 step before)
+		HEAD~3  - The 3rd parent of HEAD (parent of parent of parent)
+		HEAD^	-  The parent of head
+		HEAD^^  - The 2nd parent of HEAD
 
 	Detached HEAD
 		HEAD refers to a specific commit, as opposed to referring to a named branch.
+	Source
+		https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection
+
 CONFLICT
 	When the exact same line was modified in two different ways - git can't determine which version to keep
 
