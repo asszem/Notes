@@ -1,4 +1,5 @@
 jVi knowledge
+Updated: 2017-03-27
 
 http://jvi.sourceforge.net/ReadmeNetBeans.html
 https://spin.atomicobject.com/2016/04/19/vim-commands-cheat-sheet/
@@ -13,12 +14,15 @@ Telepítés utáni beállítások jVi-ben
 	ctrl-, és ctrl-. kikapcsolása, mert az kell a könyvjlezők/bugokra ugrálásnál
 	CTRL-I visszaadása jVI-nek, mert az a next location 
 	cb unnamed pipa - a sima rendszer vágólapról is lehet p-vel beilleszteni!
+	CTRL-E unbind, set Netbeans keymap to Next error in Editor
 	
 Egyedi mappingeg
 	imap jk <esc>
 	map <c-h> gT>
 	map <c-l> gt
 	map <c-f> :e#
+	mpa H 0
+	map L $
 	
 :set beállítások
 :set nu 	- numbered lines
