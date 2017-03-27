@@ -198,6 +198,28 @@ git stash
 	Sources
 		https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning	
 
+git filter-branch - NOT 100% SURE YET!
+	Warning - use it only on not published commits as it rewrites history!
+	Description
+	It can be used to rewrite large number of commits ina sciptable way, for example changing email address or remove some files in every commit
+	/refs/original/* is as a bakcup after filter-branch
+		To remove it:
+		git update-ref -d refs/original/refs/heads/master
+	Examples
+		Remove a file "passwords.txt" from every commits (in the branch)
+			git filter-branch --tree-filter 'rm -f passwords.txt'
+				--tree-filter runs the command after each checkout of the project and then recommits the results. 
+				Tipp: do this in a testing branch, check result and hard-reset to master branch.
+			git filter-branch --tree-filter --all 'rm -f passwords.txt'
+				--all runs the command on ALL branches
+	Source
+	https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History
+	Info on what is refs/original/heads/master
+		http://stackoverflow.com/questions/7654822/remove-refs-original-heads-master-from-git-repo-after-filter-branch-tree-filte
+	General info on filter branch
+	http://git-memo.readthedocs.io/en/latest/filter-branch.html
+
+
 *****************Visual Tools*********************** 
 	gitk
 		read-only visual representation of the repository / commits / branches
