@@ -219,14 +219,18 @@ git filter-branch - NOT 100% SURE YET!
 	General info on filter branch
 	http://git-memo.readthedocs.io/en/latest/filter-branch.html
 
+git config
+	set up gVim (and not Vim) as the editor
+		git config --global core.editor "'C:\Program Files (x86)\Vim\vim80\gvim.exe'  -f -i NONE"
+		source: http://stackoverflow.com/questions/28952102/how-can-i-set-up-gvim-as-my-editor-on-git-for-windows
 
 *****************Visual Tools*********************** 
-	gitk
+gitk
 		read-only visual representation of the repository / commits / branches
 		To visualize All Branch History:
 			gitk -all
 
-	git gui
+git gui
 		visual tool to review changes, sign-off commits and perform many tasks, like merge, commit, reset, etc
 
 ****************KEYWORDS***********************
@@ -259,7 +263,7 @@ CONFLICT
 	source
 		http://docs.oracle.com/cd/E50453_01/doc.80/e50452/create_japps.htm#NBDAG2974
 
-********************SOURCES********************
+********************GIT Documentation Sources********************
 	https://www.kernel.org/pub/software/scm/git/docs/user-manual.html
 		Comprehensive Documentation of Git
 

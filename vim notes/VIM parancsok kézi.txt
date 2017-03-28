@@ -1,6 +1,7 @@
 ===============================================================================================================
 						Memorizálás alatt
 ===============================================================================================================
+SPACE (remappolva) - keresést indít!
 {}	- a következõ / elõzõ üres sorra ugrigk
 '0 - a legutoljára megnyitott fájlt nyitja meg (VIM újraindításkor jól jön)
 gf - goto file - megnyitja a kurzor alatt lévõ szót, mint file, ha van. Visuallal lehet több szót kijelölni 
@@ -23,8 +24,8 @@ ZZ - mindent ment és kilép.
 MOZGÁS, KURZORKEZELÉS
 	j / k soron belül mozog
 	gj /gk sorok között mozog
-	^ - az adott sor elsõ nem üres karakterére ugrik (ALTgr-3, utána sajnos még egy extra gombot nyomni kell különben nem érzi)
-	$ - az adott sor végére ugrik
+	^ - az adott sor elsõ nem üres karakterére ugrik (ALTgr-3, utána sajnos még egy extra gombot nyomni kell különben nem érzi) - remap: H
+	$ - az adott sor végére ugrik - remap L
 	g_ - az adott sor végére ugrik.
 	:changes - mutatja a változtatásokat CHANGELIST
 		g, - ELÕRE(changelisten lefelé, a legutolsó változtatás felé) lép a changelisten. Ha nem ugráltam kézzel a changelisten, akkor ez a legutolsó változtatással lesz megegyezõ (Az automatikus '. marks a legutolsó változás sorának elejére viszi a kurzort) 
