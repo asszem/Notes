@@ -1,8 +1,28 @@
-"vimrc PowerShell beállítások v1.0 2017-03-23
+"vimrc PowerShell beállítások v1.0 2017-03-28
 "============================================================================================================
 "~~	MAPLEADER BEÁLLÍTÁSOK ~~
 "============================================================================================================
 	let mapleader=","
+	"Toggle Nerdtree file manager with ,n 
+	map <leader>n :NERDTreeToggle<cr>
+	"Open the buffers list with ,b
+	map <leader>b :buffers<cr>
+"============================================================================================================
+"
+"============================================================================================================
+"~~	Pluginek
+"============================================================================================================
+	"Pathogen
+	execute pathogen#infect()
+
+	"Nerdtree - always show the bookmarks 
+	let NERDTreeShowBookmarks=1 
+	"Ctrl-p
+	set runtimepath^=~/.vim/bundle/ctrlp.vim
+	"to open CtrlP with MRU-Files-Buffers mixed mode
+	map <c-p> :CtrlPMixed<cr>
+	let g:ctrlp_cmd = 'CtrlPMixed'
+	"http://ctrlpvim.github.io/ctrlp.vim/#installation"
 "============================================================================================================
 "============================================================================================================
 "~~	Gyári beállítások ~~
@@ -42,15 +62,15 @@
 		set wildmenu 
 	"A wildmode-ban kiírja a lehetőségeket is függőleges menüben
 		"A longest azt csinálja, hogy csak az első ambiguitásig egészíti ki
-		"Vessző után a full pedig a második tabra már teljesen
-		"kiegészíti
+		"Vessző után a full pedig a második tabra már teljesen kiegészíti
 		set wildmode=list:longest,full
 "============================================================================================================
 "~~	FILE, BACKUP, MAPPA BEÁLLÍTÁSOK	 ~~
 "============================================================================================================
-	"Ide rakja a backupot, swap file-t pedig ne csináljon
+	"Ide rakja a backupot, .un file-t és swap file-t pedig ne csináljon
 		set nobackup
 		set noswapfile
+		set noundofile
 	"Mentés nélkül is lehessen buffert váltani
 		set hidden 
 	"A mappaváltással a PWD is automatikusan változik
@@ -91,6 +111,8 @@
 "============================================================================================================
 "~~	GUI beállítások ~~
 "============================================================================================================
+	"Kikapcsolja az idegesítő csipogást és villogást
+		set vb t_vb=
 	"Beállítja a morning színsémát, az általam testreszabott státuszsorral
 		:color peachpuff 
 		:highlight statusline gui=NONE guibg=Orange guifg=Black
@@ -105,6 +127,10 @@
 		"set go-=T 
 	"A tabokban csak a fájlnév, ne a path jelenjen meg
 		set guitablabel=%t
+	"Automatikusan ne szúrjon be sortörést -- eztet sajnos a source $VIMRUNTIME/vimrc_example.vim felülírja
+		set textwidth=0
+		set wrapmargin=0
+		set formatoptions-=t
 	"Sortörést állítja be (jobb oldalon nem megy ki margóig a szöveg)
 		set linebreak 
 	"Kicsit szellősebb sorokat állít be.
@@ -174,6 +200,8 @@
 		nnoremap <Leader>m '
 	"marksok mutatása
 		nnoremap <Leader>ma :marks<cr>
+	"Ctrl-A továbbra is növelje az alatta lévő számot. On Windows, your vimrc file may source mswin.vim or another script that maps Ctrl-A to Select All. 
+		:nunmap <C-a>
 "============================================================================================================
 "~~	TAB és WINDOWS ABLAK KEZELÉS ~~
 "============================================================================================================
