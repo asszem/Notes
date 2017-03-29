@@ -1,9 +1,13 @@
 ****************GITTING STARTED*****************
 Create a new local repository & setting an upstream tracking branch
-	git init
-	git remote add origin URL
-		[make one commit so HEAD will point to master]
-	git push -u origin master
+	1. Make the folder ready for git
+		git init
+	2. Add the remote location
+		git remote add <remote_name> <remote_URL>
+	3. Make one local commit so HEAD will point to master
+		git commit 
+	4. Set up the local master to be tracking the remote master
+		git push -u origin master
 
 ****************COMMANDS***********************
 git status
@@ -24,20 +28,32 @@ git branch
 		git branch
 	See latest commits on each branch
 		git branch -v
+	See which branch tracks which remote branch
+		git branch -vv
 	See all branches that are merged/not merged to the CURRENT branch
 		git branch --merged
 		git branch --no-merged
-	Create new branch
+	Create new local branch
 		git branch newbranchname
-	Delete a branch
+	Delete a local branch
 		git branch -d branchname
 	Delete a branch even if there are unmerged files on that branch (DANGEROUS! Unmerged files will be lost)
 		git branch -D branchname
+	Create a remote branch
+		git push -u <remotename> <branchname>
+	Delete a remote branch
+		git push <remote_name> --delete <branch_name>
 	Push to a remote branch
 		git push remotename/branchname
-	Set a remote branch to track an already existing local branch
-		git checkout localbranch
+	Set an EXISTING local branch to track an existing remote branch
+		If you already have a local branch and want to set it to a remote branch you just pulled down, or want to change the upstream branch you’re tracking
 		git branch -u remotename/remotebranchname
+	Create a new local branch to track an existing remote branch
+		git checkout -b <localbranch_name> <remote_name><branch_name>
+	Checkout and set track an existing local branch
+		git checkout --track <remote_name><branch_name>
+	Unset tracking
+		git branch --unset-upstream
 
 git checkout
 	description
@@ -82,6 +98,22 @@ git log
 		https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection
 
 git diff 
+	git diff 
+		Diff between Index and WORKING TREE
+	git diff <commit>
+		Diff between WORKING TREE and <commit>
+		This form is to view the changes you have in your WORKING TREE relative to the named <commit>.
+	git diff --cached
+		Diff between Index and HEAD (latest commit of a branch, unless Head is detached)
+	git diff --cached <commit>
+		Diff between Index and <commit>
+		This form is to view the changes you staged for the next commit relative to the named <commit>
+	git diff <commit> <commit>
+		Diff between two commits (branches, tags or commits)
+	git diff ..<commit> 
+	git diff <commit>..
+		Diff between commit and HEAD
+	git diff -- cached <commit> 
 	Explanation of a sample diff:
 		diff --git a/git notes/GitKnowledge.txt b/git notes/GitKnowledge.txt
 			displays the input of diff
@@ -281,4 +313,6 @@ CONFLICT
 
 	Small GIT cards to memorize stuff
 		http://tednaleid.github.io/understanding-git/
-		
+	
+	Long text list of Git Commands and options
+	http://cheat.errtheblog.com/s/git

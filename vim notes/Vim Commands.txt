@@ -1,24 +1,12 @@
 ===============================================================================================================
-						Memorizálás alatt
+						Recently learned commands to Memorize
 ===============================================================================================================
 SPACE (remappolva) - keresést indít!
+,v ctrl-q - Visual Block
 {}	- a következő / előző üres sorra ugrigk
 '0 - a legutoljára megnyitott fájlt nyitja meg (VIM újraindításkor jól jön)
-gf - goto file - megnyitja a kurzor alatt lévő szót, mint file, ha van. Visuallal lehet több szót kijelölni 
-ctrl-xf - a mappában lévő fájlokra egészíti ki a beírt szöveget, alul látszik, mikkel lehet le-föl haladni
-:w {filenév} - új fájlt nyit a megadott névvel. Ha volt vizuális kijelölés, akkor annak tartalmát beleírja az új fájlba.
 gv - Utolsó kijelölés újrakijelölése
-z. - az ablakot a kurzor alatt lévő sor közepére állítja. 
 o - Visual módban az aktuális kijelölés másik végére viszi a kurzort. Baromi hasznos!!!
-{szám}f/F{karakter} - a {számnyi} előfordulására a beírt karakternek a sorban jobbra(f)/balra(F) - mnemo: "find"
-{szám}t/T{karakter} - a beírt karakternek a {számnyi} előfordulása elé(t)/mögé(T) - mnemo: "to"
-	; - megismétli az f/f vagy t/T keresést JOBBRA (ALTgr-?)
-	, - megismétli az f/f vagy t/t keresést BALRA (simán ,)
-^ - az adott sor első nem üres karakterére ugrik (ALTgr-3, utána sajnos még egy extra gombot nyomni kell különben nem érzi)
-viW - visual inside Words (space közötti terület kijelölése)
-q/ - az előző kereséseket mutatja (az utolsó üresen bezárja a keresést)
-// - megismétli a legutolsó keresést 
-ZZ - mindent ment és kilép. 
 ==============================VIM PARANCSOK éS BEáLLíTáSOK (ANDRáS) ===========================================
 
 MOZGÁS, KURZORKEZELÉS
