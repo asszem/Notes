@@ -113,10 +113,9 @@ git diff
 	git diff ..<commit> 
 	git diff <commit>..
 		Diff between commit and HEAD
-	git diff -- cached <commit> 
-	Explanation of a sample diff:
+	Explanation of a sample diff result:
 		diff --git a/git notes/GitKnowledge.txt b/git notes/GitKnowledge.txt
-			displays the input of diff
+			displays the input of diffs. File a is the "old" and b is the "new" file
 		index 5047418..24a5e72 100644
 			The SHA checksum of old/new files. These are NOT commit checksums
 		--- a/git notes/GitKnowledge.txt
@@ -130,19 +129,6 @@ git diff
 			++ marks file b (NEW)
 		If there is only + in a hunk, it means that part is only part in the second file -> an addition in the second file
 		If there is only - in a hunk, it means that it is not part of the second file ->a deletion in the second file
-	Examples:
-		git diff
-			Shows the changes in the unstaged (but tracked) files
-		git diff --cached or git diff --staged
-			Shows the changes in the staged files
-		git diff HEAD
-			Shows all diffs of current head
-		git diff HEAD~3
-			Shos the diff of Head 3 steps before
-		git diff file
-			Shows the diff of a specific unstaged file
-		git diff --cached file 
-			Shows the diff of a staged specific file
 	Sources
 		Excellent description on how to read diff output. Recommended to start with
 			https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/diffs#start

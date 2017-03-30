@@ -1,6 +1,8 @@
 ===============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
+,fi - foldmethod indent
+,fm - foldmethod manual
 SPACE (remappolva) - keresést indít!
 ,v ctrl-q - Visual Block
 {}	- a következő / előző üres sorra ugrigk
@@ -129,6 +131,16 @@ VISUAL MóD KEZELéS
 	gv - az előző visual módba kijelölt sorokat újra kijelöli
 	o - Visual módban az aktuális kijelölés másik végére viszi a kurzort. Baromi hasznos!!!
 	viW - visual inside Words (space közötti terület kijelölése)
+FOLD kezelés
+	,fi - set foldmethod=indent - automatikusan behúzza a foldokat
+	,fm - set foldmethod=manual - kézi foldolás
+	zf - set new fold (only works in manual)
+	zR - open ALL folds
+	zM - close all folds
+	zc - close fold
+	zo - open fold
+	za - toggle current fold (open/close)
+	zC, zO, ZA - on all fold levels under cursor
 DIFF HASZNÁLAT :h :diff
 	:vert diffsplit {file} - az aktuális ablakot összehasonlítja a beírt fájllal.
 	:diffoff! - az összes diff módban lévő ablakot bezárja
