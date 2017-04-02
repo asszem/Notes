@@ -1,14 +1,14 @@
-===============================================================================================================
+==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
-,fi - foldmethod indent
-,fm - foldmethod manual
-SPACE (remappolva) - keresést indít!
-,v ctrl-q - Visual Block
-{}	- a következő / előző üres sorra ugrigk
-'0 - a legutoljára megnyitott fájlt nyitja meg (VIM újraindításkor jól jön)
-gv - Utolsó kijelölés újrakijelölése
-o - Visual módban az aktuális kijelölés másik végére viszi a kurzort. Baromi hasznos!!!
+	,fi - foldmethod indent
+	,fm - foldmethod manual
+	SPACE (remappolva) - keresést indít!
+	,v ctrl-q - Visual Block
+	{}	- a következő / előző üres sorra ugrigk
+	'0 - a legutoljára megnyitott fájlt nyitja meg (VIM újraindításkor jól jön)
+	gv - Utolsó kijelölés újrakijelölése
+	o - Visual módban az aktuális kijelölés másik végére viszi a kurzort. Baromi hasznos!!!
 ==============================VIM PARANCSOK éS BEáLLíTáSOK (ANDRáS) ===========================================
 
 MOZGÁS, KURZORKEZELÉS

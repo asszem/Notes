@@ -241,6 +241,8 @@ git config
 	set up gVim (and not Vim) as the editor
 		git config --global core.editor "'C:\Program Files (x86)\Vim\vim80\gvim.exe'  -f -i NONE"
 		source: http://stackoverflow.com/questions/28952102/how-can-i-set-up-gvim-as-my-editor-on-git-for-windows
+	set the color of --interactive option
+		git config color.interactive.prompt red
 
 *****************Visual Tools*********************** 
 gitk

@@ -40,7 +40,13 @@ Git Alias Samples
 	git cm - commit with message
 		git config --global alias.cm "commit -am"
 
-Best Bractices
+Git Config tips
+	Tell git diff to use mnemonic prefixes (index, work tree, commit, object) instead of the standard a and b notation:
+		git config --global diff.mnemonicprefix true	
+		source: http://nuclearsquid.com/writings/git-tricks-tips-workflows/
+	git config color.interactive.prompt red
+
+General Best Bractices
 Source:
 	Learn Version Control with Git
 	https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices#start
