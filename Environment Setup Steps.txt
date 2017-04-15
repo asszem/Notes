@@ -1,12 +1,22 @@
 Install GitHub
 Install Netbeans
 Install Gvim
+GVim setup
+	Install pathogen
+		create ~/vimfiles/autoload
+		create ~/vimfiles/bundle
+		create pathogen.vim file in autoload folder
+	Install ctrlp to ~/vimfiles/bundle
+		git clone https://github.com/kien/ctrlp.vim bundle
+	Install nerdtree to ~/vimfiles/bundle
+		git clone https://github.com/scrooloose/nerdtree nerdtree
 Create PowerShell Profile for Gvim
 	Create PowerShell profile
 		https://github.com/asszem/Notes/blob/master/powershell%20notes/powershell%20settings.txt
 	Update Profile file to latest version
 		https://github.com/asszem/Notes/blob/master/powershell%20notes/Microsoft.PowerShell_profile.ps1
-	Set GVIM for editin commit messages
+	Change background to black
+		Right click on powershell and set it to black
 NetBeans setup
 	Install jVI to Netbeans
 		Install jVI form Plugin manager in Netbeans
@@ -25,3 +35,4 @@ Git setup
 		Set colors
 			git config color.interactive.prompt red
 
+Clone Projects and start working
