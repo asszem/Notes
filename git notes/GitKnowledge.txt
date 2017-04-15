@@ -186,6 +186,19 @@ git clean
 	-i interactive
 	-n dry run
 	-f force 
+
+git rm
+	Removes files from the index
+	Source: https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
+	-r recursive (for subdirectories)
+	-n dry run
+	--cached only remove files from index
+	Example
+		Remove files from watched list that should be ignored. 
+		This will keep the file on your hard drive but not have Git track it anymore. 
+		This is particularly useful if you forgot to add something to your .gitignore file and accidentally staged it
+			git rm -r --cached filepath
+			git commit -m "Removed files"
 	
 git alias 
 	git alias
@@ -206,6 +219,8 @@ git stash
 		opens an interactive session to stash only specific stashes of files
 	git stash apply
 		restores from last stash, but keep it in the stash. Everything is restored to WD, even those files that were Staged
+	git stash appy stash@{2}
+		restores the referenced stash
 	git stash apply --index
 		restores from stash, keeping files indexed that were staged when the stash was created
 	git stash pop

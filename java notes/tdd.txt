@@ -1,0 +1,4 @@
+Best practices
+	Name methods in test cases as when_____Then_____
+	Source
+	https://technologyconversations.com/2013/12/20/test-driven-development-tdd-example-walkthrough/
