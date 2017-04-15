@@ -1,0 +1,27 @@
+Install GitHub
+Install Netbeans
+Install Gvim
+Create PowerShell Profile for Gvim
+	Create PowerShell profile
+		https://github.com/asszem/Notes/blob/master/powershell%20notes/powershell%20settings.txt
+	Update Profile file to latest version
+		https://github.com/asszem/Notes/blob/master/powershell%20notes/Microsoft.PowerShell_profile.ps1
+	Set GVIM for editin commit messages
+NetBeans setup
+	Install jVI to Netbeans
+		Install jVI form Plugin manager in Netbeans
+		Download jVI files https://sourceforge.net/projects/jvi/files/jVi-for-NetBeans/
+		Extract zip file
+		Manually install all plugins from Netbeans/Plugins/Downloaded...
+		Import jVI settings from NetBeans save
+	Install DARCULA Look and Feel plugin from Plugin manager
+	Import All NetBeans Settings from Options
+Git setup
+	Download .gitconfig file from Github
+		Set editor to Vim
+			git config --global core.editor "'C:\Program Files (x86)\Vim\vim80\gvim.exe'  -f -i NONE"
+		Set alias configs
+			git log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'
+		Set colors
+			git config color.interactive.prompt red
+
