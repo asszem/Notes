@@ -1,0 +1,33 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = András
+[user]
+	email = asszem78@gmail.com
+[core]
+	editor = 'C:\\Program Files (x86)\\Vim\\vim80\\gvim.exe'  -f -i NONE
+[alias]
+	last = log -1 HEAD
+	logf = log --pretty=format:\"%h - %an, %ar : %s\"
+	lg = log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'
+	alias = config --get-regexp ^alias\\.
+	br = branch -avv
+	brm = branch -va --merged
+	brnm = branch -va --no-merged
+	cm = commit -am
+[color]
+    ui = auto
+  [color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+	upstream = red bold
+[color "log"]
+	head = red
+[color "interactive"]
+	prompt = green bold
+[diff]
+	mnemonicprefix = true
