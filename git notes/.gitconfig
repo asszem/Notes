@@ -18,6 +18,7 @@
 	brm = branch -va --merged
 	brnm = branch -va --no-merged
 	cm = commit -am
+	df = difftool -t gvimdiff
 [color]
     ui = auto
   [color "branch"]
@@ -31,3 +32,7 @@
 	prompt = green bold
 [diff]
 	mnemonicprefix = true
+	tool = gvimdiff
+[digg]
+	guitool = gvimdiff
+

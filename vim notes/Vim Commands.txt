@@ -1,6 +1,8 @@
 ==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
+	alt-hjkl - switch between windows
+	zo,za,zc, zm (mnemo 'murder' - close all), zr (mnemo: read all - open) - fold methods 
 	,fi - foldmethod indent
 	,fm - foldmethod manual
 	SPACE (remappolva) - keresést indít!
@@ -135,11 +137,11 @@ FOLD kezelés
 	,fi - set foldmethod=indent - automatikusan behúzza a foldokat
 	,fm - set foldmethod=manual - kézi foldolás
 	zf - set new fold (only works in manual)
-	zR - open ALL folds
-	zM - close all folds
-	zc - close fold
-	zo - open fold
 	za - toggle current fold (open/close)
+	zo - open fold
+	zR - open ALL folds
+	zc - close fold
+	zM - close all folds
 	zC, zO, ZA - on all fold levels under cursor
 DIFF HASZNÁLAT :h :diff
 	:vert diffsplit {file} - az aktuális ablakot összehasonlítja a beírt fájllal.

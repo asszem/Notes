@@ -1,4 +1,4 @@
-"vimrc PowerShell beállítások v1.0 2017-03-28
+"vimrc PowerShell beállítások v1.1 2017-04-17
 "============================================================================================================
 "~~	MAPLEADER BEÁLLÍTÁSOK ~~
 "============================================================================================================
@@ -32,34 +32,64 @@
 "============================================================================================================
 	"a ctrl-V átmappolása mielőtt az mswin.vim a rendszerszintű paste-t rakja be helyette
 	map <leader>v <c-q>
-	"set nocompatible
+	set nocompatible
 	source $VIMRUNTIME/vimrc_example.vim
 	source $VIMRUNTIME/mswin.vim
 	behave mswin
-	set diffexpr=MyDiff()
 	function MyDiff()
-	  let opt = '-a --binary '
-	  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-	  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-	  let arg1 = v:fname_in
-	  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-	  let arg2 = v:fname_new
-	  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-	  let arg3 = v:fname_out
-	  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-	  let eq = ''
-	  if $VIMRUNTIME =~ ' '
-	    if &sh =~ '\<cmd'
-	      let cmd = '""' . $VIMRUNTIME . '\diff"'
-	      let eq = '"'
-	    else
-	      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-	    endif
-	  else
-	    let cmd = $VIMRUNTIME . '\diff'
-	  endif
-	  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-	endfunction
+   let opt = '-a --binary '
+   if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+   if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+   let arg1 = v:fname_in
+   if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+   let arg2 = v:fname_new
+   if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+   let arg3 = v:fname_out
+   if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+   if $VIMRUNTIME =~ ' '
+     if &sh =~ '\<cmd'
+       if empty(&shellxquote)
+         let l:shxq_sav = ''
+         set shellxquote&
+       endif
+       let cmd = '"' . $VIMRUNTIME . '\diff"'
+     else
+       let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+     endif
+   else
+     let cmd = $VIMRUNTIME . '\diff'
+   endif
+   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+   if exists('l:shxq_sav')
+     let &shellxquote=l:shxq_sav
+   endif
+ endfunction
+
+
+	"set diffexpr=MyDiff()
+	"function MyDiff()
+	"  let opt = '-a --binary '
+	"  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+	"  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+	"  let arg1 = v:fname_in
+	"  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+	"  let arg2 = v:fname_new
+	"  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+	"  let arg3 = v:fname_out
+	"  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+	"  let eq = ''
+	"  if $VIMRUNTIME =~ ' '
+	"    if &sh =~ '\<cmd'
+	"      let cmd = '""' . $VIMRUNTIME . '\diff"'
+	"      let eq = '"'
+	"    else
+	"      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+	"    endif
+	"  else
+	"    let cmd = $VIMRUNTIME . '\diff'
+	"  endif
+	"  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+	"endfunction
 "============================================================================================================
 "~~	WILDMENU beállítások ~~
 "============================================================================================================
@@ -305,9 +335,11 @@
 "~~	SHELL BEÁLLíTÁSOK	 ~~
 "============================================================================================================
 	"Mindig a PowerShell legyen a shell
-		set shell=powershell
+	"Removed this option, because vimdiff did not work well in powershell
+		"set shell=powershell
+		"set shell=%SystemRoot%\syswow64\WindowsPowerShell\v1.0\powershell.exe
 	"Ez mgé nem teljesen egyértelmű, mit csinál, de biztos jó lesz
-		set shellcmdflag=-c
+	"set shellcmdflag=-Command
 	"Help ehhez:
 		"http://juliankay.com/development/setting-up-vim-to-work-with-powershell/
 "============================================================================================================

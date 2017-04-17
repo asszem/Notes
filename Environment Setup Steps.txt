@@ -1,22 +1,29 @@
 Install GitHub
-Install Netbeans
+	Add Github to Windows PATH
 Install Gvim
+	Add GVim to Windows PATH
 GVim setup
 	Install pathogen
 		create ~/vimfiles/autoload
 		create ~/vimfiles/bundle
 		create pathogen.vim file in autoload folder
-	Install ctrlp to ~/vimfiles/bundle
-		git clone https://github.com/kien/ctrlp.vim bundle
-	Install nerdtree to ~/vimfiles/bundle
-		git clone https://github.com/scrooloose/nerdtree nerdtree
-Create PowerShell Profile for Gvim
-	Create PowerShell profile
+	Install plugins to ~/vimfiles/bundle 
+		ctrlp 
+			git clone https://github.com/kien/ctrlp.vim bundle
+		nerdtree 
+			git clone https://github.com/scrooloose/nerdtree nerdtree
+		fugitive
+			git clone https://github.com/tpope/vim-fugitive fugitive
+		gitv
+			git clone https://github.com/gregsexton/gitv gitv
+PowerShell setup
+	Create PowerShell Profile
 		https://github.com/asszem/Notes/blob/master/powershell%20notes/powershell%20settings.txt
 	Update Profile file to latest version
 		https://github.com/asszem/Notes/blob/master/powershell%20notes/Microsoft.PowerShell_profile.ps1
 	Change background to black
 		Right click on powershell and set it to black
+Install Netbeans
 NetBeans setup
 	Install jVI to Netbeans
 		Install jVI form Plugin manager in Netbeans
@@ -34,5 +41,7 @@ Git setup
 			git log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'
 		Set colors
 			git config color.interactive.prompt red
+		Set difftool to gvim
+			git config --global diff.tool gvimdiff
 
 Clone Projects and start working

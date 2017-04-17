@@ -20,3 +20,25 @@ vim diff error E97
 		- instead of simply setting shell=powershell tried to:
 			set shell=C:\\WINDOWS\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe
 
+Using GVIM as difftool instead of vim
+	Solution
+		Add Vim folder to PATH
+		git config --global diff.tool gvimdiff
+	Workaround
+		If gvimdiff is available but didn't run for some reason, use:
+		git difftool -t gvimdiff
+	Problem
+		git difftool starts vimdiff and not gvim
+	Not working attempts
+		try:
+			>git config --global diff.tool gvimdiff
+		result
+			>git difftool
+			The diff tool gvimdiff is not available as 'gvim'
+		set-alias in powershell to start menu .lnk that runs gvim -d
+		copy diff tool settings from here
+			https://gist.github.com/schmich/34a035fdf1adb80173d5
+	Notes
+	list available diff tool
+		git difftool --tool-help
+		http://charlieharvey.org.uk/page/git_vimdiff_to_replace_difftool
