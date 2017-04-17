@@ -1,6 +1,8 @@
 ==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
+	:new, :vnew - opens a new empty buffer (vertical)
+	:tabnew % - opens the current buffer in a new tab
 	alt-hjkl - switch between windows
 	zo,za,zc, zm (mnemo 'murder' - close all), zr (mnemo: read all - open) - fold methods 
 	,fi - foldmethod indent
@@ -53,7 +55,9 @@ ABLAKKEZELÉS :help window
 	ALT -j/k/h/l - tabok között vált
 	:sp(lit) {filenév} - az aktuális ablakból még egyet csinál, vízszíntesen (ha megadok filenevet, akkor azt nyitja oda meg)
 	:vp {filenév} - vertikális split, azaz függőlegesen csinál két új anzert mód kilépés alternatívablakot.   (ha megadok filenevet, akkor azt nyitja oda meg)
+	:new, :vnew - opens a new empty buffer (vertical)
 	:tabnew - megnyit egy új, üres tabot egy üres ablakkal
+	:tabnew % - opens the current buffer in a new tab
 	:tabe {filenév} - új tabban nyitja meg a megadott file-t.
 	ABLAK ÁTMÉRETEZéSE
 		:res - paraméter nélkül: maxra állítja az aktuális ablakot (ez jó, ha a CTRL-W o parancs nem menne)
@@ -105,6 +109,8 @@ SZÖVEGSZERKESZTÉS
 		"{regiszterazonosító}y - berakja a megnevezett regiszterbe a kijelölt tartalmat (Visual módban)
 		"+c - a Windows vágólapra másolja
 		"+p - a Windows vágólapról pasztézza
+		:put - copies Windows clipboard
+		:113put + - copies windows clipboard to line 113
 	HELYETTESÍTÉS - SUBSTITUTE
 			:{hol, range} s /mit /mire /flagek
 		range minták

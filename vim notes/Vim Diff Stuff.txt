@@ -9,8 +9,13 @@ Commands
 	dp - put	 :diffput - put the changes from current window into the other window.
 	]c - Jump to the next change.
 	[c - Jump to the previous change.
-
 	:diffupdate - updates diffs
+	,du - diffupdate (remap)
+	:windo diffupdate - starts windiff in open windows
+	:windo diffoff - stops the diff mode
+
+Sources
+	http://vimcasts.org/episodes/comparing-buffers-with-vimdiff/	
 
 To test:
 if &diff
