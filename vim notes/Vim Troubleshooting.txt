@@ -1,0 +1,22 @@
+vim diff error E97
+	Workaround
+		Remove shell=powershell and set shellcmnd=-c from vimrc. Gvim will use cmd as shell
+	Error
+		Error msg
+			x86: The term 'x86' is not recognized as the name of cmdlet
+		Possible cause
+			powershell tries to run vim diff, but the path is wrong because of the space after C:\Program
+		Command run
+			powershell -c "C:\Program" Files (x86)\Vim\vim80\diff" -a ....
+	Conditions
+		diff.exe location is at $VIMRUNTIME (C:\Program" Files (x86)\Vim\vim80\)
+		powershell is set for vim shell
+	Not working attempts
+	 	- set-alias diff <$VIMRUNTIME> because 'diff' is read-only term in powershell
+		- updating the mydiff function in vimrc based on varios stackoverflow samples
+			Source:
+			http://stackoverflow.com/questions/21862446/vimdiff-failing-with-cannot-read-or-write-temp-files	
+		- running vim -V -d file1 file2 to determine problem
+		- instead of simply setting shell=powershell tried to:
+			set shell=C:\\WINDOWS\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe
+
