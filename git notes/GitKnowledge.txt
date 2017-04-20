@@ -113,6 +113,8 @@ git diff
 	git diff ..<commit> 
 	git diff <commit>..
 		Diff between commit and HEAD
+	git diff -S<searched word> -G<regex>
+		returns diff that contains the searched word/regex only
 	Explanation of a sample diff result:
 		diff --git a/git notes/GitKnowledge.txt b/git notes/GitKnowledge.txt
 			displays the input of diffs. File a is the "old" and b is the "new" file
@@ -134,6 +136,18 @@ git diff
 			https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/diffs#start
 		Comprehensive Guide to understand how diff works. Not easy.
 			http://www.gnu.org/software/diffutils/manual/html_node/index.html#SEC_Contents
+		Regex practice playground
+			http://regexr.com/
+
+less command
+	less is used to output result to screen. 
+	h - display help
+	/ - forward search
+	? - backward search
+	j - one line down
+	k - one line up
+
+
 
 git reset
 	format
