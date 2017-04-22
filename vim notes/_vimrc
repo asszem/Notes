@@ -1,4 +1,4 @@
-"vimrc PowerShell beállítások v1.1 2017-04-17
+"vimrc PowerShell beállítások v2.1 2017-04-21
 "============================================================================================================
 "~~	MAPLEADER BEÁLLÍTÁSOK ~~
 "============================================================================================================
@@ -9,6 +9,8 @@
 	map <leader>b :buffers<cr>
 	"Opens the jumps list. Ctrl-o and Ctrl-i to jump
 	map <leader>j :jumps<cr>
+	":diffupdate
+	map <leader>du :diffupdate<cr>
 "============================================================================================================
 "
 "============================================================================================================
@@ -37,16 +39,16 @@
 	source $VIMRUNTIME/mswin.vim
 	behave mswin
 	function MyDiff()
-   let opt = '-a --binary '
-   if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-   if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-   let arg1 = v:fname_in
-   if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-   let arg2 = v:fname_new
-   if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-   let arg3 = v:fname_out
-   if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-   if $VIMRUNTIME =~ ' '
+   	let opt = '-a --binary '
+   	if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+   	if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+   	let arg1 = v:fname_in
+   	if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+   	let arg2 = v:fname_new
+   	if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+   	let arg3 = v:fname_out
+   	if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+   	if $VIMRUNTIME =~ ' '
      if &sh =~ '\<cmd'
        if empty(&shellxquote)
          let l:shxq_sav = ''
@@ -56,14 +58,14 @@
      else
        let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
      endif
-   else
+    else
      let cmd = $VIMRUNTIME . '\diff'
-   endif
-   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-   if exists('l:shxq_sav')
+    endif
+    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+    if exists('l:shxq_sav')
      let &shellxquote=l:shxq_sav
-   endif
- endfunction
+    endif
+ 	endfunction
 
 
 	"set diffexpr=MyDiff()
@@ -207,6 +209,9 @@
 		imap jk <Esc>
 	"Shift-space: save all
 		nnoremap <S-Space> :wa!<cr>
+	"Accidental shift-W also saves
+		"noremap :W :w<cr>
+		:command W w
 	"ENTER-re a képernyő közepére igazítja az aktuális sort
 		nnoremap <cr> zvzz
 	"Kurzormozgatás átmappolása
@@ -305,6 +310,10 @@
 "============================================================================================================
 "~~	EGYÉB BEÁLLÍTÁSOK ~~
 "============================================================================================================
+	"Start Gvim maximized
+	au GUIEnter * simalt ~m
+	" to start commands with ; --- not sure if I will like this
+	nnoremap ; :
 	"Ez a helpben fontos, eredetilega  CTRL-G az az aktulis fájl infoit mutatja.
 		noremap <C-g> <C-]>
 	"Timestamp beállítások
