@@ -18,8 +18,11 @@ GVim setup
 			git clone https://github.com/gregsexton/gitv gitv
 PowerShell setup
 	Create PowerShell Profile
+		New-Item -path $profile -type file -force
+			http://www.computerperformance.co.uk/powershell/powershell_profile_ps1.htm
+			http://www.expatpaul.eu/2014/04/vim-in-powershell/
+	Update Profile file based on existing profiles adapting to current system
 		https://github.com/asszem/Notes/blob/master/powershell%20notes/powershell%20settings.txt
-	Update Profile file to latest version
 		https://github.com/asszem/Notes/blob/master/powershell%20notes/Microsoft.PowerShell_profile.ps1
 	Change background to black
 		Right click on powershell and set it to black
