@@ -1,6 +1,7 @@
 ==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
+	:e ++enc=utf-8 -árvíztűrő tükörfúrógép
 	:new, :vnew - opens a new empty buffer (vertical)
 	:tabnew % - opens the current buffer in a new tab
 	alt-hjkl - switch between windows
@@ -174,7 +175,10 @@ EGYÉB DOLGOK
 		:so {sessionnév} - session open, megnyitja az elmentett sessiont.
 		:mkview {viewnév} - elmenti a foldokat meg a nézetet (ha nem adok meg file-t, akkor bajt jelez)
 		:so {viewvév} - betölti a viewet.
-	FÁJLKEZELÉS FILEKEZELÉS
+	FÁJLKEZELÉS FILEKEZELÉS FILE MANAGEMENT
+		Reloads the file with different encoding
+			:e ++enc=UTF-8
+			" Press F12 to switch to UTF-8 encoding: nnoremap <F12> :e ++enc=utf-8<CR>
 		:browse e - megnyitja a fájl böngészőt
 		gf - goto file - megnyitja a kurzor alatt lévő szót, mint file, ha van. Visuallal lehet többet kijelölni 
 		:w {filenév} - új fájlt nyit a megadott névvel. Ha volt vizuális kijelölés, akkor annak tartalmát beleírja az új fájlba.

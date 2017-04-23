@@ -1,6 +1,5 @@
 vim diff error E97
-	Workaround
-		Remove shell=powershell and set shellcmnd=-c from vimrc. Gvim will use cmd as shell
+	Workaround Remove shell=powershell and set shellcmnd=-c from vimrc. Gvim will use cmd as shell
 	Error
 		Error msg
 			x86: The term 'x86' is not recognized as the name of cmdlet
@@ -42,3 +41,33 @@ Using GVIM as difftool instead of vim
 	list available diff tool
 		git difftool --tool-help
 		http://charlieharvey.org.uk/page/git_vimdiff_to_replace_difftool
+
+pathogen will not load bundles
+	Problem
+		After completing installation to ~/vimfiles/autoload and downloading plugins to ~/vimfiles/bundle/pluginname, the plugins are not loaded
+	Root cause
+		set encoding=UTF-8 in vimrc breaks plugins if the user folder name in Windows has accented characters
+	Attempts
+		Install Pathogen with Powershell:
+			cd ~vimfiles
+			Invoke-RestMethod -Uri https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim -Method Get -OutFile ~/vimfiles/autoload/pathogen.vim
+			http://discoposse.com/2012/06/30/powershell-invoke-restmethod-putting-the-curl-in-your-shell/
+		Install Nerdtree
+			cd ~\vimfiles\bundle
+			git clone git://github.com/scrooloose/nerdtree.git
+		Check runtimepath
+			set rtp= shows ~/vimfiles/bundle/nerdtree
+		add to _vimrc
+			execute pathogen#infect()
+			filetype plugin indent on
+		move pathogen infect after/before vimrc_example.vim, mswin.vim sources
+		add to _vimrc
+			call pathogen#helptags() ” generate helptags for everything in ‘runtimepath’
+			syntax on
+	Workaround #1
+		remove everything form _myvimrc
+			It works. Now I have to find out what causes the problem
+			Found it. UTF-8 encoding breaks if the user folder in Windows have accented character
+
+
+
