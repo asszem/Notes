@@ -1,4 +1,8 @@
-﻿set-alias vim "C:\Program Files (x86)\Vim\vim80\gvim.exe"
+set-alias vim "C:\Program Files (x86)\Vim\vim80\gvim.exe"
+Clear-Host
+
+# Welcome message
+"You are now entering PowerShell : " + $env:Username
 
 Function GitHubLocation
 {
