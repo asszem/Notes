@@ -6,7 +6,8 @@ GVim setup
 	Install pathogen
 		create ~/vimfiles/autoload
 		create ~/vimfiles/bundle
-		create pathogen.vim file in autoload folder
+		In powershell, use Invoke-RestMethod instead curl to create pathogen.vim file in autoload folder
+			Invoke-RestMethod -Uri https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim -Method Get -OutFile ~/vimfiles/autoload/pathogen.vim
 	Install plugins to ~/vimfiles/bundle 
 		ctrlp 
 			git clone https://github.com/kien/ctrlp.vim bundle
@@ -16,6 +17,7 @@ GVim setup
 			git clone https://github.com/tpope/vim-fugitive fugitive
 		gitv
 			git clone https://github.com/gregsexton/gitv gitv
+	If pathogne plugins are not working, check character encoding in homedir and update set encoding= in vimrc until it works
 PowerShell setup
 	Create PowerShell Profile
 		New-Item -path $profile -type file -force
