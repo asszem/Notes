@@ -1,26 +1,27 @@
-﻿Basic Commands
+﻿To be continued: re-structure based on category names in http://regexr.com/
+
+Basic Commands
 	\		- escape
 	. 		- any character
 	\d 		- any digit (numbers) [0-9]
 	\D		- any NON digit
-	[az]	- at ANY position, a or z 
+	[az]	- at ANY position, a or z (if /g global flag is included. if not, only the first occurence)
 	[a-z]	- at ANY position, anything between a-z
 	[^abc]  - at ANY position, NOT a or b or c
 	[a-zA-Z0-9_] 	- any english characters
 	\w		- any english characters (words)
 	\W		- any NON english characters
-	a{3}	- match a 3 times
-	a{1,3}	- match minimum 1, max 3 times
-	a{1,}	- match at least 1 times
-		[abc]{3} 	- 3 chacrachters, any of them can be either a or b or c
-		.{2,6}		- any characters between 2 and 6 
+	a{3}	- match 'a' 3 times
+	a{1,3}	- match 'a' minimum 1, max 3 times: 'a', 'aa', 'aaa'
+	a{1,}	- match at least 1 times: 'a', 'aaaaaaaaaaaaaaaaaaaaaaaaaa'
+		[abc]{3} 	- 3 characters, any of them can be either a or b or c : aaa, abc, bbb, aab
 	*		- zero or more repetition of preceding pattern
 				a* 		- zero or more a. selects all a's in the string
 				\d*		- zero or more digits
 	+		- one or more repetition of preceding pattern
 				[abc]+ 	- one or more a or b or c
 				\d+		- one or more digits
-	?		- preceding pattern is optional
+	?		- zero or one - preceding pattern is optional
 				ab?c	- matches abc or ac as b is optional
 	\b		- matches the boundary between a word and non word character
 				\bword		-matches when it is at the beginning of a word boundary
@@ -30,29 +31,49 @@
 	\s		-whitespace (NOT STRING :)
 	\S		-NON-Whitespace
 	\t		-tab
-	\n		-newline  (NL) or linefeed(LF) (in that order)
-				The line feed function moved down a line.
-				newline, end-of-line (EOL), linebreak
-				https://en.wikipedia.org/wiki/Newline
-	\r		-carriage return  (CR)
-				The carriage return function moved the cursor from the end of the line to the beginning of the line. 
-				Windows: 	\r\n (in that order)
-				Mac:		\r
-				Unix:		\n
-				https://en.wikipedia.org/wiki/Carriage_return
-	^		-matches the following pattern only at the beginning of the line
-	$		-matches the preceding pattern only at the end of the line
-				^abc$	- matches abc pattern if the whole line matches the pattern
 	(abc)	- capture group
 	(a(bc))	- capture group and subgroup
 	$1		- reference capture group 1
 	$&		- reference full match
 	|		- or
 
+Shorthand Character Classes
+	\s	- matches anything which is considered whitespace. This could be a space, tab, line break etc.
+	\S	- matches the opposite of \s, that is anything which is not considered whitespace.
+	\d	- matches anything which is considered a digit. ie 0 - 9 (It is effectively a shortcut for [0-9]).
+	\D	- matches the opposite of \d, that is anything which is not considered a digit.
+	\w	- matches anything which is considered a word character. That is [A-Za-z0-9_]. Note the inclusion of the underscore character '_'. 
+	\W	- matches the opposite of \w, that is anything which is not considered a word character
+	\t	- tab
+	\n	- newline  (NL) or linefeed(LF), end-of-line (EOL), linebreak. The line feed function moved down a line.  https://en.wikipedia.org/wiki/Newline
+	\r	- carriage return  (CR) The carriage return function moved the cursor from the end of the line to the beginning of the line. 
+			Windows: 	\r\n (in that order)
+			Mac:		\r
+			Unix:		\n
+			https://en.wikipedia.org/wiki/Carriage_return
+
+Anchors
+	^pattern	-matches the following pattern only at the beginning of the line 
+	pattern$	-matches the preceding pattern only at the end of the line
+					Example	^abc$	- matches abc pattern only if the whole line matches the pattern, eg. the line has only abc
+
+Word boundaries
+	A word is generally considered to be a string of characters that would be matched by the \w character class (that is, A-Z, a-z, 0-9 and _)
+	\< 	- beginning of a word
+	\>	- ending of a word
+	\b	- either beginning or end of a word
+			Input: goto Totoro tomato toto to
+			Regex: \bto					to\b						\bto\b		to
+			Match: tomato,toto, to		goto, tomato, toto, to	    to			goto, Totoro, tomato, toto, to
+	\B - NOT beginning or end of word
+			Input: goto Totoro tomato
+			Regex: \Bto			to\b
+			Match: Totoro		Totoro
+
 Greedy vs. Lazy Matching
 	greedy:	a.*d		xxabcdefghdxx > abcdefghd
 		- try and find the largest string it can which matches the pattern
-		- finds all possible matches, so it continues searching after founding abcd, until it founds abcdefghd
+		- finds all possible matches, so it continues searching after founding abcd, until it founds abcdefghd, which is the last occurence that satisfies the pattern
 	lazy:	a.*?d		xxabcdefghdxx > abcd
 		- finds only the first possible match
 
@@ -86,23 +107,24 @@ Metacharacters
 	and the opening curly brace {
 
 
-Samples
+Complex Regex Samples
 	email address
 		\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\
 
 		/(\b[\w._+]*)@([\w.]*)\.([a-z]{2,})\b/g
 		Email:\t$&\n Userid: $1\n Subdomain: $2\n Domain: $3\n\n
 
-(\b[\w._+]*)@([\w.]*)\.(\D{2,3})\b\s
 
 Sources
-	http://regexr.com/
-CheatSheets
-	http://www.rexegg.com/regex-quickstart.html#ref
+	Generators and validators
+		http://regexr.com/
 
-Tutorials
-	http://www.regular-expressions.info/tutorial.html	
-	http://www.rexegg.com/regex-quickstart.html
-	https://regexone.com/lesson/ - not really good
-	http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
+	CheatSheets
+		http://www.rexegg.com/regex-quickstart.html#ref
+
+	Tutorials
+		http://www.regular-expressions.info/tutorial.html	
+		http://www.rexegg.com/regex-quickstart.html
+		https://regexone.com/lesson/ - not really good
+		http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
 
