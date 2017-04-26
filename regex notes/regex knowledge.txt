@@ -5,10 +5,6 @@ Basic Commands
 	. 		- any character
 	\d 		- any digit (numbers) [0-9]
 	\D		- any NON digit
-	[az]	- at ANY position, a or z (if /g global flag is included. if not, only the first occurence)
-	[a-z]	- at ANY position, anything between a-z
-	[^abc]  - at ANY position, NOT a or b or c
-	[a-zA-Z0-9_] 	- any english characters
 	\w		- any english characters (words)
 	\W		- any NON english characters
 	a{3}	- match 'a' 3 times
@@ -23,30 +19,29 @@ Basic Commands
 				\d+		- one or more digits
 	?		- zero or one - preceding pattern is optional
 				ab?c	- matches abc or ac as b is optional
-	\b		- matches the boundary between a word and non word character
-				\bword		-matches when it is at the beginning of a word boundary
-				word\b		-matches when it is at the end of a word boundary
-				\bword\b	-matches when it is at teh beginning and the end of the word boundary
 			
-	\s		-whitespace (NOT STRING :)
-	\S		-NON-Whitespace
-	\t		-tab
 	(abc)	- capture group
 	(a(bc))	- capture group and subgroup
 	$1		- reference capture group 1
 	$&		- reference full match
 	|		- or
 
+Character sets - A "character class" matches only one out of several characters. 
+	[az]	- at ANY position, a or z (if /g global flag is included. if not, only the first occurence)
+	[a-z]	- at ANY position, anything between a-z
+	[^abc]  - at ANY position, NOT a or b or c
+	[a-zA-Z0-9_] 	- any english characters
+
 Shorthand Character Classes
-	\s	- matches anything which is considered whitespace. This could be a space, tab, line break etc.
+	\s	- WHITESPACE - matches anything which is considered whitespace. This could be a space, tab, line break etc.
 	\S	- matches the opposite of \s, that is anything which is not considered whitespace.
-	\d	- matches anything which is considered a digit. ie 0 - 9 (It is effectively a shortcut for [0-9]).
+	\d	- DIGIT - matches anything which is considered a digit. ie 0 - 9 (It is effectively a shortcut for [0-9]).
 	\D	- matches the opposite of \d, that is anything which is not considered a digit.
-	\w	- matches anything which is considered a word character. That is [A-Za-z0-9_]. Note the inclusion of the underscore character '_'. 
+	\w	- WORD matches anything which is considered a word character. That is [A-Za-z0-9_]. Note the inclusion of the underscore character '_'. 
 	\W	- matches the opposite of \w, that is anything which is not considered a word character
-	\t	- tab
-	\n	- newline  (NL) or linefeed(LF), end-of-line (EOL), linebreak. The line feed function moved down a line.  https://en.wikipedia.org/wiki/Newline
-	\r	- carriage return  (CR) The carriage return function moved the cursor from the end of the line to the beginning of the line. 
+	\t	- TAB
+	\n	- NEWLINE  (NL) or linefeed(LF), end-of-line (EOL), linebreak. The line feed function moved down a line.  https://en.wikipedia.org/wiki/Newline
+	\r	- CARRIAGE RETURN  (CR) The carriage return function moved the cursor from the end of the line to the beginning of the line. 
 			Windows: 	\r\n (in that order)
 			Mac:		\r
 			Unix:		\n
@@ -70,12 +65,43 @@ Word boundaries
 			Regex: \Bto			to\b
 			Match: Totoro		Totoro
 
-Greedy vs. Lazy Matching
-	greedy:	a.*d		xxabcdefghdxx > abcdefghd
-		- try and find the largest string it can which matches the pattern
-		- finds all possible matches, so it continues searching after founding abcd, until it founds abcdefghd, which is the last occurence that satisfies the pattern
-	lazy:	a.*?d		xxabcdefghdxx > abcd
-		- finds only the first possible match
+Quantifiers
+	?		- Matches 0 or 1 of the preceding token.
+	*		- Matches 0 or more of the preceding token. 
+	+		- Matches 1 or more of the preceding token.
+	{3}		- Matches exactly 3 of the preceding token.
+	{3,5}	- Matches 3 or 4 or 5 of the preceding token
+	{3,}	- Matches 3 or more of the preceding token
+	|		- Alteration
+	?		- Makes the preceding quantifier lazy, causing it to match as few characters as possible
+
+Greedy vs. Lazy Matching - after a quantifieer
+	greedy:	
+			- try and find the largest string it can which matches the pattern
+			- finds all possible matches, so it continues searching after founding abcd, until it founds abcdefghd, which is the last occurence that satisfies the pattern
+			- by default, quantifiers are greedy, and will match as many characters as possible
+	lazy:	
+			- match as few characters as possible
+			Example:
+						Pattern		Input > Result
+			Greedy		a.*d		xxabcdefghdxx > abcdefghd
+			Lazy		a.*?d		xxabcdefghdxx > abcd
+			
+			Greedy		b\w+		b be bee beer beers > be bee beer beers 
+			Lazy		b\w+?		b be bee beer beers > be be  be   be
+
+Groups
+	() 		- Capturing group. Groups multiple tokens together and creates a capture group for extracting a substring or using a backreference.
+			- Example:
+				Regex: (ha)+
+				Input: hahaha haa hah!
+				Match: hahaha ha  ha
+				Group#1: ha
+	(?:)	- Non-capturing groups. Groups multiple tokens together without creating a capture group.
+			- Example:
+				Regex: (?:ha)+
+				Input: hahaha haa hah!
+				Match: hahaha ha  ha
 
 Backreference
 	Matches the results of a previous capture group
@@ -88,9 +114,41 @@ Backreference
 				\1='x'					\1='b'
 				pattern: 'x''a''x'		'b''a''b'
 
-
-Character Class
- 	A "character class" matches only one out of several characters. [abc] matchers a or b or c
+Lookahead and Lookbehind
+	To see if something matches (or doesn't) and then to throw away what was actually matched.
+	Modes
+		Positive - in which we are seeking to find something which matches.
+		Negative - in which we are seeking to find something which doesn't match.
+	Lookahead
+		With a lookahead we want to look ahead (hence the name) in our string and see if it matches the given pattern, but then disregard it and move on.
+	Postive Lookahead
+		(?={pattern}
+		Matches a group after the main expression without including it in the result.	
+			Example
+			Pattern: 	\d(?=px)
+			Input: 		1pt 2px 3em 4px 
+			Matches: 	2 4
+			Explanation: a number followed by px. Note that 'px' is NOT matched, only the numbers
+	Negative Lookahead
+		(?!{pattern})
+		Specifies a group that can not match after the main expression (if it matches, the result is discarded).
+			Example
+			\b1(?!000)\d\d\d\b
+				Match 1 that is NOT followed by 3 zeros, but followed by 3 digits. 
+				It will match 1001, 1111, but not 1000
+			\b\d(?!55)\d+
+				Match any number that is not followed by 55, but followed by one or more digits
+	Positive Lookbehind
+		(?<={pattern})
+		Matches a group before the main expression without including it in the result.
+			Example
+			Regex: 		(?<=http:\/\/)\w+
+			Input: 		http://regexr.com/foo.html?q=bar
+			Matches:	regexr
+			Explanation:  search for 'http://' before one ore more word characters and matches the word characters
+	Negative Lookbehind
+		(?<!{pattern})
+		Specifies a group that can not match before the main expression (if it matches, the result is discarded).
 
 Metacharacters
 	the backslash \
@@ -117,6 +175,7 @@ Complex Regex Samples
 
 Sources
 	Generators and validators
+		https://regex101.com/ -This is mutch better than regexr!!!
 		http://regexr.com/
 
 	CheatSheets
