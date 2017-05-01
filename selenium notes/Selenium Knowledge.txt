@@ -22,13 +22,14 @@ Selenium IDE
 		When using Selenium-IDE, test suites also can be defined using a simple HTML file. 
 		An HTML table defines a list of tests where each row defines the filesystem path to each test.
 
-Firefox Plugins
-	Firebug
-		https://addons.mozilla.org/hu/firefox/addon/firebug/
-	FirePath
-		https://addons.mozilla.org/en-US/firefox/addon/firepath/
-	XPath Checker
-		https://addons.mozilla.org/hu/firefox/addon/xpath-checker/
+Selenium Environment Setup
+	Firefox Plugins
+		Firebug
+			https://addons.mozilla.org/hu/firefox/addon/firebug/
+		FirePath
+			https://addons.mozilla.org/en-US/firefox/addon/firepath/
+		XPath Checker
+			https://addons.mozilla.org/hu/firefox/addon/xpath-checker/
 
 Selensense Syntax
 	Description
@@ -203,3 +204,84 @@ Locating Elements
 		http://www.tutorialspoint.com/selenium/
 
 Matching Patterns
+	Globbing Patterns
+		*
+		[]
+		Example:
+			Command				Target
+			verifyTitle 		glob:*Film*Television*
+	Regexp
+		JavaScript flavor
+		regexp={pattern} case sensitive
+		regexpi={pattern} case insensitive
+		Example
+			Command				Target
+			verifyTitle 		regexp=.*Film.*Television.*
+			verifyTextPresent	regexp:Sunrise: *[0-9]{1,2}:[0-9]{2} [ap]m
+	Exact
+
+
+Selenium WebDriver Setup
+	General Description
+		Selenium-WebDriver makes direct calls to the browser using each browser’s native support for automation. 
+		How these direct calls are made, and the features they support depends on the browser you are using.
+	Selenium-Server
+		 If your browser and tests will all run on the same machine, and your tests only use the WebDriver API, then you do not need to run the Selenium-Server
+		 WebDriver will run the browser directly.
+	Setting Up a Selenium-WebDriver Project in Netbeans with Maven
+		1. Create a new project: Maven -> Java Application
+		2. Under project files edit pom.xml and add Selenium dependency
+			<dependencies>
+			  <dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-java</artifactId>
+				<version>3.4.0</version>
+			  </dependency>
+			</dependencies>
+		3. download geckodriver
+			https://github.com/mozilla/geckodriver/releases
+		4. Use the following to start a Firefox webdriver
+			System.setProperty("webdriver.gecko.driver", "{path to geckodriver.exe}");
+			WebDriver driver = new FirefoxDriver();
+		5. OPEN - Fix Addon Manager not initialized error -  NS_ERROR_NOT_INITIALIZED: AddonManager is not initialized
+		Sources:
+			Info on Marionette
+				https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette
+			How to create a Maven project in Netbeans
+				https://sqa.stackexchange.com/questions/13213/how-to-configure-selenium-webdriver-with-netbeans
+
+Selenium-WebDriver API Commands and Operations
+	Source
+		http://www.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver-api-commands-and-operations
+	Fetch a page
+		driver.get("http://www.google.com");
+	Locating UI Elements (WebElements)
+		By Id
+			<div id="coolestWidgetEvah">...</div>
+			WebElement element = driver.findElement(By.id("coolestWidgetEvah"));
+		By Class
+			<div class="cheese"><span>Cheddar</span></div><div class="cheese"><span>Gouda</span></div>
+			List<WebElement> cheeses = driver.findElements(By.className("cheese"));
+		By DOM Tag name
+			<iframe src="..."></iframe>
+			WebElement frame = driver.findElement(By.tagName("iframe"));
+		By Name
+			<input name="cheese" type="text"/>
+			WebElement cheese = driver.findElement(By.name("cheese"));
+		By Link Text
+			<a href="http://www.google.com/search?q=cheese">cheese</a>>
+			WebElement cheese = driver.findElement(By.linkText("cheese"));
+		By Partial Link Text
+			<a href="http://www.google.com/search?q=cheese">search for cheese</a>>
+			WebElement cheese = driver.findElement(By.partialLinkText("cheese"));
+		By CSS
+			<div id="food"><span class="dairy">milk</span><span class="dairy aged">cheese</span></div>
+			WebElement cheese = driver.findElement(By.cssSelector("#food span.dairy.aged"));
+		By XPath
+			<input type="text" name="example" />
+			<INPUT type="text" name="other" />
+			List<WebElement> inputs = driver.findElements(By.xpath("//input"));
+		Getting text values
+			WebElement element = driver.findElement(By.id("elementID"));
+			element.getText();
+	User Input - Filling In Forms - TO BE CONTINUED
