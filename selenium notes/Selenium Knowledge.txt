@@ -1,0 +1,205 @@
+Selenium Tool Suite
+	Selenium 2 (aka. Selenium WebDriver)
+		Selenium 2 is the future direction of the project and the newest addition to the Selenium toolkit. 
+		Selenium 2 still runs Selenium 1’s Selenium RC interface for backwards compatibility.
+	Selenium 1 (aka. Selenium RC or Remote Control)
+		RC was the main Selenium project for a long time, before the WebDriver/Selenium merge brought up Selenium 2
+	Selenium IDE
+		Selenium IDE (Integrated Development Environment) is a prototyping tool for building test scripts. 
+		It is a Firefox plugin and provides an easy-to-use interface for developing automated tests.
+		Selenium IDE has a recording feature, which records user actions as they are performed and then exports them as a reusable script in one of many programming languages that can be later executed.
+	Selenium Grid
+		Selenium-Grid allows the Selenium RC solution to scale for large test suites and for test suites that must be run in multiple environments. 
+		Selenium Grid allows you to run your tests in parallel, that is, different tests can be run at the same time on different remote machines.
+
+Selenium IDE
+	Documentation
+		http://www.seleniumhq.org/docs/02_selenium_ide.jsp
+	Test Case
+		
+	Test Suites
+		A test suite is a collection of tests. Often one will run all the tests in a test suite as one continuous batch-job.
+		When using Selenium-IDE, test suites also can be defined using a simple HTML file. 
+		An HTML table defines a list of tests where each row defines the filesystem path to each test.
+
+Firefox Plugins
+	Firebug
+		https://addons.mozilla.org/hu/firefox/addon/firebug/
+	FirePath
+		https://addons.mozilla.org/en-US/firefox/addon/firepath/
+	XPath Checker
+		https://addons.mozilla.org/hu/firefox/addon/xpath-checker/
+
+Selensense Syntax
+	Description
+		Selenium commands, often called selenese, are the set of commands that run your tests. 
+		A sequence of these commands is a test script.
+		A command tells Selenium what to do. 
+		Selenium commands come in three “flavors”: Actions, Accessors, and Assertions.
+	Actions
+		Actions are commands that generally manipulate the state of the application. 
+		They do things like “click this link” and “select that option”.
+		If an Action fails, or has an error, the execution of the current test is stopped.
+		...AndWait
+			Many Actions can be called with the “AndWait” suffix, e.g. “clickAndWait”. 
+			This suffix tells Selenium that the action will cause the browser to make a call to the server, and that Selenium should wait for a new page to load.
+	Accessors
+		Accessors examine the state of the application and store the results in variables, e.g. “storeTitle”. 
+		They are also used to automatically generate Assertions.
+	Assertions
+		Description
+			Assertions are like Accessors, but they verify that the state of the application conforms to what is expected. 
+			Examples include “make sure the page title is X” and “verify that this checkbox is checked”.
+		Assertion Modes
+			All Selenium Assertions can be used in 3 modes: “assert”, “verify”, and ” waitFor”. For example: “assertText”, “verifyText” and “waitForText”.   
+		Assert vs. Verify
+			Effectively an “assert” will fail the test and abort the current test case, whereas a “verify” will fail the test and continue to run the test case.
+		assert...
+			When an “assert” fails, the test is aborted.
+		verify...
+			When a “verify” fails, the test will continue execution, logging the failure.
+			This allows a single “assert” to ensure that the application is on the correct page, followed by a bunch of “verify” assertions to test form field values, labels, etc.
+		waitfor...
+			“waitFor” commands wait for some condition to become true (which can be useful for testing Ajax applications). 
+			They will succeed immediately if the condition is already true. 
+			However, they will fail and halt the test if the condition does not become true within the current timeout setting (setTimeout)
+	Script Syntax
+		Basic syntax
+			one command and two (optional) parameters	
+		Parameters typically are 
+			a locator for identifying a UI element within a page.
+			a text pattern for verifying or asserting expected page content
+			a text pattern or a selenium variable for entering text in an input field or for selecting an option from an option list.
+		Selenium IDE scripts in HTML
+			Selenium scripts that will be run from Selenium-IDE will be stored in an HTML text file format. 
+			This consists of an HTML table with three columns. 
+			The first column identifies the Selenium command, the second is a target, and the final column contains a value. 	
+
+		Syntax Examples
+			command					parameter1 (target)			parameter2 (value)
+			goBackAndWait 	  	 
+			verifyTextPresent 	  								Welcome to My Home Page
+			type 					id=phone 					(555) 666-7066
+			type 					id=address1 				${myVariableAddress}
+	Selenium (typicall) Commands
+		open
+			opens a page using a URL.
+		click/clickAndWait
+			performs a click operation, and optionally waits for a new page to load.
+		verifyTitle/assertTitle
+			verifies an expected page title.
+		verifyTextPresent
+			verifies expected text is somewhere on the page.
+		verifyElementPresent
+			verifies an expected UI element, as defined by its HTML tag, is present on the page.
+		verifyText
+			verifies expected text and its corresponding HTML tag are present on the page.
+		verifyTable
+			verifies a table’s expected contents.
+		waitForPageToLoad
+			pauses execution until an expected new page loads. Called automatically when clickAndWait is used.
+		waitForElementPresent
+			pauses execution until an expected UI element, as defined by its HTML tag, is present on the page. 
+	Sample Test Case
+		Logically group your test commands, and start each group with an “assert” followed by one or more “verify” test commands. 
+		Example:
+			Command			Target			 	Value
+			open			/download/ 	 
+			assertTitle		Downloads 	 								//The test immediately fails when the page title is not "Downloads"
+			verifyText		//h2				Downloads				//The test verifies whether //h2 location text says 'Downloads'
+			assertTable		1.2.1				Selenium IDE			//The test fails if the table 1.2.1 (first column, second row, first table) value is not 'SELENIUM IDE'
+			verifyTable		1.2.2				June 3, 2008			//First table, second row, second column
+			verifyTable		1.2.3				1.0 beta 2				//First table, second row, third column
+		Explanation
+			First opens a page and then “asserts” that the correct page is loaded by comparing the title with the expected value. 
+			Only if this passes will the following command run and “verify” that the text is present in the expected location. 
+			The test case then “asserts” the first column in the second row of the first table contains the expected value, and only if this passed will the remaining cells in that row be “verified”.
+
+Locating Elements
+	Sample
+		<html>
+		  <body>
+		   <form id="loginForm">
+			<input name="username" type="text" />
+			<input name="password" type="password" />
+			<input name="continue" type="submit" value="Login" />
+			<input name="continue" type="button" value="Clear" />
+			<a href="continue.html">Continue</a>
+		   </form>
+		 </body>
+		 <html>
+	Locating by Identifier
+		<form id="loginForm">
+		identifier=loginForm
+	Locating by Id
+		<form id="loginForm">
+		id=loginForm
+	Locating by Name
+		name=username 
+		name=continue value=Clear
+		name=continue Clear 
+		name=continue type=button 
+	Locating by XPath
+		Description
+			XPath is the language used for locating nodes in an XML document.
+			One of the main reasons for using XPath is when you don’t have a suitable id or name attribute for the element you wish to locate. 
+			You can use XPath to either locate the element in absolute terms (not advised), or relative to an element that does have an id or name attribute. 
+			XPath locators can also be used to specify elements via attributes other than id and name.
+		Absolute XPaths
+			Absolute XPaths contain the location of all elements from the root (html) and as a result are likely to fail with only the slightest adjustment to the application. 	
+			Note:Since only xpath locators start with “//”, it is not necessary to include the xpath= label when specifying an XPath locator.
+		Examples
+			xpath=/html/body/form[1] 	 						- Absolute path (would break if the HTML was changed only slightly)
+			//form[1] 											- First form element in the HTML
+			xpath=//form[@id='loginForm'] 						- The form element with attribute named ‘id’ and the value ‘loginForm’
+			xpath=//form[input/@name='username'] 	 			- First form element with an input child element with attribute named ‘name’ and the value ‘username’
+			//input[@name='username'] 	 						- First input element with attribute named ‘name’ and the value ‘username’
+			//form[@id='loginForm']/input[1] 	 				- First input child element of the form element with attribute named ‘id’ and the value ‘loginForm’
+			//input[@name='continue'][@type='button'] 	 		- Input with attribute named ‘name’ and the value ‘continue’ and attribute named ‘type’ and the value ‘button’
+			//form[@id='loginForm']/input[4] 	 				- Fourth input child element of the form element with attribute named ‘id’ and value ‘loginForm’
+		More on XPath
+			https://www.w3schools.com/xml/xpath_intro.asp
+	Locating Hyperlinks by Link Text
+		This is a simple method of locating a hyperlink in your web page by using the text of the link
+		Example
+			link="Continue"  //Note - this searches the link TEXT not the link URL
+	Locating by DOM
+		The Document Object Model represents an HTML document and can be accessed using JavaScript. 
+		Note: Since only dom locators start with “document”, it is not necessary to include the dom= label when specifying a DOM locator.
+		Examples
+			dom=document.getElementById('loginForm')
+			dom=document.forms['loginForm'] 
+			dom=document.forms[0] 
+			document.forms[0].username 
+			document.forms[0].elements['username'] 
+			document.forms[0].elements[0] 
+			document.forms[0].elements[3] 
+	Locating by CSS
+		CSS (Cascading Style Sheets) is a language for describing the rendering of HTML and XML documents.
+	Sample
+		<html>
+		 <body>
+		  <form id="loginForm">
+		   <input class="required" name="username" type="text" />
+		   <input class="required passfield" name="password" type="password" />
+		   <input name="continue" type="submit" value="Login" />
+		   <input name="continue" type="button" value="Clear" />
+		  </form>
+		</body>
+		<html>
+	Results
+		css=form#loginForm 
+		css=input[name="username"]
+		css=input.required[type="text"]
+		css=input.passfield 
+		css=#loginForm input[type="button"]
+		css=#loginForm input:nth-child(2)
+		
+
+
+	Sources
+		http://www.seleniumhq.org/
+		http://www.seleniumhq.org/docs/
+		http://www.tutorialspoint.com/selenium/
+
+Matching Patterns
