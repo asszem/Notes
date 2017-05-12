@@ -1,0 +1,33 @@
+Keyboard shortcuts
+	Alt-Shift-X - Run file as ... 
+		J - java
+	Alt-Shift-D - Debug file as...
+	Alt-Shift-Q - Show view...
+	F2 - Show javadoc
+	Ctrl-F6 - Editor switcher (even from another view)
+	Ctrl-F7 - View switcher
+	Ctrl-F8 - Perspective switcher
+	Alt-left / Alt - right - Jump to next/prev location
+	Ctrl-m - maximize current view
+	Ctrl-, / Ctrl-. - jump to the next/prev error/warning annontation
+	Ctrl-O - Quick outline (find variables, methods, etc)
+
+Vrapper specific shortcuts
+	:vim - opens the file in Gvim, and refreshes after GVIM closed
+
+Preferences
+	Preferences export/import
+		File - Import/Export - Preferences
+	Locations
+		Eclipse program files: C:\eclipse
+		Eclpse workspace: ~\workspace
+		Eclipse settings in workspace
+		Eclipse uses the workspace directory to store its preferences and development artifacts.
+		.metadata/.plugins/org.eclipse.core.runtime/.settings 
+		http://stackoverflow.com/questions/7933882/setting-preferences-for-all-eclipse-workspaces
+
+Importing projects
+	Right click your project > Properties > Project Facets > Convert to Faceted Form, and select Java
+
+Show sources of core java classes (java.util)
+	Attach source location: JDK_INSTALL_DIR\src.zip

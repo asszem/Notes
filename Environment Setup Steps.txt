@@ -28,16 +28,67 @@ PowerShell setup
 		https://github.com/asszem/Notes/blob/master/powershell%20notes/Microsoft.PowerShell_profile.ps1
 	Change background to black
 		Right click on powershell and set it to black
-Install Netbeans
-NetBeans setup
-	Install jVI to Netbeans
-		Install jVI form Plugin manager in Netbeans
-		Download jVI files https://sourceforge.net/projects/jvi/files/jVi-for-NetBeans/
-		Extract zip file
-		Manually install all plugins from Netbeans/Plugins/Downloaded...
-		Import jVI settings from NetBeans save
-	Install DARCULA Look and Feel plugin from Plugin manager
-	Import All NetBeans Settings from Options
+IDE setup
+	NetBeans setup
+		Install jVI to Netbeans
+			Install jVI form Plugin manager in Netbeans
+			Download jVI files https://sourceforge.net/projects/jvi/files/jVi-for-NetBeans/
+			Extract zip file
+			Manually install all plugins from Netbeans/Plugins/Downloaded...
+			Import jVI settings from NetBeans save
+		Install DARCULA Look and Feel plugin from Plugin manager
+		Import All NetBeans Settings from Options
+	Eclipse setup
+		VIM-like shortcuts
+			Install Vrapper for VIM 
+				http://vrapper.sourceforge.net/home/
+			Create _vrapperrc in $HOME
+		Theme
+			Install Darkest Dark Theme from Marketplace
+				https://marketplace.eclipse.org/content/darkest-dark-theme
+			or
+				Install Color Theme  plugin from Marketplace
+					http://marketplace.eclipse.org/content/eclipse-color-theme
+				Preferences - Appearance - change it to Dark
+				Preferences - Color Theme 
+					Select RecognEyes
+		Load Eclipse Preferences
+			File - Import - General - Preferences
+			Manual Settings of Preferences
+				Change Font Color of Project name in Package Explorer
+					Preferences - Colors - Git - Uncommitted changes foreground: Yellow
+				Change Font Color in Editor Tab
+					Preferences - Colors - Viea and Editor Folders - Active (focus/nfocus) forground
+				Change Parameter variable font color
+					Preferences - Java - Editor - Syntax Highlighting - Java - Parameter variable 
+				Change Code Assist foreground & Background
+					Preferences - Colors - Content Assist Background:Black
+					Preferences - Colors - Content Assist Foreground:White
+				Change Font and Size 
+					Preferences - Colors - Basic - Text Font
+						Size:12pt, Font: Consolas
+				Change Comment Wrap limit
+					Preferences - Java - Code Style - Formatter - Profile - Comments - Set value to 200
+					or
+					Import 'AndrasEclipse' profile
+				Keybindings
+					Preferences - keys
+						Unbind Ctrl-Alt-B for {
+						Unbind Ctrl-H and Ctrl-L for Vim tab switching
+						Unbind Ctrl-Alt-T if it reports a conflict
+						Unbind Ctrl-A, Ctrl-X, for Vim increase/decrease
+						Bind Shift-F6 to Run file
+
+				Git
+					Eclipse-specific .gitignore templates
+						https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore
+					How make Eclipse recognize existing repository information?
+						Right click on project - share
+				Update Code Suggestion
+					Preferences - Java - Templates
+						sout - System.out.println
+						souf - System.out.printf
+
 Git setup
 	Download .gitconfig file from Github
 		Set editor to Vim

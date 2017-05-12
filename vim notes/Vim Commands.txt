@@ -1,6 +1,8 @@
 ==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
+	:mksession ~\sessionfile.vim - save the session
+	:source ~\sessionfile.vim - loads the session
 	:e ++enc=utf-8 -árvíztűrő tükörfúrógép
 	:new, :vnew - opens a new empty buffer (vertical)
 	:tabnew % - opens the current buffer in a new tab

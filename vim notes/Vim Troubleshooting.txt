@@ -69,5 +69,12 @@ pathogen will not load bundles
 			It works. Now I have to find out what causes the problem
 			Found it. UTF-8 encoding breaks if the user folder in Windows have accented character
 
+VIM automatically wraps lines after 78 characters
+	Root cause:
+		_vimrc imports vimrc_example.vim from $RUNTIME (VIM's install directory) and it overwrites the textwidth setting in vimrc
+	Solution:
+		Change in vimrc_example.vim the textwidth value to zero: 
+		autocmd FileType text setlocal textwidth=0
+
 
 
