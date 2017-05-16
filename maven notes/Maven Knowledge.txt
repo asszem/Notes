@@ -36,6 +36,10 @@ Concepts
 			project version
 			developers
 			mailing list
+		To reference a property defined in your pom.xml, the property name uses the names of the XML elements that define the value, with "pom" being allowed as an alias for the project (root) element.
+			So ${pom.name} refers to the name of the project, 
+			${pom.version} refers to the version of the project,
+			${pom.build.finalName} refers to the final name of the file created when the built project is packaged, etc.
 	GOAL
 		A goal represents a specific task which contributes to the building and managing of a project. 
 		It may be bound to zero or more build phases. 
@@ -72,7 +76,8 @@ Concepts
 			install − install the package into the local repository, for use as a dependency in other projects locally.
 			deploy − done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.
 	Build Profile
-		A Build profile is a set of configuration values which can be used to set or override default values of Maven build. Using a build profile, you can customize build for different environments such as Production v/s Development environments.
+		A Build profile is a set of configuration values which can be used to set or override default values of Maven build. 
+		Using a build profile, you can customize build for different environments such as Production v/s Development environments and to give portability to projects ( e.g. windows, linux etc).
 			Per Project − Defined in the project POM file, pom.xml.
 			Per User − Defined in Maven settings xml file (%USER_HOME%/.m2/settings.xml).
 			Global − Defined in Maven global settings xml file (%M2_HOME%/conf/settings.xml)
@@ -124,6 +129,18 @@ Concepts
 			Sometimes, Maven does not find a mentioned dependency in central repository as well then it stops the build process and output error message to console. To prevent such situation, Maven provides concept of Remote Repository which is developer's own custom repository containing required libraries or other project jars.
 	Dependency
 		Transitive dependency means to avoid needing to discover and specify the libraries that your own dependencies require, and including them automatically.
+		Dependency scope includes dependencies as per the current stage of the build. Various Dependency Scopes are −
+			compile − This scope indicates that dependency is available in classpath of project. It is default scope.
+			provided − This scope indicates that dependency is to be provided by JDK or web-Server/Container at runtime.
+			runtime − This scope indicates that dependency is not required for compilation, but is required during execution.
+			test − This scope indicates that the dependency is only available for the test compilation and execution phases.
+			system − This scope indicates that you have to provide the system path.
+			import − This scope is only used when dependency is of type pom. This scope indicates that the specified POM should be replaced with the dependencies in that POM's <dependencyManagement> section.
+	MOJO
+		A mojo is a Maven plain Old Java Object. Each mojo is an executable goal in Maven, and a plugin is a distribution of one or more related mojos.
+	Difference between ANT and MAVEN
+		Ant is simply a toolbox whereas Maven is about the application of patterns in order to achieve an infrastructure which displays the characteristics of visibility, reusability, maintainability, and comprehensibility. It is wrong to consider Maven as a build tool and just a replacement for Ant.
+		
 		
 	Source(s) for key concepts
 		Maven Interview Questions - good for general understanding as well
