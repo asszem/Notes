@@ -1,0 +1,174 @@
+Create new Maven project in Eclipse
+	File - New - Other - Maven Project
+	Select Archetipe
+		maven-archetype-quickstart
+		maven-archetype-webapp
+	Enter GAV (GroupID, ArtifactID, Version)
+	Build
+		Run as Maven Build
+		Enter goals:
+			clean verify
+		Run
+	(Optional) setup .gitignore
+		https://github.com/github/gitignore/blob/master/Maven.gitignore
+		
+MVN command line commands (goals?)
+	mvn --version
+		verify installation and version 
+		
+	mvn clean
+		This command removes the target directory with all the build data before starting the build process.
+	mvn verify 
+		Verifies build (?)
+	mvn site
+		Builds the site (?)
+		
+Concepts
+	What is Maven?
+		Maven is a project management and comprehension tool. Maven provides developers a complete build lifecycle framework. Development team can automate the project's build infrastructure in almost no time as Maven uses a standard directory layout and a default build lifecycle.
+	Convention over Configuration
+		Maven uses Convention over Configuration which means developers are not required to create build process themselves. Developers do not have to mention each and every configuration details.
+	POM
+		POM stands for Project Object Model. It is fundamental Unit of Work in Maven. It is an XML file. It always resides in the base directory of the project as pom.xml. It contains information about the project and various configuration details used by Maven to build the project(s).
+		POM contains the some of the following configuration information −
+			project dependencies
+			plugins
+			goals
+			build profiles
+			project version
+			developers
+			mailing list
+		To reference a property defined in your pom.xml, the property name uses the names of the XML elements that define the value, with "pom" being allowed as an alias for the project (root) element.
+			So ${pom.name} refers to the name of the project, 
+			${pom.version} refers to the version of the project,
+			${pom.build.finalName} refers to the final name of the file created when the built project is packaged, etc.
+	GOAL
+		A goal represents a specific task which contributes to the building and managing of a project. 
+		It may be bound to zero or more build phases. 
+		A goal not bound to any BUILD PHASE could be executed outside of the build lifecycle by direct invocation.
+	ARTIFACT
+		An artifact is a file, usually a JAR that gets deployed to a Maven repository. A Maven build produces one or more artifacts, such as a compiled JAR and a "sources" JAR.
+		Each artifact has 
+			a group ID (usually a reversed domain name, like com.example.foo), 
+			an artifact ID (just a name), 
+			and a version string. 
+		The three together uniquely identify the artifact. A project's dependencies are specified as artifacts.
+	BUILD LIFECYCLE
+		A Build Lifecycle is a well defined sequence of phases which define the order in which the goals are to be executed. Here phase represents a stage in life cycle.
+		3 Build Lifecycle
+			clean:cleans up artifacts created by prior builds.
+				Phases of clean
+					pre-clean
+					clean
+					post-clean
+			default (or build):This is used to build the application.
+			site: generates site documentation for the project.
+				Phases of site
+					pre-site
+					site
+					post-site
+					site-deploy
+		PHASES of Build Lifecycle
+			validate − validate the project is correct and all necessary information is available.
+			compile − compile the source code of the project.
+			test − test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
+			package − take the compiled code and package it in its distributable format, such as a JAR.
+			integration-test − process and deploy the package if necessary into an environment where integration tests can be run.
+			verify − run any checks to verify the package is valid and meets quality criteria.
+			install − install the package into the local repository, for use as a dependency in other projects locally.
+			deploy − done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.
+	Build Profile
+		A Build profile is a set of configuration values which can be used to set or override default values of Maven build. 
+		Using a build profile, you can customize build for different environments such as Production v/s Development environments and to give portability to projects ( e.g. windows, linux etc).
+			Per Project − Defined in the project POM file, pom.xml.
+			Per User − Defined in Maven settings xml file (%USER_HOME%/.m2/settings.xml).
+			Global − Defined in Maven global settings xml file (%M2_HOME%/conf/settings.xml)
+		A Maven Build Profile can be activated in various ways −
+			Explicitly using command console input.
+			Through maven settings.
+			Based on environment variables (User/System variables).
+			OS Settings (for example, Windows family).
+			Present/missing files.	
+	Steps of standard deployment process
+		Check-in the code from all projects in progress into the SVN or source code repository and tag it.
+		Download the complete source code from SVN.
+		Build the application.
+		Store the build output either WAR or EAR file to a common network location.
+		Get the file from network and deploy the file to the production site.
+		Updated the documentation with date and updated version number of the application.
+	Maven PLUGINS
+		Maven Plugins are used to −
+			create jar file.
+			create war file.
+			compile code files.
+			unit testing of code
+			create project documentation.
+			create project reports.
+		Maven Plugin Types
+			Build plugins 	− They execute during the build and should be configured in the <build/> element of pom.xml	
+			Reporting plugins − They execute during the site generation and they should be configured in the <reporting/> element of the pom.xml
+		Archetype Plugin
+			Archetype is a Maven plugin whose task is to create a project structure as per its template.
+			mvn archetype:generate
+	Maven SNAPSHOT
+		SNAPSHOT is a special version that indicates a current development copy. 
+		Unlike regular versions, Maven checks for a new SNAPSHOT version in a remote repository for every build
+		Version Vs. Snapshot
+			Version
+				In case of Version, if Maven once downloaded the mentioned version say data-service:1.0, it will never try to download a newer 1.0 available in repository. 
+				To download the updated code, data-service version is be upgraded to 1.1.
+			Snapshot
+				In case of SNAPSHOT, Maven will automatically fetch the latest SNAPSHOT (data-service:1.0-SNAPSHOT) everytime app-ui team build their project.
+	Maven repository
+		A repository is a place i.e. directory where all the project jars, library jar, plugins or any other project specific artifacts are stored and can be used by Maven easily.
+		Maven repository are of three types: 
+		local
+			Maven local repository is a folder location on your machine. It gets created when you run any maven command for the first time. Maven local repository keeps your project's all dependencies (library jars, plugin jars etc).
+			~/m2./repository.
+		central
+			It is repository provided by Maven community. It contains a large number of commonly used libraries. When Maven does not find any dependency in local repository, it starts searching in central repository using following URL: http://repo1.maven.org/maven2/.
+		remote
+			Sometimes, Maven does not find a mentioned dependency in central repository as well then it stops the build process and output error message to console. To prevent such situation, Maven provides concept of Remote Repository which is developer's own custom repository containing required libraries or other project jars.
+	Dependency
+		Transitive dependency means to avoid needing to discover and specify the libraries that your own dependencies require, and including them automatically.
+		Dependency scope includes dependencies as per the current stage of the build. Various Dependency Scopes are −
+			compile − This scope indicates that dependency is available in classpath of project. It is default scope.
+			provided − This scope indicates that dependency is to be provided by JDK or web-Server/Container at runtime.
+			runtime − This scope indicates that dependency is not required for compilation, but is required during execution.
+			test − This scope indicates that the dependency is only available for the test compilation and execution phases.
+			system − This scope indicates that you have to provide the system path.
+			import − This scope is only used when dependency is of type pom. This scope indicates that the specified POM should be replaced with the dependencies in that POM's <dependencyManagement> section.
+	MOJO
+		A mojo is a Maven plain Old Java Object. Each mojo is an executable goal in Maven, and a plugin is a distribution of one or more related mojos.
+	Difference between ANT and MAVEN
+		Ant is simply a toolbox whereas Maven is about the application of patterns in order to achieve an infrastructure which displays the characteristics of visibility, reusability, maintainability, and comprehensibility. It is wrong to consider Maven as a build tool and just a replacement for Ant.
+		
+		
+	Source(s) for key concepts
+		Maven Interview Questions - good for general understanding as well
+			https://www.tutorialspoint.com/maven/maven_interview_questions.htm
+			
+Specific topics
+	Install Maven for windows command line usage
+		1. Make sure JDK is installed, and “JAVA_HOME” variable is added as Windows environment variable.
+		2. Download the Maven zip file from maven.apache.org, for example : apache-maven-3.2.2-bin.zip. Unzip it to the folder you want to install Maven.
+			That’s all, just folders and files, installation is NOT required.
+		3. Add both M2_HOME and MAVEN_HOME variables in the Windows environment, and point it to your Maven folder.
+		4. Update PATH variable, append Maven bin folder – %M2_HOME%\bin, so that you can run the Maven’s command everywhere.
+		5. Verify with mvn –version in the command prompt.
+		Source
+		https://www.mkyong.com/maven/how-to-install-maven-in-windows/http://www.vogella.com/tutorials/EclipseMaven/article.html#installation-and-configuration-of-maven-for-eclipse
+		
+
+General Maven Sources:
+
+
+Quick setup guide
+	http://www.vogella.com/tutorials/EclipseMaven/article.html#installation-and-configuration-of-maven-for-eclipse
+	
+Step-by-Step tutorial
+	https://www.tutorialspoint.com/maven/maven_eclispe_ide.htm
+
+
+maven2eclipes -  detailed
+	http://books.sonatype.com/m2eclipse-book/reference/index.html 

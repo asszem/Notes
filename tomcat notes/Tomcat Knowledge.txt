@@ -1,0 +1,37 @@
+Tomcat & Maven
+	Runninf from workspace configuration, copy tomcat's root to .workspace configuration
+	https://www.eclipse.org/forums/index.php/t/332970/
+
+	https://www.mkyong.com/maven/how-to-create-a-web-application-project-with-maven/
+	
+	Uses a Pluging
+	http://o7planning.org/en/10133/run-maven-java-web-application-in-tomcat-maven-plugin#a8495
+
+Installing Apache Tomcat
+	Installation Sources
+		http://www.ntu.edu.sg/home/ehchua/programming/howto/tomcat_howto.html
+		https://tomcat.apache.org/tomcat-7.0-doc/setup.html
+		https://tomcat.apache.org/tomcat-7.0-doc/RUNNING.txt
+	1. Download
+		http://tomcat.apache.org/download-80.cgi
+	2. Extract to a location
+	3. Configure Environment Variables
+		3.1
+			Set CATALINA_HOME (required) to Tomcate binary folder root
+			Set CATALINA_BASE (optional)
+		(3.2) 
+			Set JRE_HOME or JAVA_HOME (required)
+	(4) Start Up Tomcat
+		4.1
+			%CATALINA_HOME%\bin\startup.bat
+		(4.2) After startup, the default web applications included with Tomcat will be available by visiting:
+			http://localhost:8080/
+	 5 Shut Down Tomcat
+		%CATALINA_HOME%\bin\shutdown.bat
+
+General Concepts		
+		http://www.ntu.edu.sg/home/ehchua/programming/howto/tomcat_howto.html
+
+Note
+	Make sure Eclipse EE is installed
+	
