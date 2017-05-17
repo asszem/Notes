@@ -9,6 +9,8 @@ Create new Maven project in Eclipse
 		Enter goals:
 			clean verify
 		Run
+	(Optional) setup .gitignore
+		https://github.com/github/gitignore/blob/master/Maven.gitignore
 		
 MVN command line commands (goals?)
 	mvn --version
