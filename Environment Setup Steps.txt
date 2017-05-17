@@ -78,6 +78,7 @@ IDE setup
 						Unbind Ctrl-Alt-T if it reports a conflict
 						Unbind Ctrl-A, Ctrl-X, for Vim increase/decrease
 						Bind Shift-F6 to Run file
+						Bind Ctrl-Shift-Del to Terminate in Windows
 
 				Git
 					Eclipse-specific .gitignore templates
@@ -86,8 +87,10 @@ IDE setup
 						Right click on project - share
 				Update Code Suggestion
 					Preferences - Java - Templates
+						psvm - public static void main(String[] args){...
 						sout - System.out.println
 						souf - System.out.printf
+						sou  - System.out.print
 
 Git setup
 	Download .gitconfig file from Github

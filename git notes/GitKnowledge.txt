@@ -273,6 +273,11 @@ git config
 	set the color of --interactive option
 		git config color.interactive.prompt red
 
+git tag
+	push a tag to remote repository
+		git push <remotename> tagname
+	push all existing tags to remote (not recommended)
+		git push --tags
 *****************Visual Tools*********************** 
 gitk
 		read-only visual representation of the repository / commits / branches
