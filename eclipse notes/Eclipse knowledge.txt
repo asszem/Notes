@@ -1,3 +1,8 @@
+Web Server Configuration
+	http://www.vogella.com/tutorials/EclipseWTP/article.html#installation
+	Add a Tomcat server to Eclipse
+	Preferences - Server - Runtime Environment - Add 
+
 Keyboard shortcuts
 	Alt-Shift-X - Run file as ... 
 		J - java

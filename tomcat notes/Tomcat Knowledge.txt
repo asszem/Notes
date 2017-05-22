@@ -1,11 +1,24 @@
-Tomcat & Maven
-	Runninf from workspace configuration, copy tomcat's root to .workspace configuration
-	https://www.eclipse.org/forums/index.php/t/332970/
+Create a web Project with Maven for a Tomcat server
+	1. Create new Maven project in Eclipse
+	2. Select maven-archetype-webapp
+	3. Add groupID and ArtifactID (Eclipse will display the ArtifactID for project name in Project view and  folder name in Filesystem)
+	4. Select Project - Properties - Target Runtime - Select the already configured Tomcat server
+	5. Select Servers (in Java EE perspective), right click, "Add and Remove" and add the maven project as resource
+	6. Start the server and try with localhost:8080/artifactID
 
-	https://www.mkyong.com/maven/how-to-create-a-web-application-project-with-maven/
-	
-	Uses a Pluging
-	http://o7planning.org/en/10133/run-maven-java-web-application-in-tomcat-maven-plugin#a8495
+	Sources
+		Create a web project with maven
+		http://www.vogella.com/tutorials/EclipseMaven/article.html#exercise-create-a-java-web-project-in-eclipse-using-maven
+		
+		
+		Running from workspace configuration, copy tomcat's root to .workspace configuration
+		https://www.eclipse.org/forums/index.php/t/332970/
+
+		Detailed steps in command line (not recommended)
+		https://www.mkyong.com/maven/how-to-create-a-web-application-project-with-maven/
+		
+		Uses a Pluging
+		http://o7planning.org/en/10133/run-maven-java-web-application-in-tomcat-maven-plugin#a8495
 
 Installing Apache Tomcat
 	Installation Sources
@@ -28,6 +41,9 @@ Installing Apache Tomcat
 			http://localhost:8080/
 	 5 Shut Down Tomcat
 		%CATALINA_HOME%\bin\shutdown.bat
+		
+Add a Tomcat server to Eclipse
+	Preferences - Server - Runtime Environment - Add 
 
 General Concepts		
 		http://www.ntu.edu.sg/home/ehchua/programming/howto/tomcat_howto.html

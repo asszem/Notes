@@ -164,10 +164,10 @@ General Maven Sources:
 
 
 Quick setup guide
-	http://www.vogella.com/tutorials/EclipseMaven/article.html#installation-and-configuration-of-maven-for-eclipse
+	http://www.vogella.com/tutorials/EclipseMaven/article.#installation-and-configuration-of-maven-for-eclipse
 	
 Step-by-Step tutorial
-	https://www.tutorialspoint.com/maven/maven_eclispe_ide.htm
+	https://www.tutorialspoint.com/maven/maven_eclihtmlspe_ide.htm
 
 
 maven2eclipes -  detailed
