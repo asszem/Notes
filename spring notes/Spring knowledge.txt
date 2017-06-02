@@ -1,24 +1,126 @@
-Setting up environment
-	https://www.tutorialspoint.com/spring/spring_environment_setup.htm
+Overview
+	Spring framework is an open source Java platform that provides comprehensive infrastructure support for developing robust Java applications very easily and very rapidly.
+	Spring Framework to create high performing, easily testable, and reusable code.
+	
+Dependency Injection (DI)
+	When writing a complex Java application, application classes should be as independent as possible of other Java classes
+		to increase the possibility to reuse these classes
+		to test them independently of other classes while unit testing. 
+	Dependency Injection helps in gluing these classes together and at the same time keeping them independent.
+	Dependency injection can happen in the way of passing parameters to the constructor or by post-construction using setter methods.
+	
+Aspect Oriented Programming (AOP)
+	The functions that span multiple points of an application are called cross-cutting concerns.
+	These cross-cutting concerns are conceptually separate from the application's business logic. Examples:  logging, declarative transactions, security, caching.
+	The key unit of modularity in OOP is the class, whereas in AOP the unit of modularity is the aspect.
+	DI helps you decouple your application objects from each other, while AOP helps you decouple cross-cutting concerns from the objects that they affect.
+	
+The Spring Framework
+	The Spring Framework is a modular framework with 20 modules
+	Core Container
+		Core module provides the fundamental parts of the framework, including the IoC and Dependency Injection features.
+		Bean module provides BeanFactory, which is a sophisticated implementation of the factory pattern.
+		Context module builds on the solid base provided by the Core and Beans modules and it is a medium to access any objects defined and configured. 
+			The ApplicationContext interface is the focal point of the Context module.
+		SpEL module provides a powerful expression language for querying and manipulating an object graph at runtime.
+	Data Access/Integration Container
+		JDBC module provides a JDBC-abstraction layer that removes the need for tedious JDBC related coding.
+		ORM module provides integration layers for popular object-relational mapping APIs, including JPA, JDO, Hibernate, and iBatis.
+		OXM module provides an abstraction layer that supports Object/XML mapping implementations for JAXB, Castor, XMLBeans, JiBX and XStream.
+		Java Messaging Service JMS module contains features for producing and consuming messages.
+		Transaction module supports programmatic and declarative transaction management for classes that implement special interfaces and for all your POJOs.
+	Web Container
+		Web module provides basic web-oriented integration features such as 
+			multipart file-upload functionality 
+			initialization of the IoC (inversion of Control) container using servlet listeners and a web-oriented application context.
+		Web-MVC module contains Spring's Model-View-Controller (MVC) implementation for web applications.
+		Web-Socket module provides support for WebSocket-based, two-way communication between the client and the server in web applications.
+		Web-Portlet module provides the MVC implementation to be used in a portlet environment and mirrors the functionality of Web-Servlet module.
+	Miscellaneous
+		AOP module provides an aspect-oriented programming implementation 
+			allowing you to define method-interceptors and pointcuts to cleanly decouple code that implements functionality that should be separated.
+		Aspects module provides integration with AspectJ, which is again a powerful and mature AOP framework.
+		Instrumentation module provides class instrumentation support and class loader implementations to be used in certain application servers.
+		Messaging module provides support for STOMP as the WebSocket sub-protocol to use in applications.
+			It also supports an annotation programming model for routing and processing STOMP messages from WebSocket clients.
+		Test module supports the testing of Spring components with JUnit or TestNG frameworks.
+		
+Spring Bean
+	The objects that form the backbone of your application and that are managed by the Spring IoC container are called beans. 
+	A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container. 
+	These beans are created with the configuration metadata that you supply to the container.
+	Configuration Metadata
+		Bean definition contains the information called configuration metadata, which is needed for the container to know the following −
+			How to create a bean
+			Bean's lifecycle details
+			Bean's dependencies
+		Spring IoC container is totally decoupled from the format in which this configuration metadata is actually written. 
+		Theare are three important methods to provide configuration metadata to the Spring Container:
+			XML based configuration file.
+			Annotation-based configuration
+			Java-based configuration
+	Bean Defintion 
+		Mandatory Attributes
+			class
+				This attribute is mandatory and specifies the bean class to be used to create the bean.
+			name
+				This attribute specifies the bean identifier uniquely. In XMLbased configuration metadata, you use the id and/or name attributes to specify the bean identifier(s).
+		Other Attributes
+			scope - This attribute specifies the scope of the objects created from a particular bean definition and it will be discussed in bean scopes chapter.
+			constructor-arg 
+			properties - This is used to inject the dependencies and will be discussed in subsequent chapters.
+			lazy-initialization mode - A lazy-initialized bean tells the IoC container to create a bean instance when it is first requested, rather than at the startup.
+			initialization method - A callback to be called just after all necessary properties on the bean have been set by the container. 
+			destruction method - A callback to be used when the container containing the bean is destroyed. It will be discussed in bean life cycle chapter.
+		Example
+			!-- A bean definition with lazy init set on -->
+		   <bean id = "..." class = "..." lazy-init = "true">
+			  <!-- collaborators and configuration for this bean go here -->
+		   </bean>
+	Scope of Bean
+		singleton  - This scopes the bean definition to a single instance per Spring IoC container (default).
+			Spring IoC container creates exactly one instance of the object defined by that bean definition. 
+			This single instance is stored in a cache of such singleton beans, and all subsequent requests and references for that named bean return the cached object.
+			The default scope is always singleton.
+			Creating a singleton bean
+				<!-- A bean definition with singleton scope -->
+				<bean id = "..." class = "..." scope = "singleton">
+					<!-- collaborators and configuration for this bean go here -->
+				</bean>
+		prototype - This scopes a single bean definition to have any number of object instances.
+		request - This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext.
+		session - This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+		global-session - This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+		
 
-	1. CommonLogging API setup
-		Download binaries from https://commons.apache.org/logging/
-		Extract to a folder in Filesystem
-		Make sure you set your CLASSPATH
-	2. Setup Spring Framework
-		Download Spring for Windows from https://repo.spring.io/release/org/springframework/spring/
-		Unpack file something like: spring-framework-4.1.6.RELEASE-dist.zip to a location in Filesystem.
+	
+		
+Setting up environment
+	Environment setup based on:
+	https://www.tutorialspoint.com/spring/spring_environment_setup.htm
+		1. CommonLogging API setup
+			Download binaries from https://commons.apache.org/logging/
+			Extract to a folder in Filesystem
+			Make sure you set your CLASSPATH
+		2. Setup Spring Framework
+			Download Spring for Windows from https://repo.spring.io/release/org/springframework/spring/
+			Unpack file something like: spring-framework-4.1.6.RELEASE-dist.zip to a location in Filesystem.
 	
 Create an Eclipse Project using Spring
 	1. Create new Java project
 	2. Add CommonLogging API and Spring Framework libraries to the project
 		Project Properties - Java Build Path - Libraries - Add external JAR - add all .jar files from spring & common logging folder
 	
-MVC Hello world using Maven and Eclipse
-	http://www.programcreek.com/2014/02/spring-mvc-helloworld-using-maven-in-eclipse/
-	
 Tutorials
-	https://www.tutorialspoint.com/spring/spring_hello_world_example.htm
+	TutorialsPoint's Spring tutorial - in progress
+		https://www.tutorialspoint.com/spring/index.htm
+	MVC Hello world using Maven and Eclipse - not yet completed
+		http://www.programcreek.com/2014/02/spring-mvc-helloworld-using-maven-in-eclipse/
+	
+Online Sources
+	http://www.dineshonjava.com/2012/06/spring-30-baby-step-to-learn.html?m=1#.WSRNikYZGH4.google_plusone_share
 
-Sources
-	https://www.tutorialspoint.com/spring/spring_hello_world_example.htm
+	
+Books
+	Spring in Action, 4th Edition: Covers Spring 4 by Craig Walls
+		https://www.safaribooksonline.com/library/view/spring-in-action/9781617291203/
