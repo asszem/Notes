@@ -44,7 +44,9 @@ Using GVIM as difftool instead of vim
 
 pathogen will not load bundles
 	Problem
-		After completing installation to ~/vimfiles/autoload and downloading plugins to ~/vimfiles/bundle/pluginname, the plugins are not loaded
+		After completing installation 
+		to ~/vimfiles/autoload and downloading plugins to ~/vimfiles/bundle/pluginname
+		the plugins are not loaded
 	Root cause
 		set encoding=UTF-8 in vimrc breaks plugins if the user folder name in Windows has accented characters
 	Attempts
@@ -68,6 +70,14 @@ pathogen will not load bundles
 		remove everything form _myvimrc
 			It works. Now I have to find out what causes the problem
 			Found it. UTF-8 encoding breaks if the user folder in Windows have accented character
+	Fix CTRL-P plugin
+		1. create c:\vimfiles\bundle
+		2. move all plugins here
+		3. update vimrc
+			1. set pathogen#infect to the new location
+				execute pathogen#infect("c:/vimfiles/bundle/{}")
+			2. update runtimepath for ctrlp
+				set runtimepath^=c:\vimfiles\bundle\ctrlp.vim
 
 VIM automatically wraps lines after 78 characters
 	Root cause:
