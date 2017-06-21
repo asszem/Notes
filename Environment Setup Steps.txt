@@ -52,9 +52,15 @@ IDE setup
 				Preferences - Appearance - change it to Dark
 				Preferences - Color Theme 
 					Select RecognEyes
+		Set Windows USER HOME env.variable
+			https://wiki.eclipse.org/EGit/User_Guide#Setting_up_the_Home_Directory_on_Windows
 		Load Eclipse Preferences
 			File - Import - General - Preferences
 			Manual Settings of Preferences
+				Comments
+					Preferences - Java - Code Style - Formatter - Profile - Comments
+						Preserve white space between code and line comment
+						Set comment wrap limit to 200
 				Change Font Color of Project name in Package Explorer
 					Preferences - Colors - Git - Uncommitted changes foreground: Yellow
 				Change Font Color in Editor Tab
@@ -67,10 +73,6 @@ IDE setup
 				Change Font and Size 
 					Preferences - Colors - Basic - Text Font
 						Size:12pt, Font: Consolas
-				Change Comment Wrap limit
-					Preferences - Java - Code Style - Formatter - Profile - Comments - Set value to 200
-					or
-					Import 'AndrasEclipse' profile
 				Keybindings
 					Preferences - keys
 						Unbind Ctrl-Alt-B for {
@@ -102,5 +104,10 @@ Git setup
 			git config color.interactive.prompt red
 		Set difftool to gvim
 			git config --global diff.tool gvimdiff
+	Set gvimdiff as Mergetool
+		git config --global merge.tool vimdiff
+		git config merge.conflictstyle diff3
+		git config mergetool.prompt false
+		http://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/	
 
 Clone Projects and start working
