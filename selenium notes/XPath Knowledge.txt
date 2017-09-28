@@ -1,4 +1,3 @@
-
 Description
 	XPath uses path expressions to select nodes in an XML document. The node is selected by following a path or steps.
 
@@ -16,35 +15,89 @@ Selecting Nodes
 			*			Matches any element node
 			@*			Matches any attribute node
 			node()		Matches any node of any kind
-	Example
-		Sample XML
-			<?xml version="1.0" encoding="UTF-8"?>
-			<bookstore>
-			<book>
-			  <title lang="en">Harry Potter</title>
-			  <price>29.99</price>
-			</book>
-			<book>
-			  <title lang="en">Learning XML</title>
-			  <price>39.95</price>
-			</book>
-			</bookstore>
-		Result
-			Path Expression		Result
-			bookstore			Selects all nodes with the name "bookstore"
-			/bookstore			Selects the root element bookstore
-								Note: If the path starts with a slash ( / ) it always represents an absolute path to an element!
 
-			bookstore/book		Selects all book elements that are children of bookstore
-			//book				Selects all book elements no matter where they are in the document
-			bookstore//book		Selects all book elements that are descendant of the bookstore element, no matter where they are under the bookstore element
-			//@lang				Selects all attributes that are named lang
-			/bookstore/*		Selects all the child element nodes of the bookstore element
-			//*					Selects all elements in the document
-			//title[@*]			Selects all title elements which have at least one attribute of any kind
-			//book/title | //book/price		Selects all the title AND price elements of all book elements
-			//title | //price				Selects all the title AND price elements in the document
-			/bookstore/book/title | //price	Selects all the title elements of the book element of the bookstore element AND all the price elements in the document
+Sources
+	Good general overview, start with this:
+		https://www.w3schools.com/xml/xpath_intro.asp
+	http://archive.oreilly.com/pub/a/perl/excerpts/system-admin-with-perl/ten-minute-xpath-utorial.html
+	https://msdn.microsoft.com/en-us/library/ms256456.aspx
 
-Source
-	http://www.w3schools.com/xml/xpath_intro.asp
+Operators
+	or	or	price=9.80 or price=9.70
+	and	and	price>9.00 and price<9.90
+	mod	Modulus (division remainder)	5 mod 2
+	|	Computes two node-sets	//book | //cd
+	+	Addition	6 + 4
+	-	Subtraction	6 - 4
+	*	Multiplication	6 * 4
+	div	Division	8 div 4
+	=	Equal	price=9.80
+	!=	Not equal	price!=9.80
+
+Predicates (predicate = állítmány)
+	Predicates allow you to filter the set of possible nodes provided by a node test to get just the ones you care about.
+	Predicates are specified in square brackets ([]) in the location path itself. 
+	You insert a predicate right at the point where a filtering decision has to be made.
+	Example:
+		This location path returns the interface name(s) for the second host node (second in document order)
+		/network/host[2]/interface/arec/text()
+
+Selection
+	Select 'price' elements where attributes are currency and material match the values
+		//price[@currency='forint' and @material='online']
+	Test the contents of a node like this: 
+		//host/service[text()='DNS']
+	Select all title and price elements
+		//title | //price
+	Select the node that contains 'Base' 
+		.//*[@id='AbT23']//text()[contains(.,'Base')]
+		https://stackoverflow.com/questions/3655549/xpath-containstext-some-string-doesnt-work-when-used-with-node-with-more
+	this selects every td element (cell) in the document, that has a text node child, whose string value is '123456'. 
+	a//tr/td[text() = '123456']
+
+Contains
+	Select all elements where attribute 'id' contains 'MLC'
+		//*[contains(@id, 'MLC')]
+	Select any text that contains ABC
+		//*[text()[contains(.,'ABC')]]
+		Explanation
+		* is a selector that matches any element (i.e. tag) -- it returns a node-set.
+		The outer [] are a conditional that operates on each individual node in that node set -- here it operates on each element in the document.
+		text() is a selector that matches all of the text nodes that are children of the context node -- it returns a node set.
+		The inner [] are a conditional that operates on each node in that node set -- here each individual text node. Each individual text node is the starting point for any path in the brackets, and can also be referred to explicitly as . within the brackets. It matches if any of the individual nodes it operates on match the conditions inside the brackets.
+		contains is a function that operates on a string. Here it is passed an individual text node (.). Since it is passed the second text node in the <Comment> tag individually, it will see the 'ABC' string and be able to match it.
+
+XPath Axes
+	https://www.w3schools.com/xml/xpath_axes.asp
+	General syntax
+		axisname::nodetest[predicate]
+	Examples
+		Selects all book nodes that are children of the current node
+			child::book
+		Selects the lang attribute of the current node
+			attribute::lang
+		Selects all element children of the current node
+			child::*
+		Selects all attributes of the current node
+			attribute::*
+		Selects all text node children of the current node
+			child::text()
+		Selects all children of the current node
+			child::node()
+		Selects all book descendants of the current node
+			descendant::book
+		Selects all book ancestors of the current node
+			ancestor::book
+		Selects all book ancestors of the current node - and the current as well if it is a book node
+			ancestor-or-self::book
+		Selects all price grandchildren of the current node
+			child::*/child::price
+
+CFSW xPath
+	Select all td with label that contains 'z/OS V2 Base'
+		//tr/td/label[contains(.,'z/OS V2 Base')]		
+
+	Find a checkbox sibling of z/OS V2 Base version 02.00
+	.//*[@id='AbT23']//text()[contains(.,'Base')]
+	.//*[@title='Replace 4']//text()[contains(.,'02.00')] | .//*[@title='Replace 4']//text()[contains(.,'z/OS V2 Base')] 
+

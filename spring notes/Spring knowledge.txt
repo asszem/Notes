@@ -1,3 +1,6 @@
+To be continued:
+https://www.tutorialspoint.com/spring/spring_bean_post_processors.htm
+
 Overview
 	Spring framework is an open source Java platform that provides comprehensive infrastructure support for developing robust Java applications very easily and very rapidly.
 	Spring Framework to create high performing, easily testable, and reusable code.
@@ -88,6 +91,8 @@ Spring Bean
 					<!-- collaborators and configuration for this bean go here -->
 				</bean>
 		prototype - This scopes a single bean definition to have any number of object instances.
+			If the scope is set to prototype, the Spring IoC container creates a new bean instance of the object every time a request for that specific bean is made. 
+			As a rule, use the prototype scope for all state-full beans and the singleton scope for stateless beans.
 		request - This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext.
 		session - This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
 		global-session - This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.

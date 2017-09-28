@@ -4,6 +4,8 @@ Web Server Configuration
 	Preferences - Server - Runtime Environment - Add 
 
 Keyboard shortcuts
+	CTRL-Shift-O - Automatically import all referenced classess
+	CTRL-SHIFT-R - Resources: find files in projects
 	Alt-Shift-X - Run file as ... 
 		J - java
 	Alt-Shift-D - Debug file as...
