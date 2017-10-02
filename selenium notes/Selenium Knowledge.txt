@@ -16,7 +16,7 @@ Selenium IDE
 	Documentation
 		http://www.seleniumhq.org/docs/02_selenium_ide.jsp
 	Test Case
-		
+		Collection of test scripts (steps) to be verified
 	Test Suites
 		A test suite is a collection of tests. Often one will run all the tests in a test suite as one continuous batch-job.
 		When using Selenium-IDE, test suites also can be defined using a simple HTML file. 

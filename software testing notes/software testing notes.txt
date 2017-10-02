@@ -1,0 +1,11 @@
+General Concepts
+	Happy Path vs Failure Path
+		What is the expected result for correct actions (example: valid login)
+		What is the expected result for incorrect actions (failures, invalid login)
+	Verification vs. Validation
+		During development: Are we building the product right to satisfy current requirement?
+		During and After development: Are we building the right product to satisfy business requirements?
+
+
+Resources
+	http://softwaretestingfundamentals.com/verification-vs-validation/
