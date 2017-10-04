@@ -47,6 +47,8 @@ Selensense Syntax
 	Accessors
 		Accessors examine the state of the application and store the results in variables, e.g. “storeTitle”. 
 		They are also used to automatically generate Assertions.
+		Storing values and referencing variables:
+		${variable_name}
 	Assertions
 		Description
 			Assertions are like Accessors, but they verify that the state of the application conforms to what is expected. 
@@ -83,6 +85,9 @@ Selensense Syntax
 			type 					id=phone 					(555) 666-7066
 			type 					id=address1 				${myVariableAddress}
 	Selenium (typicall) Commands
+		echo
+			prints the value of a variable to the log
+				echo ${variable_name}
 		open
 			opens a page using a URL.
 		click/clickAndWait
@@ -116,7 +121,13 @@ Selensense Syntax
 			Only if this passes will the following command run and “verify” that the text is present in the expected location. 
 			The test case then “asserts” the first column in the second row of the first table contains the expected value, and only if this passed will the remaining cells in that row be “verified”.
 
-Locating Elements
+Specific targets
+	glob: - global search, for wildcards
+	exact: - global search for exact match
+	regexp: - global search for regexp patter
+
+
+Locating Elements - using selectors
 	Sample
 		<html>
 		  <body>
@@ -221,6 +232,9 @@ Matching Patterns
 	Exact
 
 
+Selenium Standalone Webserver to run IDE HTML scripts
+C:\selenium\java -jar selenium-server-standalone-3.6.0.jar -htmlSuite "*chrome" "URL" "..\Tests.html"
+
 Selenium WebDriver Setup
 	General Description
 		Selenium-WebDriver makes direct calls to the browser using each browser’s native support for automation. 
@@ -228,7 +242,7 @@ Selenium WebDriver Setup
 	Selenium-Server
 		 If your browser and tests will all run on the same machine, and your tests only use the WebDriver API, then you do not need to run the Selenium-Server
 		 WebDriver will run the browser directly.
-	Setting Up a Selenium-WebDriver Project in Netbeans with Maven
+	Netbeans - Setting Up a Selenium-WebDriver Project in Netbeans with Maven
 		1. Create a new project: Maven -> Java Application
 		2. Under project files edit pom.xml and add Selenium dependency
 			<dependencies>
@@ -249,13 +263,36 @@ Selenium WebDriver Setup
 				https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette
 			How to create a Maven project in Netbeans
 				https://sqa.stackexchange.com/questions/13213/how-to-configure-selenium-webdriver-with-netbeans
+	Eclipse - Setting Up a Selenium Project in Eclipse
+		1. Start a New Maven Project
+		2. Add Selenium to Maven POM
+			Right click on Project, Find Maven, "Add Dependency"
+				http://docs.seleniumhq.org/download/maven.jsp
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-java</artifactId>
+						<version>3.6.0</version>
+					</dependency> 
+		3. Add Junit to Maven POM
+			Click on POM.XML and then on "Dependency" tab
+			https://mvnrepository.com/artifact/junit/junit
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<version>4.12</version>
+					<scope>test</scope>
+				</dependency>
+			
 
 Selenium-WebDriver API Commands and Operations
 	Source
 		http://www.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver-api-commands-and-operations
 	Fetch a page
 		driver.get("http://www.google.com");
-	Locating UI Elements (WebElements)
+	WebElement.findElement() vs. WebDriver.findElement()
+		WebElement.findElement() will use the element as the scope in which to search for your selector. This means it is generally used for searching for child elements.
+		WebDriver.findElement() will use the driver (i.e the entire page) to search for your given selector.
+	Locating UI Elements - findElement()
 		By Id
 			<div id="coolestWidgetEvah">...</div>
 			WebElement element = driver.findElement(By.id("coolestWidgetEvah"));

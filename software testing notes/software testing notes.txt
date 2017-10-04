@@ -5,7 +5,12 @@ General Concepts
 	Verification vs. Validation
 		During development: Are we building the product right to satisfy current requirement?
 		During and After development: Are we building the right product to satisfy business requirements?
+		"Validation. The assurance that a product, service, or system meets the needs of the customer and other identified stakeholders. It often involves acceptance and suitability with external customers. Contrast with verification."
+		"Verification. The evaluation of whether or not a product, service, or system complies with a regulation, requirement, specification, or imposed condition. It is often an internal process. Contrast with validation."
+		Resources
+			http://softwaretestingfundamentals.com/verification-vs-validation/
+			https://en.wikipedia.org/wiki/Verification_and_validation
 
 
-Resources
-	http://softwaretestingfundamentals.com/verification-vs-validation/
+
+			

@@ -147,8 +147,6 @@ less command
 	j - one line down
 	k - one line up
 
-
-
 git reset
 	format
 		git reset [--mixed] target
