@@ -233,7 +233,7 @@ Matching Patterns
 
 
 Selenium Standalone Webserver to run IDE HTML scripts
-C:\selenium\java -jar selenium-server-standalone-3.6.0.jar -htmlSuite "*chrome" "URL" "..\Tests.html"
+	C:\selenium\java -jar selenium-server-standalone-3.6.0.jar -htmlSuite "*chrome" "URL" "..\Tests.html"
 
 Selenium WebDriver Setup
 	General Description
@@ -287,12 +287,16 @@ Selenium WebDriver Setup
 Selenium-WebDriver API Commands and Operations
 	Source
 		http://www.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver-api-commands-and-operations
-	Fetch a page
+	Fetch a page & back/forward navigation
 		driver.get("http://www.google.com");
-	WebElement.findElement() vs. WebDriver.findElement()
-		WebElement.findElement() will use the element as the scope in which to search for your selector. This means it is generally used for searching for child elements.
-		WebDriver.findElement() will use the driver (i.e the entire page) to search for your given selector.
+		driver.navigate().back();
+		driver.navigate().forward();
+		driver.navigate().refresh();
+		driver.navigate().toUrl("url");
 	Locating UI Elements - findElement()
+		WebElement.findElement() vs. WebDriver.findElement()
+			WebElement.findElement() will use the element as the scope in which to search for your selector. This means it is generally used for searching for child elements.
+			WebDriver.findElement() will use the driver (i.e the entire page) to search for your given selector.
 		By Id
 			<div id="coolestWidgetEvah">...</div>
 			WebElement element = driver.findElement(By.id("coolestWidgetEvah"));
@@ -321,8 +325,6 @@ Selenium-WebDriver API Commands and Operations
 		Getting text values
 			WebElement element = driver.findElement(By.id("elementID"));
 			element.getText();
-
-	User Input - Filling In Forms
 	Expected Conditions
 		ExpectedConditions is the public class that provides many STATIC methods that return ExpectedCondition type object.
 		ExpectedCondition<T> type object to be created
@@ -332,7 +334,6 @@ Selenium-WebDriver API Commands and Operations
 			System.out.println(isTitlePresent.apply(driver));  //now true
 		Source
 			javadoc source: https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/support/ui/ExpectedConditions.html
-
 	Explictit and Implicit Wait
 		Explicit wait
 			An explicit wait is code you define to wait for a certain condition to occur before proceeding further in the code.
@@ -344,4 +345,44 @@ Selenium-WebDriver API Commands and Operations
 			Example
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
 				WebElement myDynamicElement = driver.findElement(By.id("myDynamicElement"));
+	Input 
+		Find element and look for relevant actions :)
+			sendKeys()
+			click()
+		For selections use Select helper class
+		Determine whether it is multiple
+		Select select = new Select(webElement);
+		if (select.isMultiple()) select.deselectAll();
+		select.selectByIndex(1);
+		select.selectByVisibleText("Something");
+
+
+	Popups and Alerts
+		When an alert happens, it needs to be handled.
+			Alert alert = driver.switchTo().alert();
+			alert.dismiss();
+			alert.accept();
+		Sources
+			http://www.softwaretestinghelp.com/handle-alerts-popups-selenium-webdriver-selenium-tutorial-16/
+	Multiple Windows
+		Get the WindowHandle for specific windows and switch to it according to the test
+			String handle = driver.getWindowHandle();
+			List<String> handles = driver.getWindowHandles();
+			driver.switchTo().window(handle);
+	Drag and Drop
+		Identify WebElement to be dragged, identify area to be dragged to
+		Create an Actions object for the driver
+		Use methods on the action object
+		Example
+			WebElement dragger = driver.findElement(By.id("drag1"));
+			WebElement target = driver.findElement(By.id("target"));
+			Actions worker = new Actions(driver);
+			worker.dragAndDrop(dragger, target);
+			worker.clickAndHold(dragger);
+			worker.moveByOffset(100,100);
+			worker.release();
+			worker.perform();
+			pause(3);
+	
+
 
