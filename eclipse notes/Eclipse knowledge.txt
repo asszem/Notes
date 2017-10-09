@@ -21,7 +21,6 @@ Keyboard shortcuts
 	Ctrl-, / Ctrl-. - jump to the next/prev error/warning annontation
 	Ctrl-O - Quick outline (find variables, methods, etc)
 
-
 Vrapper specific shortcuts
 	:vim - opens the file in Gvim, and refreshes after GVIM closed
 

@@ -1,0 +1,129 @@
+Books:
+	The Cucumber for Java - by Aslak Hellesoy; Matt Wynne; Seb Rose
+
+Installing Cucumber
+	Install manually 
+		download jars from Maven repository https://mvnrepository.com/
+		cucumber-core - the core. Always needed if not installed from Maven
+		cucumber-java - The choice of Backend module specifies which language you are going to write your glue (step definitions and hooks) in. 
+		gherking - Gherkin is the name of the dialect that we use to write our feature files.  It includes the keywords, and their translations into other languages.
+		cucumber-jvm-deps - dependencies
+	Install with Maven
+	Directory Structure
+		Cucumber needs you to specify where your features and step definition are kept.
+
+General Concepts
+		What makes Cucumber stand out from the crowd of other tools is that it has been designed specifically to ensure the acceptance tests can easily be read—and written—by anyone on the team. 
+		This reveals the true value of acceptance tests as a communication and collaboration tool.
+		Acceptance tests written in this style (Feature-Scenario-Given-When-Then-And) become more than just tests; they become executable specifications.
+		Gherkin -> Step Definitions (Java) -> test specific code
+	Runnin Cucumber
+		When you run Cucumber
+		1. it reads in your specifications from plain-language text files called features
+		2. examines them for scenarios to test
+		3. runs the scenarios against your system. 
+		Each scenario is a list of steps for Cucumber to work through. 
+		So that Cucumber can understand these feature files, they must follow some basic syntax rules. The name for this set of rules is Gherkin.
+	Scenario
+		Each test case in Cucumber is called a scenario, and scenarios are grouped into features. Each scenario contains several steps.
+	Feature files
+		The business-facing parts of a Cucumber test suite, stored in feature files, must be written according to syntax rules—known as Gherkin—so that Cucumber can read them.
+		The keywords Feature, Scenario, Given, When, and Then are the structure, and everything else is documentation. This structure is called Gherkin
+	Step Definitions
+		Map the business-readable language of each step into code to carry out whatever action is being described by the step.
+		If the code in the step definition executes without error, Cucumber proceeds to the next step in the scenario. 
+		If it gets to the end of the scenario without any of the steps raising an error, it marks the scenario as having passed. 
+		If any of the steps in the scenario fail, however, Cucumber marks the scenario as having failed and moves on to the next one.
+		As the scenarios run, Cucumber prints out the results showing you exactly what is working and what isn’t.
+		As soon as it encounters a failed or pending step, Cucumber will stop running the scenario and skip the remaining steps.
+		Remember that a step isn’t a test in itself. The test is the whole scenario, and that isn’t going to pass until all of its steps do.
+
+Gherkin Summary
+	Sample
+		Feature: Name of the feature
+			Description of the 
+			feature
+			which can be
+			multiple lines
+			In order to <meet some goal>
+			As a <type of stakeholder>
+			I want <a feature>
+		Background: //Same for all scenarios
+			Given ......
+			And .....
+		Scenario: .......
+			When .....
+			And .....
+			And .....
+			Then .....
+			And .....
+	Keywords
+		Feature
+			The feature keyword doesnt affect the behaviour of the Cucumber tests at all. Can be as long as many and can be multiple lines
+			The text immediately following on the same line as the Feature keyword is the name of the feature, and the remaining lines are its description. 
+			A Feature MUST be followed either by: Scenario / Bakcground / Scenario Outline
+		Scenario
+			Each feature can contain several scenarios. Each scenario is a single, concrete example of how the system should behave in a particular situation
+			All scenarios together should describe the expected bahavior of the feature itself. Features usually have 5-20 scenarios
+			Scenarios are used to explore edge cases and different paths through a feature
+			A Scenarion name and Description can be multiple lines, up until the first Given/When/Then keywords
+			Scenario naming is important
+				When the test breaks, failing scenario name will be displayed
+				Think of it as naming methods
+				If the scenario is named well, the steps inside of it doesn't need to be read to understand what the scenario does. 
+				A good tip is to avoid putting anything about the outcome (the Then part) of the scenario into the name and concentrate on summarizing the context and event (Given and When) of the scenario.
+		Given, When, Then
+			Given - it is the context
+			When  - it is the event, or action in the defined context
+			Then  - it is the expected outcome
+		And, But
+			Each Given / When / Then can be extended with And or But steps.
+			Actually, And and But can be replaced with Given
+			Example
+				Given I have $100 in my account
+				But my card is invalid
+				When I request $50
+				Then my card shoudl not be returned
+				And I should be told to contact the bank
+			Same example:
+				Given I have $100 in my account
+				Given my card is invalid
+				When I request $50
+				Then my card shoudl not be returned
+				Then I should be told to contact the bank
+		* to replace Given/When/Then
+			Same example
+				* I have $100 in my account
+				* my card is invalid
+				* I request $50
+				* my card shoudl not be returned
+				* I should be told to contact the bank
+		# for Comments
+	Stateless
+		Each scenario must make sense and be able to be executed independently of any other scenario!!!
+		When writing a scenario, always assume that it will run against the system in a default, blank state. Tell the story from the beginning, using Given steps to set up all the state you need for that particular scenario.
+
+Step Definitions
+	General description
+		Step definitions sit right on the boundary between the business’s domain and the programmer’s domain.
+		Gherkin describes WHAT to do, Step Definition describes HOW to do it
+		There are two sides to a step definition. On the outside, it translates from plain language into code, and on the inside it tells your system what to do using automation code. 
+		Step vs. Step Definition
+			Step
+				A Step is just documentation in plain language. It needs a Step Definition to bring it to life. 
+			Step Definition
+				The code to run when Cucumber matches a Step in the Feature file
+		Step Matching
+			
+CommandLine 
+	.P- 
+		. step is passed
+		P step is pending
+		- step has been skipped
+	Tell Cucumber to use camelCase when running from a command line
+		java -cp "jars/*" cucumber.api.cli.Main -p pretty --snippets camelcase features
+	Tell Cucumber to use shorter output
+		java -cp "jars/*" cucumber.api.cli.Main -p progress --snippets camelcase features
+	Run a dry run - to check whether Gherkin is valid
+		java -cp "jars/*;." cucumber.api.cli.Main -g step_definitions --dry-run features
+	
