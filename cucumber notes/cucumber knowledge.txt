@@ -1,5 +1,8 @@
-Books:
-	The Cucumber for Java - by Aslak Hellesoy; Matt Wynne; Seb Rose
+Books and Learning Resources:
+	Good starting point:
+		The Cucumber for Java - by Aslak Hellesoy; Matt Wynne; Seb Rose
+	Great tutorial for Eclipse/Maven setup, covers many areas of Cucumber
+		http://www.thetestroom.com/category/web-automation/cucumber/
 
 Installing Cucumber
 	Install manually 
@@ -9,6 +12,22 @@ Installing Cucumber
 		gherking - Gherkin is the name of the dialect that we use to write our feature files.  It includes the keywords, and their translations into other languages.
 		cucumber-jvm-deps - dependencies
 	Install with Maven
+		1. Install Cucumber plugin
+			Eclipse -> Help -> Install New Software -> Add
+				Name: cucumber
+				Location:  http://cucumber.github.com/cucumber-eclipse/update-site
+		2. Create new Maven project
+		3. Add Dependencies from https://mvnrepository.com/artifact/info.cukes
+			cucumber-core
+			cucumber-jvm-deps
+			cucumber-java
+			gherkin
+		4. Write a .feature file
+		5. Write a StepDefinition
+		Source
+			http://www.thetestroom.com/cucumber-maven-eclipse-setup-tutorial/
+		Sampleproject
+			https://github.com/asszem/CucumberLearning
 	Directory Structure
 		Cucumber needs you to specify where your features and step definition are kept.
 
@@ -114,7 +133,43 @@ Step Definitions
 			Step Definition
 				The code to run when Cucumber matches a Step in the Feature file
 		Step Matching
-			
+			Regexp Capture Groups (capturegroup)
+				When you surround part of a regular expression with PARENTHESES, it becomes a capture group.
+				Capture groups are used to highlight particular parts of a pattern that you want to lift out of the matching text and use. 
+				In a Cucumber step definition, the text matched within each capture group is passed to the code block as an argument:
+				Example
+											  (      )      (    )
+					@Given("^the price of a \"([^\"]*)\" is (\\d+)c$")
+					public void thePriceOfAIsC(String name, int price) throws Throwable {}
+			Typical regex matches
+				\\d - match any numbers
+				\\w - match any word character [A-Za-z0-9_]
+				\\s - match any whitespace characters [\t\r\n]. Space, Tab, LineBreak
+				\\b - word boundary
+			Quantifiers
+				* - zero or many
+				+ - on or many
+				? - optional, zero or many. Useful to handle plural(s)
+				| - or. Example: "When I visit|go the homepage..."
+			Non-Capturing groups: (?:....)
+				Regex matches it but doesn't add to the capturing group
+
+Scenario execution
+	1. Read first step
+	2. Is there matching step definition?
+		No: UNDEFINDED SCENARIO
+	3. Execute ste definition's code
+	4. Was an exception thrown?
+		Yes:
+			Is it a Pending Exception?
+				Yes: PENDING SCENARIO
+				No: FAILED SCENARIO
+	5. Are there any more test steps?
+		Yes: Goto Step 1.
+		No: PASSED SCENARIO
+
+
+
 CommandLine 
 	.P- 
 		. step is passed
