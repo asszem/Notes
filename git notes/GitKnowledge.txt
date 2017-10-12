@@ -187,6 +187,12 @@ git merge
 		create a savepoint branch before merging 
 			(but don't change to it, and git reset --hard savepoint if something goes wron)
 			http://think-like-a-git.net/sections/testing-out-merges/the-savepoint-pattern.html
+	squash merge
+		to merge together commits into one commit from the provided branch
+		git merge --squash <branch name>
+			git checkout master				//checkouts the master branch
+			git merge --squash bugfix		//merges all commits from 'bugfix' branch into one commit
+			git commit						//commits the change
 
 git reflog
 	Show all SHA checksums of every commit

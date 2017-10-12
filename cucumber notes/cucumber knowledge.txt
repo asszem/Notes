@@ -68,6 +68,7 @@ Gherkin Summary
 			As a <type of stakeholder>
 			I want <a feature>
 		Background: //Same for all scenarios
+			Description of background tasks
 			Given ......
 			And .....
 		Scenario: .......
@@ -168,7 +169,81 @@ Scenario execution
 		Yes: Goto Step 1.
 		No: PASSED SCENARIO
 
+Background Best Practices
+	A background section in a feature file allows you to specify a set of steps that are common to every scenario in the file. 
+	Backgrounds are useful for taking Given (and sometimes When) steps that are repeated in each scenario and moving them to a single place. This helps keep your scenarios clear and concise.
+	You can have a single Background element per feature file, and it must appear before any of the Scenario or Scenario Outline elements. 
+	Just like all the other Gherkin elements, you can give it a name, and you have space to put a multiline description before the first step. 
+	Tips
+		Don’t use Background to set up complicated state unless that state is something the reader actually needs to know. 
+			For example, we didn’t mention the actual digits of the system-generated PIN in the previous example, because that detail wasn’t relevant to any of the scenarios.
+		Keep your Background section short. After all, you’re expecting the user to actually remember this stuff when reading your scenarios. 
+			If the background is more than four lines long, can you find a way to express that action in just one or two steps?
+		Make your Background section vivid. Use colorful names and try to tell a story, because your readers can keep track of stories much better than they can keep track of dull names like User A, User B, Site 1, and so on. 
+			If it’s worth mentioning at all, make it really stand out.
+		Keep your scenarios short, and don’t have too many. If the Background is more than three or four steps long, think about using higher-level steps or splitting the feature file in two.
+			You can use a background as a good indicator of when a feature is getting too long: if the new scenarios you want to add don’t fit with the existing background, consider splitting the feature.
+		Avoid putting technical details such as clearing queues, starting back-end services, or opening browsers in a background. 
+			Most of these things will be assumed by the reader, and there are ways to push those actions down into your support code that we’ll explain later in the book, such as in Tagged Hooks.
 
+Data Tables
+	The table starts on the line immediately following the step, and its cells are separated using the pipe character: |. 
+	You can line up the pipes using whitespace to make the table look tidy, although Cucumber doesn’t mind whether you do; it will strip out the values in each cell, ignoring the surrounding whitespace.
+	Example
+		Given these Customers:
+		| country 	| ID   		|
+		| 897		| 89960B	|
+		| 760		| 543678	|
+		Then I can also specify headings in the first row:
+		| country 	| 897		|
+		| ID		| 89960B	|
+		And I can specify just a list:
+		|item 1|
+		|item 2|
+		|item 3|
+		|item 4|
+	StepDefinition for handling tables:
+		DataTable object will be retrieved from Feature file. 
+			.raw() method gets each line
+			DataTable is unmodifiable, so it's content needs to be changed to an ArrayList
+			ArrayList can be manipulated with .get(index) and .set(index, value) methods
+		Example
+			@Given("^customers are:$")
+			public void customers_are(DataTable inputTable) throws Throwable {
+				ArrayList modifiableList = new ArrayList<List<String>>(); 					// Create an array list that will hold List<String>
+				for (List<String> currentRow : inputTable.raw()) { 							// Retrieve each row from table as List<String>
+					modifiableList.add(new ArrayList<String>(currentRow)); 					// Add the current row to the ArrayList
+				}
+
+Scenario Outline
+	Description
+		We indicate placeholders within the scenario outline using angle brackets (<..>) where we want real values to be substituted. 
+		The scenario outline itself is useless without an Examples table, which lists rows of values to be substituted for each placeholder.
+		You can have any number of Scenario Outline elements in a feature and any number of Examples tables under each scenario outline. 
+		Behind the scenes, Cucumber converts each row in the Examples table into a scenario before executing it.
+	Multiple Examples can be used
+		Scenario Outline: Withdraw fixed amount
+		  Given I have <Balance> in my account
+		  When I choose to withdraw the fixed amount of <Withdrawal>
+		  Then I should <Outcome>
+		  And the balance of my account should be <Remaining>
+		  
+		  Examples: Successful withdrawal
+			| Balance | Withdrawal | Outcome              | Remaining |
+			| $500    | $50        | receive $50 cash     | $450      |
+			| $500    | $100       | receive $100 cash    | $400      |
+
+		  Examples: Attempt to withdraw too much
+			| Balance | Withdrawal | Outcome              | Remaining |
+			| $100    | $200       | see an error message | $100      |
+			| $0      | $50        | see an error message | $0        |
+	Scenario Outlines vs Data Tables
+		Remember that although the syntax for writing them in Gherkin is the same, these tables are totally different from the data tables we described earlier in this chapter.
+		Data tables just describe a lump of data to attach to a single step of a single scenario
+	Best Practices
+		Do not use to many exmaples, might slow down the system and make it hard to read
+		The ultimate goal is readability, not making sure everything is tested
+		The absence of proof (no proof that system is bugfree) is not the proof of absence (system is NOT bugfree)
 
 CommandLine 
 	.P- 

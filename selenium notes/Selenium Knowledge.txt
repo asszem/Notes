@@ -395,4 +395,7 @@ Selenium-WebDriver API Commands and Operations
 		}
 	4. Create a constructor for the page to instantiate the page with PageFactory.initElements(driver, this)
 	5. Insantiate the page object to access the WebElements and methods
-	
+
+Useful Resources
+	How to make selenium wait until a page loads?
+		http://www.obeythetestinggoat.com/how-to-get-selenium-to-wait-for-page-load-after-a-click.html - tutorial for JavaScript, not Java
