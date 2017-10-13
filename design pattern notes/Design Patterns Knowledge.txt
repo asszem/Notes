@@ -1,2 +1,65 @@
 Source
 	https://www.tutorialspoint.com/design_pattern/mvc_pattern.htm
+
+
+Examples
+	Builder Pattern
+		Has an instance variable for each constructor parameter
+		Initialises its instance variables to commonly used or safe values
+		Has a `build` method that creates a new object using the values in its instance variables
+		Has "chainable" public methods for overriding the values in its instance variables. - chainable methods return the builder class itself with the updated instance variable
+		Example
+			Creating the Builder Class
+				public class InvoiceBuilder {
+					Recipient recipient = new RecipientBuilder().build();
+					InvoiceLines lines = new InvoiceLines(new InvoiceLineBuilder().build());
+					PoundsShillingsPence discount = PoundsShillingsPence.ZERO;
+
+					public InvoiceBuilder withRecipient(Recipient recipient) {
+						this.recipient = recipient;
+						return this;
+					}
+
+					public InvoiceBuilder withInvoiceLines(InvoiceLines lines) {
+						this.lines = lines;
+						return this;
+					}
+
+					public InvoiceBuilder withDiscount(PoundsShillingsPence discount) {
+						this.discount = discount;
+						return this;
+					}
+
+					public Invoice build() {
+						return new Invoice(recipient, lines, discount);
+					}
+				}
+			Usage:
+				Invoice defaultInvoice = new InvoiceBuilder.build();
+				Invoice invoiceWithRecipient = new InvoiceBuilder.wihtRecipient(new RecipientBuilder.build()).build();
+	Test Data Builder
+		Source
+			The Cucumber for Java Book - Chapter 6 - "Keeping your cucumbers sweet"
+			http://www.natpryce.com/articles/000714.html - "Test Data Builders: an alternative to the Object Mother pattern"
+		Description
+			Suppose you’re testing a payroll system and you need to create a PayCheck record as part of a scenario. 
+			The way your domain model is structured, a PayCheck needs an Employee, and the Employee in turn needs an Address. 
+			Each of them also has a few mandatory fields. 
+			Instead of having to create all these objects individually in your step definition code or having a big fat set of fixture data, you can simply say this:	
+		Code
+			@Given("^I have been paid$")
+			public void i_have_been_paid() {
+			  PayCheck paycheck = new PayCheckBuilder().build();
+			}
+		Once you’ve created a PayCheckBuilder, all you need to do is ask it for a PayCheck, and it’ll create not only the PayCheck object but all the dependent objects as well.
+		Setting the mandatory fields with reasonable default values.  If you care about a field having a specific value, you provide a method to override the default:
+			@Given("^I have been paid 50 dollars$")
+			public void i_have_been_paid_50_dollars() {
+			  PayCheck paycheck = new PayCheckBuilder()
+				.dollarAmount(50)
+				.build();
+			}
+		When it’s this easy to create data, you no longer need to carry around the baggage of big fixture data sets. 
+		There’s a small amount of up-front investment in creating these builders, of course, but it quickly pays off in reliable, readable scenarios and step definition code.
+
+		

@@ -1,6 +1,7 @@
 ==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
+	:%s-\%u200b--g - substitutes all <u200b> unicode chars to nothing. Search and replace separator string is -
 	:mksession ~\sessionfile.vim - save the session
 	:source ~\sessionfile.vim - loads the session
 	:e ++enc=utf-8 -árvíztűrő tükörfúrógép
@@ -115,10 +116,15 @@ SZÖVEGSZERKESZTÉS
 		:put - copies Windows clipboard
 		:113put + - copies windows clipboard to line 113
 	HELYETTESÍTÉS - SUBSTITUTE
+		substitionton character can be anything that immediately follows s
+			examples
+			:%s/from/to/g
+			:%s-from-to-g
+		range
 			:{hol, range} s /mit /mire /flagek
-		range minták
-			:%s - a teljes dokumentumban
-			:4,$ - a 4. sortól a kijelölés végéig
+			range minták
+				:%s - a teljes dokumentumban
+				:4,$ - a 4. sortól a kijelölés végéig
 		flagek
 			/  - nincs flag, akkor csak a következő előfordulást fogja cserélni
 			/g - az adott sorban végig
@@ -127,6 +133,8 @@ SZÖVEGSZERKESZTÉS
 			\<teljes szó\> - csak a teljes szót helyettesíti
 				példa: \<alma\> az "almafa" szóban nem helyettesíti az alma kifejezést
 			\(vagyez\|vagyemez\) - a két szó bármelyik előfordulása
+		Select and Substitute Unicode characters
+			:%s/\%u200b//g	- replaces <u200b> unicode character (linebreak) in the entire document
 		Minták
 			:%s/mit/mire/g - a teljes dokumentumban (%) kicseréli a mit, mire, minden sorban /g flag
 			:%s/mit/mire/gc - ugyanez, csak minden egyes csere előtt rákérdez /c flag

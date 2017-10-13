@@ -245,6 +245,26 @@ Scenario Outline
 		The ultimate goal is readability, not making sure everything is tested
 		The absence of proof (no proof that system is bugfree) is not the proof of absence (system is NOT bugfree)
 
+Structuring Features
+	Best practice - Features should descripbe how the ACTUAL system works
+		User stories are a great tool for planning. Each story contains a little bit of functionality that you can prioritize, build, test, and release. 
+		Once a story has been released, we don’t want it to leave a trace in the code.
+		We use refactoring to clean up the design so that the code absorbs the new behavior specified by the user story, leaving it looking as though that behavior had always been there.
+		We want the same thing to happen with our Cucumber features.
+		The features should describe how the system behaves today, but they don’t need to document the history of how it was built; that’s what a version control system is for!
+	Using @Tags
+		Tagging description
+			Tagging Feature will tag entire feature
+			Tagging scenarios will tag specific scenarios
+		Tagging Use Cases
+			Documentation: You want to use a tag to attach a label to certain scenarios, for example to label them with an ID from a project management tool.
+			Filtering: Cucumber allows you to use tags as a filter to pick out specific scenarios to run or report on. You can even have Cucumber fail your test run if a certain tag appears too many times.
+			Hooks: Run a block of code whenever a scenario with a particular tag is about to start or has just finished.
+		Running Cucumber with tags
+			Run cucumber with --tags @tagname argument
+				Eclipse: Run Configuration -> Arguments -> Program arguments
+				CLI: ./cucumber.bat --tags @Tagname
+
 CommandLine 
 	.P- 
 		. step is passed
@@ -256,4 +276,132 @@ CommandLine
 		java -cp "jars/*" cucumber.api.cli.Main -p progress --snippets camelcase features
 	Run a dry run - to check whether Gherkin is valid
 		java -cp "jars/*;." cucumber.api.cli.Main -g step_definitions --dry-run features
-	
+
+Typical Problems When Implementing Cucumber First
+	Source
+		The Cucumber for Java Book - Chapter 6 - "Keeping your cucumbers sweet"
+	Symptom and Problem Overview
+		|Symptom													| Problem						|
+		|Some of our tests fail randomly 							| Flickering scenarios			|
+		|We keep breaking tests unintentionally.			 		| Brittle [törékeny] features   |
+		|Our features take too long to run. 						| Slow features					|
+		|Our stakeholders don’t read our features. 					| Bored stakeholders			|
+	Problems and Possible Root Causes
+		Flickering Scenario - sometimes pass, sometimes don't
+			Description
+				The worst thing about a flickering scenario is that as soon as you try to reproduce it so that you can fix it, it refuses to fail. 
+				Fixing a flickering scenario is one of the hardest tasks you can take on, yet it’s also one of the most important. 
+				For a suite of automated tests to be useful, the team must have absolute trust in it. 
+				When even just a single test is compromising that trust, it has a corrosive effect on how everyone feels about the whole test suite.
+			Possible Root causes 
+				Shared Environment
+				Leaky Scenarios
+				Race Conditions and Sleepy Steps
+		Brittle features - apparently unrealated features fail after change
+			Description
+				When you encounter a brittle scenario, it’s usually when you’re in the middle of doing something else. 
+				You’re interrupted by the unexpected failure and waste time dashing over to fix the unexpected broken test. 
+				On a bad day, this can happen several times before you emerge from the rabbit warren. 
+				Brittle features are self-fulfilling: when developers perceive their tests to be brittle, they tend to be less courageous about refactoring and cleaning up test code
+				Instead try to get in and out as quickly as they can, leaving the tests and production codebase in an increasingly hard-to-maintain state.
+			Possible Root Causes
+				Fixture Data
+				Duplication
+				Leaky Scenarios
+				Tester Apartheid
+		Slow Features - running the tests will take hours 
+			Description
+				Adding new features to the test suite will slow it down.
+				Long test time will lead people being scared to refactor. If a step definition is used in 345 scenario, refactoring it means it has to run in all 345 scenario which might take long time
+				When the build is slow, developers don’t run all the tests before committing code and will rely on the continuous integration server to give them feedback instead.	
+			Possible Root Causes
+				Race Conditions and Sleepy Steps
+				Lots of Scenarios
+				Big Ball of Mud
+			Possible solution
+				Run Parallel tests
+				Use Nightly Builds
+		Bored Stakeholders
+			Description
+			Possible Root Causes
+				Incidental Details
+				Imperative Steps
+				Duplication
+				Ubiquitous What?
+				Siloed Features
+	Root causes & Possible solutions
+		Incidental details - get BAs write the first draft of scenarios
+			Details that are mentioned in the scenario but that actually have no relevance to the purpose of the scenario. 
+			Try to avoid being guided by existing step definitions when you write your scenarios and just write down exactly what you want to happen, in plain English. 
+			In fact, try to avoid programmers or testers writing scenarios on their own. 
+			Instead, get nontechnical stakeholders or analysts to write the first draft of each scenario from a purely business-focused perspective or ideally in a pair with a programmer to help them share their mental model. 
+		Imperative steps - use higher level of abstraction, avoid details in features
+			Imperative Vs. Declarative Programming
+				Imperative programming means using a sequence of commands for the computer to perform in a particular order. 
+					Java is an example of an imperative language: you write a program as a series of statements that Java runs one at a time, in order. 
+				A declarative program tells the computer what it should do without prescribing precisely how to do it. 
+					CSS is an example of a declarative language: you tell the computer what you want the various elements on a web page to look like, and you leave it to take care of the rest.
+			Imperative steps are easier to break if something changes (example "Login" replaced with "Log in"), harder to read because of the details
+			Example
+				Lower level of abstraction 
+					Scenario: Redirect user to originally requested page after logging in
+					  Given a User "dave" exists with password "secret"
+						  And I am not logged in
+					  When I navigate to the home page
+					  Then I am redirected to the login form
+					  When I fill in "Username" with "dave"
+					  And I fill in "Password" with "secret"
+					  And I press "Login"
+					  Then I should be on the home page
+				Higher level of abstraction
+					Scenario: Redirect user to originally requested page after logging in
+					  Given I am an unauthenticated User
+					  When I attempt to view some restricted content
+					  Then I am shown a login form
+					  When I authenticate with valid credentials
+					  Then I should be shown the restricted content
+		Duplications - DRY (Don't Repeat Yourself), the test code should unfold the story of the class under test
+			Description
+				Duplications signs that steps are written at too low level of abstraction
+			DRY - Don't Repeat Yourself
+				The code should tell a story and not being a dictionary which explain all the words but doesn't make a good story
+		Ubiquitous [mindenütt jelenlévő] what? - Use the same expressions within the team
+			Everyone should use the same words
+				Tester
+					Who thinks about how to break things. 
+					The tester will typically come up with lots of scenarios, sometimes covering obscure edge cases and sometimes covering very important ones that no one else had thought of.
+				Programmer
+					Who thinks about how to make things. 
+					The programmer will typically add steps to scenarios, as he asks clarifying questions about what exactly should happen.
+				Product Owner
+					Who cares about scope. 
+					When the tester thinks of scenarios that hit edge cases the product owner doesn’t care about, she can tell the team to drop that scenario out of scope altogether
+					Or the group can decide to test it with unit tests only. 
+					When the programmer explains that implementing a particular scenario will be complicated, the product owner has the authority to help decide on alternatives or to drop it altogether.
+		Race Conditions & Sleepy Steps - use sleep as a workaround
+			Race conditions occur when two or more parts of the system are running in parallel, but success depends on a particular one of them finishing first.
+			When it’s a close race, you’ll have a flickering scenario, where the scenario will pass and fail intermittently.
+			Put a system to sleep to avoid race conditions that might have cause flickering scenarios
+			This should only be a workaround as it would slow down the entire test process
+		Shared Environments - create a One-Click-System-Setup
+			When a test system is used by both manual testers and automated tests, the manual testers actions might interrput and cause the running automated tests to fail
+			To avoid flickering scenarios that result from using shared environments, the team needs a setup script that will create a new instance of the system from scratch, at the click of a button.
+			If the system has a database, the database generated by the script should contain the latest schema, as well as any stored procedures, views, functions, and so on. 
+			It should contain just the very minimum baseline data necessary for the system to be able to function, such as configuration data. Any more should be left for the independent scenarios to create for themselves.
+			If there are message queues, or memcache daemons, the setup script should start them too, with the minimal configuration that you’d expect to be there on the running system.
+		Leaky Scenarios	- create Independent scenarios, create Test Data Builders
+			Cucumber scenarios are basically state-transition tests: you put the system into a Given state A, you perform action X (When), and Then you check that it has moved into expected state B. 
+			So, each scenario needs the system to be in a certain state before it begins, and yet each scenario also leaves the system in a new, dirty state when it’s finished.
+			When the state of the system is not reset between tests, we say that they allow state to leak between them
+			When one scenario depends upon state left behind by another earlier scenario in order for it to pass, you’ve created a dependency between the two scenarios. 
+			When you have a chain of several scenarios depending on each other like this, it’s only a matter of time before you end up with a train wreck.
+				Example: if the first scenario is changed, then the following scenario that depends on the state of the first might break
+		Fixture data  - use Test Data Builders
+			Fixture data: data that's used to set up the context for a scenario or test case.  We consider fixture data to be an ANTIPATTERN. 
+			We much prefer using Test Data Builders, where the relevant data is created within the test itself, rather than being buried away in a big tangled set of fixture data
+			Test Data Builder 
+				Specialization of the Builder Pattern to be used to create data required to have independent test scenarios
+		
+
+
+
