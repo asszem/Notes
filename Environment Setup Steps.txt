@@ -46,6 +46,7 @@ IDE setup
 		Theme
 			Install Darkest Dark Theme from Marketplace
 				https://marketplace.eclipse.org/content/darkest-dark-theme
+				Enable DevStyle for BreadCrumb and special launch configuration
 			or
 				Install Color Theme  plugin from Marketplace
 					http://marketplace.eclipse.org/content/eclipse-color-theme
@@ -79,9 +80,9 @@ IDE setup
 						Unbind Ctrl-H and Ctrl-L for Vim tab switching
 						Unbind Ctrl-Alt-T if it reports a conflict
 						Unbind Ctrl-A, Ctrl-X, for Vim increase/decrease
+						Unbind Ctrl-D for Vim page down
 						Bind Shift-F6 to Run file
 						Bind Ctrl-Shift-Del to Terminate in Windows
-
 				Git
 					Eclipse-specific .gitignore templates
 						https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore
@@ -93,7 +94,6 @@ IDE setup
 						sout - System.out.println
 						souf - System.out.printf
 						sou  - System.out.print
-
 Git setup
 	Download .gitconfig file from Github
 		Set editor to Vim
@@ -109,5 +109,20 @@ Git setup
 		git config merge.conflictstyle diff3
 		git config mergetool.prompt false
 		http://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/	
+Maven setup
+	CLI - http://maven.apache.org/install.html
+	1. Download Maven BINARY from http://maven.apache.org/download.cgi
+	2. Simply pick a ready-made binary distribution archive
+	3. Extract to a folder (C:\maven\...)
+	Windows Specific instructions
+	4. Check Java home: echo %JAVA_HOME% 
+	5. Add C:\maven\apache-maven-3.5.0\bin\ to PATH environment variable
+	6. Test with mvn -v
+Cucumber Setup
+	Eclipse:
+		Eclipse -> Help -> Install New Software -> Add
+			Name: cucumber
+			Location:  http://cucumber.github.com/cucumber-eclipse/update-site
+		Marketplace: Installl Natural pluging for syntax coloring
 
 Clone Projects and start working
