@@ -21,6 +21,7 @@ Installing Cucumber
 			cucumber-core
 			cucumber-jvm-deps
 			cucumber-java
+			cucumber-junit
 			gherkin
 		4. Write a .feature file
 		5. Write a StepDefinition
@@ -56,6 +57,10 @@ General Concepts
 		As the scenarios run, Cucumber prints out the results showing you exactly what is working and what isn’t.
 		As soon as it encounters a failed or pending step, Cucumber will stop running the scenario and skip the remaining steps.
 		Remember that a step isn’t a test in itself. The test is the whole scenario, and that isn’t going to pass until all of its steps do.
+	File and Directory structure
+		Cucumber looks for .feature files and scans all .java files that has @Given @When @Then annotations, regarding their place in the project structure	
+	@Before and @After
+		Cucumber runs these methods before and after each execution, regardless which step definition file they are implemented. If it finds such an annotation, it will run it. 
 
 Gherkin Summary
 	Sample
@@ -402,6 +407,33 @@ Typical Problems When Implementing Cucumber First
 			Test Data Builder 
 				Specialization of the Builder Pattern to be used to create data required to have independent test scenarios
 		
+Exercise to rewrite a Gherkin test feature
+	Given I am signed in with "admin" role
+	And there is a client with name "Test Client"
+	And there is a project with name "Test Project"
+	And there is a a test issue with name "Test Issue"
+	And there is a work unit named "Test Work Unit" with:
+	| completed_on  | "2011-08-24	|
+	| hours			| "7.5"			|
+	And I am on the admin invoices page
+	Then I should see "Test Client"
+	When I follow "Test Client"
+	And I fill in "invoice_id" with "abc"
+	And I press "submit"
+	Then I am on the admin invoices page
+	And I should not see "Test client"
 
 
+	Given I am signed in with "admin" role
+	And there is a valid "Test Client" 
+	And "Test Client" does not have invoiceID
+	Then I should see "Test Client" on admin invoices page
+	When I submit an invoice ID
+	Then I should not see "Test Client" on admin invoices page
+	And an Invoice is created
+
+	Given I am signed in with "admin" role
+	And there is a valid "Test Client" 
+	And "Test Client" does have invoiceID
+	Then I should not see "Test Client" on admin invoices page
 
