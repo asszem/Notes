@@ -61,6 +61,10 @@ General Concepts
 		Cucumber looks for .feature files and scans all .java files that has @Given @When @Then annotations, regarding their place in the project structure	
 	@Before and @After
 		Cucumber runs these methods before and after each execution, regardless which step definition file they are implemented. If it finds such an annotation, it will run it. 
+	Java Step definition instance lifecycle
+		Before Cucumber can execute a step definition, it creates an instance of the class that defines the step definition
+		Only one instance of each step definition class is created while executing a scenario.
+		And once the scenario has finished, Cucumber throws away all those step definition instances to ensure that each scenario runs in isolation from all the others
 
 Gherkin Summary
 	Sample
@@ -436,4 +440,13 @@ Exercise to rewrite a Gherkin test feature
 	And there is a valid "Test Client" 
 	And "Test Client" does have invoiceID
 	Then I should not see "Test Client" on admin invoices page
+
+Dependency Injection with PicoContainer
+	Cucumber uses dependency injection to facilitate sharing state between steps. 
+	Dependency injection (DI) is a technique that allows us to isolate a class from its concrete dependencies until runtime.
+	Often this is used to defer the decision about which actual implementation of an interface we’re going to use.
+
+Hooks
+	Cucumber supports hooks, which are methods that run before or after each scenario. 
+	You can define them anywhere in your support or step definition layers, using the annotations @Before and @After.
 

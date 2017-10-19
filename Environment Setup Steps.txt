@@ -55,6 +55,11 @@ IDE setup
 					Select RecognEyes
 		Set Windows USER HOME env.variable
 			https://wiki.eclipse.org/EGit/User_Guide#Setting_up_the_Home_Directory_on_Windows
+		Cucumber p
+			Eclipse -> Help -> Install New Software -> Add
+				Name: cucumber
+				Location:  http://cucumber.github.com/cucumber-eclipse/update-site
+			Marketplace: Install Natural pluging for syntax coloring
 		Load Eclipse Preferences
 			File - Import - General - Preferences
 			Manual Settings of Preferences
@@ -77,10 +82,13 @@ IDE setup
 				Keybindings
 					Preferences - keys
 						Unbind Ctrl-Alt-B for {
-						Unbind Ctrl-H and Ctrl-L for Vim tab switching
 						Unbind Ctrl-Alt-T if it reports a conflict
 						Unbind Ctrl-A, Ctrl-X, for Vim increase/decrease
 						Unbind Ctrl-D for Vim page down
+						Unbind Ctr-O for Vim 
+						Bind Ctrl-Down for Next Editor
+						Bind Ctrl-H for Previous Tab
+						Bind Ctrl-L for Next Tab
 						Bind Shift-F6 to Run file
 						Bind Ctrl-Shift-Del to Terminate in Windows
 				Git
