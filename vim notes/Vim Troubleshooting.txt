@@ -86,5 +86,12 @@ VIM automatically wraps lines after 78 characters
 		Change in vimrc_example.vim the textwidth value to zero: 
 		autocmd FileType text setlocal textwidth=0
 
+Cygwin VIM UI breaks
+	Remove the set lines and set columns settings form vimrc
+	" set lines=999 columns=999 
+
+Cygwin vimdiff E810 error
+	remove the shellcmdflag form vimrc
+	"set shellcmdflag=-Command
 
 

@@ -193,6 +193,8 @@ git merge
 			git checkout master				//checkouts the master branch
 			git merge --squash bugfix		//merges all commits from 'bugfix' branch into one commit
 			git commit						//commits the change
+	abort a merge
+		git reset --merge
 
 git reflog
 	Show all SHA checksums of every commit
