@@ -1,6 +1,11 @@
 Description
 	XPath uses path expressions to select nodes in an XML document. The node is selected by following a path or steps.
 
+Quick test in Firefox
+	Open FirePath
+	Open console
+	Enter $x("xpath");
+
 Selecting Nodes
 	Syntax
 		Expression	Description

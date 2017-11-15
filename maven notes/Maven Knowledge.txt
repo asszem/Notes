@@ -173,3 +173,8 @@ Step-by-Step tutorial
 
 maven2eclipes -  detailed
 	http://books.sonatype.com/m2eclipse-book/reference/index.html 
+
+Maven Documentation
+	https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+	http://maven.apache.org/ref/3.5.0/maven-core/lifecycles.html
+

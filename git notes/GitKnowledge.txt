@@ -66,6 +66,8 @@ git checkout
 	Scenarios (Repo-Staging-WorkingDir)
 		- unstaged files will not be deleted when changing branches
 		- staged files will not be deleted when changing branches
+	Checkout a specific file from another branch
+		git checkout sourcebranch -- filename
 	
 git log
 	To display the number of deletions/additions in commits
@@ -115,6 +117,8 @@ git diff
 		Diff between commit and HEAD
 	git diff -S<searched word> -G<regex>
 		returns diff that contains the searched word/regex only
+	git diff branch1..branch2 -- filename
+		returns the diff of that specific file between the branches
 	Explanation of a sample diff result:
 		diff --git a/git notes/GitKnowledge.txt b/git notes/GitKnowledge.txt
 			displays the input of diffs. File a is the "old" and b is the "new" file
@@ -138,6 +142,8 @@ git diff
 			http://www.gnu.org/software/diffutils/manual/html_node/index.html#SEC_Contents
 		Regex practice playground
 			http://regexr.com/
+		Simple steps to compare files
+			https://stackoverflow.com/questions/4099742/how-to-compare-files-from-two-different-branches
 
 less command
 	less is used to output result to screen. 
