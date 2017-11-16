@@ -132,5 +132,11 @@ Cucumber Setup
 			Name: cucumber
 			Location:  http://cucumber.github.com/cucumber-eclipse/update-site
 		Marketplace: Installl Natural pluging for syntax coloring
+Dotfile symlink setup
+	When the dotfiles are updated, they will automatically updated at the location that is tracked by github
+	https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/
+	mklink /H Link Target
+		1. Clone the dotfiles somewhere
+		2. Create a hard link from the home dir pointing to the dotfiles location
 
 Clone Projects and start working
