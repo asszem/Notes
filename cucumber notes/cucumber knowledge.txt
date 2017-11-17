@@ -468,6 +468,24 @@ Asynchronous Stuff
 Database
 
 Notes from The Cucumber for Java Book
+	ActiveJDBC
+		- Convention over Configuration
+		- Class name+s will be the table name: Account|accounts Widget|widgets
+		- Opens a connection to the MySql database with the Base class:
+			Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/bank", "teller", "password");
+		
+	Liquidbase
+		- Database schema managmenet through changeSets
+		- There is a ChangeLog xml file, it will contain the changesets
+	MySql users
+		admin
+			tellerA/teller
+		user
+			teller/password
+		database
+			bank
+		table
+			accounts
 	Issue: Lifecycle configuration missing, so instrumentation phase not completed
 		Error msg:
 			POM Error msg:

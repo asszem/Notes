@@ -1,0 +1,9 @@
+Installing MySQL
+mySQL WorkBench
+
+Commands
+	mysql -h localhost -u <username> -p <dbname>
+
+Mysql commands
+	select * from <tablename>
+	delete from <tablename> where <columnname>=<something>
