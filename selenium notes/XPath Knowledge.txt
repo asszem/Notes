@@ -74,6 +74,8 @@ Contains
 
 XPath Axes
 	https://www.w3schools.com/xml/xpath_axes.asp
+	Great examples with highlighted rows to understand axes:
+		http://zvon.org/xxl/XPathTutorial/Output/example13.html	
 	General syntax
 		axisname::nodetest[predicate]
 	Examples
@@ -93,6 +95,9 @@ XPath Axes
 			descendant::book
 		Selects all book ancestors of the current node
 			ancestor::book
+			Example:
+				Finds all list items ABOVE the link that has the id=link1
+				@FindBy(xpath = "//a[contains(@id,'link1')]//ancestor::li")
 		Selects all book ancestors of the current node - and the current as well if it is a book node
 			ancestor-or-self::book
 		Selects all price grandchildren of the current node

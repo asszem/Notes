@@ -185,6 +185,17 @@ git rebase
 	description
 		reapplies a series of commits to a new parent commit then moves the current branch pointer
 		the log of a rebased branch looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
+	interactive rebase commands
+		p, pick = use commit
+		r, reword = use commit, but edit the commit message
+		e, edit = use commit, but stop for amending
+		s, squash = use commit, but meld into previous commit
+		f, fixup = like "squash", but discard this commit's log message
+		x, exec = run command (the rest of the line) using shell
+		d, drop = remove commit
+	git rebase -i HEAD~3
+		Will start in interactive mode to rebase/squash the previous 3 commits. 
+		source: https://www.devroom.io/2011/07/05/git-squash-your-latests-commits-into-one/
 
 git merge
 	tips & tricks
