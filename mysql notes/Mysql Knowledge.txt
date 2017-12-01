@@ -2,8 +2,18 @@ Installing MySQL
 mySQL WorkBench
 
 Commands
-	mysql -h localhost -u <username> -p <dbname>
+	To enter mysql command line using password for user for database
+		mysql -h localhost -u <username> -p <databasename>
+	To run a script:
+		mysql -h localhost -u root -p <scriptname.sql
 
 Mysql commands
-	select * from <tablename>
-	delete from <tablename> where <columnname>=<something>
+	Select data
+		select * from <tablename> where <conditions>;
+	Delete data
+		Delete data from table
+			delete from <tablename> where <columnname>=<something>;
+		Delete entire table
+			drop table <tablename>;
+		Delete entire database
+			drop database <databasename>;

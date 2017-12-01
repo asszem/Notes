@@ -10,7 +10,12 @@ Selecting Nodes
 	Syntax
 		Expression	Description
 			nodename	Selects all nodes with the name "nodename"
-			/			Selects from the root node
+			/			Selects from the root node of document
+						Example:
+							Selects ONLY the direct elements from the child item from current node
+							./tbody/tr
+							Selects ALL elements from the child item from current node
+							.//tbody//tr
 			//			Selects nodes in the document from the current node that match the selection no matter where they are
 			.			Selects the current node
 			..			Selects the parent of the current node

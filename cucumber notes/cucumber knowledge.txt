@@ -477,7 +477,9 @@ Notes from The Cucumber for Java Book
 	Liquidbase
 		- Database schema managmenet through changeSets
 		- There is a ChangeLog xml file, it will contain the changesets
-	MySql users
+	MySql users for Database chapter
+		root
+			root/alma
 		admin
 			tellerA/teller
 		user
