@@ -111,6 +111,8 @@ XPath Axes
 CFSW xPath
 	Select all td with label that contains 'z/OS V2 Base'
 		//tr/td/label[contains(.,'z/OS V2 Base')]		
+	Select all trs where there is a td that contains Mach Type/Mod
+		//tr/td/label[contains(.,'Mach Type/Mod')]/ancestor::td/following-sibling::td/input
 
 	Find a checkbox sibling of z/OS V2 Base version 02.00
 	.//*[@id='AbT23']//text()[contains(.,'Base')]

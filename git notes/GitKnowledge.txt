@@ -362,6 +362,8 @@ gitk
 		read-only visual representation of the repository / commits / branches
 		To visualize All Branch History:
 			gitk -all
+		To visualise the change history of a specific file
+			gitk [filename]
 
 git gui
 		visual tool to review changes, sign-off commits and perform many tasks, like merge, commit, reset, etc
