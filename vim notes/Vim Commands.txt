@@ -1,19 +1,11 @@
 ==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
-	:%s-\%u200b--g - substitutes all <u200b> unicode chars to nothing. Search and replace separator string is -
-	:mksession ~\sessionfile.vim - save the session
-	:source ~\sessionfile.vim - loads the session
-	:e ++enc=utf-8 -árvíztűrő tükörfúrógép
-	:new, :vnew - opens a new empty buffer (vertical)
-	:tabnew % - opens the current buffer in a new tab
-	alt-hjkl - switch between windows
-	zo,za,zc, zm (mnemo 'murder' - close all), zr (mnemo: read all - open) - fold methods 
-	,fi - foldmethod indent
-	,fm - foldmethod manual
-	SPACE (remappolva) - keresést indít!
-	,v ctrl-q - Visual Block
-	{}	- a következő / előző üres sorra ugrigk
+	g; - jump back to the position of the previous (older) change.
+	g, - jump to the position of the next (newer) change.
+	space - EasyMotion trigger - add any motion command to be interpreted by Easymotion
+	s - EasyMotion multiwindow bidirectional 1 character Search
+	Enter - EasyMotion single window multicharacter search
 	'0 - a legutoljára megnyitott fájlt nyitja meg (VIM újraindításkor jól jön)
 	gv - Utolsó kijelölés újrakijelölése
 	o - Visual módban az aktuális kijelölés másik végére viszi a kurzort. Baromi hasznos!!!
@@ -44,6 +36,14 @@ MOZGÁS, KURZORKEZELÉS
 		{szám}t/T{karakter} - a beírt karakternek a {számnyi} előfordulása elé(t)/mögé(T) - mnemo: "to"
 			; - megismétli az f/f vagy t/T keresést JOBBRA (ALTgr-?)
 			, - megismétli az f/f vagy t/t keresést BALRA (simán ,)
+	EasyMotion plugin
+		Installation:
+			git clone https://github.com/easymotion/vim-easymotion
+		Help documentation:
+			https://github.com/easymotion/vim-easymotion/blob/master/doc/easymotion.txt#L86
+		Leader key mapped to <space>
+		Enter key opens a multi-word search (only in current window)
+		s - bidirectional, multi-window one character search
 ABLAKKEZELÉS :help window
 	CTRL-W - ablakkezelő parnacsok
 		hjkl - Megfelelő irányban lévő ablakba mozdítja a kurzort

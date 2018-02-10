@@ -1,23 +1,37 @@
 Install GitHub
 	Add Github to Windows PATH
-Install Gvim
-	Add GVim to Windows PATH
-GVim setup
-	Install pathogen
-		create ~/vimfiles/autoload
-		create ~/vimfiles/bundle
-		In powershell, use Invoke-RestMethod instead curl to create pathogen.vim file in autoload folder
-			Invoke-RestMethod -Uri https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim -Method Get -OutFile ~/vimfiles/autoload/pathogen.vim
-	Install plugins to ~/vimfiles/bundle 
+Install vim
+	Add Vim to Windows PATH
+Vim setup
+	Pathogen
+		Install pathogen
+			create ~/vimfiles/autoload
+			create ~/vimfiles/bundle
+			In powershell, use Invoke-RestMethod instead curl to create pathogen.vim file in autoload folder
+				Invoke-RestMethod -Uri https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim -Method Get -OutFile ~/vimfiles/autoload/pathogen.vim
+		If pathogne plugins are not working, check character encoding in homedir and update set encoding= in vimrc until it works
+	Plugins - Install plugins to ~/vimfiles/bundle 
 		ctrlp 
 			git clone https://github.com/kien/ctrlp.vim bundle
 		nerdtree 
 			git clone https://github.com/scrooloose/nerdtree nerdtree
-		fugitive
-			git clone https://github.com/tpope/vim-fugitive fugitive
-		gitv
-			git clone https://github.com/gregsexton/gitv gitv
-	If pathogne plugins are not working, check character encoding in homedir and update set encoding= in vimrc until it works
+		easymotion
+			git clone https://github.com/easymotion/vim-easymotion
+		colorschemes
+			git clone https://github.com/flazz/vim-colorschemes
+		Airline - Updated Status Line 
+			airline 
+				git clone https://github.com/bling/vim-airline
+			airline themes
+				git clone https://github.com/vim-airline/vim-airline-themes
+			Linux
+				powerline fonts
+					git clone git@github.com:powerline/fonts.git
+					cd fontd
+					./install.sh
+					Set up the terminal to use a Powerline font: "Meslo LG S for Powerline"
+			fugitive - to display GIT in airline statusline
+				git clone https://github.com/tpope/vim-fugitive.git
 PowerShell setup
 	Create PowerShell Profile
 		New-Item -path $profile -type file -force
