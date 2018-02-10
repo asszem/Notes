@@ -30,6 +30,8 @@ git branch
 		git branch -v
 	See which branch tracks which remote branch
 		git branch -vv
+	See all remotes and local branches
+		git branch -vva
 	See all branches that are merged/not merged to the CURRENT branch
 		git branch --merged
 		git branch --no-merged
@@ -66,7 +68,9 @@ git checkout
 	Scenarios (Repo-Staging-WorkingDir)
 		- unstaged files will not be deleted when changing branches
 		- staged files will not be deleted when changing branches
-	
+	Checkout a specific file from another branch
+		git checkout sourcebranch -- filename
+
 git log
 	To display the number of deletions/additions in commits
 		git log --stat
@@ -97,6 +101,31 @@ git log
 		https://www.atlassian.com/git/tutorials/git-log
 		https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection
 
+git add
+	git add -p 
+		To add specific part (hunk) of the file to the staging area only. Same as git add --patchk
+		Patch commands:
+			y stage this hunk for the next commit
+			n do not stage this hunk for the next commit
+			q quit; do not stage this hunk or any of the remaining hunks
+			a stage this hunk and all later hunks in the file
+			d do not stage this hunk or any of the later hunks in the file
+			g select a hunk to go to
+			/ search for a hunk matching the given regex
+			j leave this hunk undecided, see next undecided hunk
+			J leave this hunk undecided, see next hunk
+			k leave this hunk undecided, see previous undecided hunk
+			K leave this hunk undecided, see previous hunk
+			s split the current hunk into smaller hunks
+			e manually edit the current hunk
+			? print hunk help
+
+git commit
+	git commit -v
+		to view commit while editing
+	git commit -am
+		to commit adding all unstaged files and add message
+
 git diff 
 	git diff 
 		Diff between Index and WORKING TREE
@@ -104,6 +133,7 @@ git diff
 		Diff between WORKING TREE and <commit>
 		This form is to view the changes you have in your WORKING TREE relative to the named <commit>.
 	git diff --cached
+	git diff --staged
 		Diff between Index and HEAD (latest commit of a branch, unless Head is detached)
 	git diff --cached <commit>
 		Diff between Index and <commit>
@@ -115,6 +145,8 @@ git diff
 		Diff between commit and HEAD
 	git diff -S<searched word> -G<regex>
 		returns diff that contains the searched word/regex only
+	git diff branch1..branch2 -- filename
+		returns the diff of that specific file between the branches
 	Explanation of a sample diff result:
 		diff --git a/git notes/GitKnowledge.txt b/git notes/GitKnowledge.txt
 			displays the input of diffs. File a is the "old" and b is the "new" file
@@ -138,6 +170,8 @@ git diff
 			http://www.gnu.org/software/diffutils/manual/html_node/index.html#SEC_Contents
 		Regex practice playground
 			http://regexr.com/
+		Simple steps to compare files
+			https://stackoverflow.com/questions/4099742/how-to-compare-files-from-two-different-branches
 
 less command
 	less is used to output result to screen. 
@@ -173,12 +207,46 @@ git reset
 		Reset will move the branch that HEAD points to
 		Checkout will move HEAD itself to point to another branch.
 
+git revert
+	Description
+		Reverts changes but keeps history. It will add another commit with message of what was reverted. Should be used to revert remotely already pushed commits
+	git revert commit
+		reverts the changes of the specific commit only
+	git revert -n commit
+		reverts the commit, but does not create a new commit automatically. Usefull when reverting multiple commits
+	git revert -n commit_OLDEST(included)..commit_NEWEST(included)
+		reverts multiple commits, without adding a new commit for each reverted commit
+	git revert merge_Commit -m SHA
+		reverts the merge commit specifiyng the parent after -m SHA
+		-m: mainline parent-number
+	Doc:
+	https://git-scm.com/docs/git-revert
+
 git rebase
 	tutorials on rebase
 		https://git-scm.com/book/en/v2/Git-Branching-Rebasing
 	description
 		reapplies a series of commits to a new parent commit then moves the current branch pointer
 		the log of a rebased branch looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
+	interactive rebase commands
+		p, pick = use commit
+		r, reword = use commit, but edit the commit message
+		e, edit = use commit, but stop for amending
+		s, squash = use commit, but meld into previous commit
+		f, fixup = like "squash", but discard this commit's log message
+		x, exec = run command (the rest of the line) using shell
+		d, drop = remove commit
+	git rebase -i HEAD~3
+		Will start in interactive mode to rebase/squash the previous 3 commits. 
+		source: https://www.devroom.io/2011/07/05/git-squash-your-latests-commits-into-one/
+
+git remote
+	git remote -vv
+		display all remotes
+	git remote prune <remotename>
+		Purge already deleted remote branches
+	git branch -d -r <remotename>/<branchname>
+		remove the deleted branch from remote
 
 git merge
 	tips & tricks
@@ -220,6 +288,11 @@ git rm
 			git rm -r --cached filepath
 			git commit -m "Removed files"
 	
+git push
+	To remove commits from remote repository (assuming no one else has pulled) -  https://stackoverflow.com/questions/4647301/rolling-back-local-and-remote-git-repository-by-1-commit
+		1. git reset head^n
+		2. git push -f
+
 git alias 
 	git alias
 		Set an alias to list all aliases:
@@ -289,6 +362,8 @@ gitk
 		read-only visual representation of the repository / commits / branches
 		To visualize All Branch History:
 			gitk -all
+		To visualise the change history of a specific file
+			gitk [filename]
 
 git gui
 		visual tool to review changes, sign-off commits and perform many tasks, like merge, commit, reset, etc
@@ -339,8 +414,11 @@ CONFLICT
 	http://onlywei.github.io/explain-git-with-d3/#commit
 		Visual and animated tool to understand concepts
 
-	Small GIT cards to memorize stuff
-		http://tednaleid.github.io/understanding-git/
+	http://tednaleid.github.io/understanding-git/
+		Small GIT cards to memorize stuff
 	
-	Long text list of Git Commands and options
 	http://cheat.errtheblog.com/s/git
+		Long text list of Git Commands and options
+
+	https://stackoverflow.com/questions/1085162/commit-only-part-of-a-file-in-git
+		Good example of commiting specific files only

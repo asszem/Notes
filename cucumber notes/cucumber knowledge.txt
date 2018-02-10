@@ -442,11 +442,98 @@ Exercise to rewrite a Gherkin test feature
 	Then I should not see "Test Client" on admin invoices page
 
 Dependency Injection with PicoContainer
-	Cucumber uses dependency injection to facilitate sharing state between steps. 
-	Dependency injection (DI) is a technique that allows us to isolate a class from its concrete dependencies until runtime.
-	Often this is used to defer the decision about which actual implementation of an interface we’re going to use.
+	Description
+		Cucumber uses dependency injection to facilitate sharing state between steps. 
+		Dependency injection (DI) is a technique that allows us to isolate a class from its concrete dependencies until runtime.
+		Often this is used to defer the decision about which actual implementation of an interface we’re going to use.
+	DI Container Integrations
+		cucumber-picocontainer—PicoContainer: A lightweight DI container
+		cucumber-guice—Guice: A lightweight DI container from Google
+		cucumber-spring—Spring: A popular framework that includes DI and much more
+		cucumber-weld—CDI/Weld: The reference implementation of the CDI (Context and Dependency Injection Framework for the Java EE platform)
+		cucumber-openejb—OpenEJB: A stand-alone EJB server from Apache, including a CDI implementation
+	Example
+		StepDefinitions do not need to instantiate the objects that are passed to their constructor
+		It is done by PicoContainer 
 
 Hooks
 	Cucumber supports hooks, which are methods that run before or after each scenario. 
 	You can define them anywhere in your support or step definition layers, using the annotations @Before and @After.
 
+Asynchronous Stuff
+	Sample code:
+		int timeoutMilliSecs = 3000;
+		int pollIntervalMilliSecs = 100;
+		while (conditionIsNotMet && timeoutMilliSecs > 0) {
+			Thread.sleep(pollIntervalMilliSecs);
+			timeoutMilliSecs -= pollIntervalMilliSecs;
+		}
+	Disadvantage of Sampling
+		If the sample looks exactly like the expected outcome but was reached not the correct way, the test will result in a false positive.
+		Example: Credit account with $100 then withdraw $100 and verify balance is 0. The balance migth be 0 because the transaction processor wasn't started too. 
+	Use event listeners
+		The best solution is to listen for events broadcast by the system.
+		Pause at the appropriate points in the scenario until those events have been received.
+
+Database testing
+
+Notes from The Cucumber for Java Book
+	ActiveJDBC 
+		- examines the database schema, providing methodsto get and set data by column name
+			- import activejdbc.Model;
+			- class to be extended to Model
+		- Convention over Configuration
+			- Class name+s will be the table name: Account|accounts Widget|widgets
+			- can be overridden with:
+				@Table("tableName")
+				class Account extends Model {...
+	Liquidbase
+		- Database schema managmenet through changeSets
+		- There is a ChangeLog xml file, it will contain the changesets
+		- Liquibase will compare the schema defined by this XML file to the actual schema of the database and perform the necessary actions to ensure that our database is up to date.  
+	Creating the Database
+		- create an sql script
+			CREATE DATABASE bank;
+			CREATE USER 'teller'@'localhost' IDENTIFIED BY 'password';   
+			GRANT ALL ON bank.* TO 'teller'@'localhost' 
+		- run the script (on cmd, not bash)
+			mysql -h localhost -u root -p < setup-bank.sql
+	Connecting to the Database
+		- Opens a connection to the MySql database with the Base class:
+			Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/bank", "teller", "password");
+	Isolated database transactions
+		- Whatever database activity happens inside a transaction cannot be seen by any other database connections.
+		- Cucumber start up a web server in a separate thread which uses a separate database connection than Cucumber
+	Database cleaning
+		- Transaction-based cleaning is preferred because it is fast, but it works only when there is one single-threaded process.
+		- Truncation-based cleaning is a slower, brute-force technique that works in multiprocess and multithreaded environments.
+	MySql setup for Database chapter
+		database: bank, table:accounts
+		root: root/alma user: teller/password
+	Issues: 
+		Lifecycle configuration missing, so instrumentation phase not completed
+		Error msg:
+			POM Error msg:
+				Plugin execution not covered by lifecycle configuration:
+				org.javalite:activejdbc-instrumentation:1.4.13:instrument (execution: default, phase: process-classes)	pom.xml	/CucumberLearning	line 151	
+				Maven Project Build Lifecycle Mapping Problem
+			Liquibase error msg:
+				Message: org.javalite.activejdbc.InitException: you are trying to work with models, but no models are found. 
+				Maybe you have no models in project, or you did not instrument the models. It is expected that you have a file activejdbc_models.properties on classpath
+		Possible solutions
+			Solution 1: run mvn test in command line
+				After mvn test you should see somehting like this
+					**************************** START INSTRUMENTATION ****************************
+					Directory: C:\at\CucumberLearning\target\classes
+					Instrumented class: /C:/at/CucumberLearning/target/classes/src/main/java/nicebank/Account.class
+					**************************** END INSTRUMENTATION ****************************
+					**************************** START INSTRUMENTATION ****************************
+					Directory: C:\at\CucumberLearning\target\test-classes
+					**************************** END INSTRUMENTATION ****************************
+			Optional steps to avoid Eclipse error warning:
+				add the execution phases to ignore in POM by eclipse
+					Right click on phase and select mark goal as ignored in pom
+				add the execution phases to Eclipse Maven Lifecycle mapping 
+					(Preferences - Maven - Lifecycle mapping)
+					This will update the lifecyle-mapping.met file
+	

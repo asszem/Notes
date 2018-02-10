@@ -1,0 +1,28 @@
+Installing MySQL
+mySQL WorkBench
+
+Commands
+	To enter mysql command line using password for user for database
+		mysql -h localhost -u <username> -p <databasename>
+	To run a script:
+		mysql -h localhost -u root -p <scriptname.sql
+
+Mysql commands
+	Select data
+		select * from <tablename> where <conditions>;
+	Delete data
+		Delete data from table
+			delete from <tablename> where <columnname>=<something>;
+		Delete entire table
+			drop table <tablename>;
+		Delete entire database
+			drop database <databasename>;
+	Create Table
+		CREATE TABLE table_name (column_name column_type);
+			tutorials_tbl(
+			   tutorial_id INT NOT NULL AUTO_INCREMENT,
+			   tutorial_title VARCHAR(100) NOT NULL,
+			   tutorial_author VARCHAR(40) NOT NULL,
+			   submission_date DATE,
+			   PRIMARY KEY ( tutorial_id )
+			);

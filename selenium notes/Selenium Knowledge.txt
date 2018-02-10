@@ -1,3 +1,5 @@
+By.cssSelector("a[href='mysite.com']");
+
 Selenium Tool Suite
 	Selenium 2 (aka. Selenium WebDriver)
 		Selenium 2 is the future direction of the project and the newest addition to the Selenium toolkit. 
@@ -345,6 +347,8 @@ Selenium-WebDriver API Commands and Operations
 	Input 
 		Find element and look for relevant actions :)
 			sendKeys()
+				Sending an Enter key (when click() results an error in Chrome):
+				.sendKeys(Keys.ENTER);
 			click()
 		For selections use Select helper class
 		Determine whether it is multiple
