@@ -13,6 +13,10 @@ Vim setup
 				https://github.com/VundleVim/Vundle.vim/wiki/Vundle-for-Windows
 		3. Have vimrc updated with required plugins
 		4. :PluginInstall
+	Powerline fonts install
+		git clone https://github.com/powerline/fonts.git
+		./install.ps1
+		./install.sh
 GitBash setup
 	Copy 'git-promt.sh' from mydotfiles repo to C:\Program Files\Git\etc\profile.d
 	Set font to Droid Sans Mono Slashed for Pow
@@ -135,7 +139,8 @@ Dotfile symlink setup
 	https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/
 	mklink /H Link Target
 		1. Clone the dotfiles somewhere
-		2. Create a hard link from the home dir pointing to the dotfiles location
+		2. Create a hard link from the HOME dir pointing to the dotfiles location
+		mklink /H _vimrc C:\java\GitHub\mydotfiles\_vimrc	
 
 
 

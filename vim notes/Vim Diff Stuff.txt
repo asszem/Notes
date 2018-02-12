@@ -5,17 +5,30 @@ Starting diff
 		vim -d file1 file2
 
 Commands
-	do - obtain  :diffget - get changes from Other window into the current window.
-	dp - put	 :diffput - put the changes from current window into the other window.
 	]c - Jump to the next change.
 	[c - Jump to the previous change.
-	:diffupdate - updates diffs
-	,du - diffupdate (remap)
-	:windo diffupdate - starts windiff in open windows
-	:windo diffoff - stops the diff mode
+	:diffupdate :diffu 	- updates diffs
+	:diffthis 	:difft	- turns on diff for current buffer
+	:diffoff	:diffo	- turns off diff for the current buffer
+	:windo diffupdate - starts windiff in every open buffer
+	:windo diffoff - stops the diff mode in every open buffer
+	:window set wrap - turns on word wrapping in every open buffer
+
+2-way diff Commands
+	do - obtain  :diffget - get changes from Other window into the current window.
+	dp - put	 :diffput - put the changes from current window into the other window.
+3-way merge commands
+	:diffg <number> - get the diff from the <number> buffer (1-LOCAL 2-BASE 3-REMOTE)
+	:%diffg <number> - get the diff for the entire document from the selected buffer
+
+Change background color of the current buffer
+	hi DiffText ctermbg=<color>
 
 Sources
-	http://vimcasts.org/episodes/comparing-buffers-with-vimdiff/	
+	General tutorial
+		http://vimcasts.org/episodes/comparing-buffers-with-vimdiff/	
+	Resolving 3-way git mergeconflicts with vimdiff tutorial
+		https://www.youtube.com/watch?v=kFVjoIish0E&t=319s
 
 To test:
 if &diff
