@@ -102,14 +102,17 @@ Spring Bean
 		
 Setting up environment
 	Environment setup based on:
-	https://www.tutorialspoint.com/spring/spring_environment_setup.htm
-		1. CommonLogging API setup
-			Download binaries from https://commons.apache.org/logging/
-			Extract to a folder in Filesystem
-			Make sure you set your CLASSPATH
-		2. Setup Spring Framework
-			Download Spring for Windows from https://repo.spring.io/release/org/springframework/spring/
-			Unpack file something like: spring-framework-4.1.6.RELEASE-dist.zip to a location in Filesystem.
+		https://www.tutorialspoint.com/spring/spring_environment_setup.htm
+			1. CommonLogging API setup
+				Download binaries from https://commons.apache.org/logging/
+				Extract to a folder in Filesystem
+				Make sure you set your CLASSPATH
+			2. Setup Spring Framework
+				Download Spring for Windows from https://repo.spring.io/release/org/springframework/spring/
+				Unpack file something like: spring-framework-4.1.6.RELEASE-dist.zip to a location in Filesystem.
+		Spring 5 Cookbook
+			1. Install Java 1.8 SDK
+			2. Install Tomcat 9 and configure HTTP/2
 	
 Create an Eclipse Project using Spring
 	1. Create new Java project
@@ -129,3 +132,5 @@ Online Sources
 Books
 	Spring in Action, 4th Edition: Covers Spring 4 by Craig Walls
 		https://www.safaribooksonline.com/library/view/spring-in-action/9781617291203/
+	Spring 5.0 Cookbook
+		https://www.safaribooksonline.com/library/view/spring-50-cookbook/9781787128316/5dc28987-48f1-4b33-bdca-0015544b49a0.xhtml

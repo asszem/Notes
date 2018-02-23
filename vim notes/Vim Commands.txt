@@ -1,6 +1,7 @@
 ==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
+	1gt	- jump to the first tab
 	g; - jump back to the position of the previous (older) change.
 	g, - jump to the position of the next (newer) change.
 	space - EasyMotion trigger - add any motion command to be interpreted by Easymotion

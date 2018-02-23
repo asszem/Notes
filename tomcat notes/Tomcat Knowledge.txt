@@ -42,6 +42,39 @@ Installing Apache Tomcat
 	 5 Shut Down Tomcat
 		%CATALINA_HOME%\bin\shutdown.bat
 		
+	Setup Tomcat9 to use TLS (for Spring 5 Coockbook)
+		1. Generating Keys with OpenSSL
+			Getting OpenSSL
+				https://slproweb.com/products/Win32OpenSSL.html
+			Generating key
+				openssl req -newkey rsa:2048 -nodes -keyout spring5packt.key -x509 -days 3650 -out spring5packt.crt.
+		2. Add to keystores using Keytool
+			Import the key to the keystore used by Tomcat
+				keytool -import -alias spring5server -file spring5packt.crt -keystore spring5server.keystore
+			Import the key to JRE's 'cacert' keystore
+				keytool -import -alias spring5server -file spring5packt.crt -keystore "<PATHTOJAVA>" -storepass changeit
+				Example: 'C:\Program Files\Java\jre1.8.0_161\lib\security\cacerts'
+		3. Copy .crt, .key and .keystore file to Tomcat /conf and Java (JDK) /jre/lib/security folders
+		4. Set Tomcat's /conf/xml.server to enable https://localhost:8443
+			<Connector port="8443" protocol="org.apache.coyote.http11.Http11AprProtocol" maxThreads="150" SSLEnabled="true"> 
+				<UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol"/> 
+				<SSLHostConfig honorCipherOrder="false"> 
+					<Certificate 
+						certificateKeyFile="conf/spring5packt.key" 
+						certificateFile="conf/spring5packt.crt" 
+						keyAlias="spring5server" 
+						type="RSA" /> 
+				</SSLHostConfig> 
+			</Connector> 
+		5. Update host (C:\Windows\system32\drivers\etc\hosts) and add the following line:
+			127.0.0.1 spring5server
+		6. Start Tomcat server (/bin/startup.bat)
+		7. Check https://localhost:8443
+	Sources:
+		https://www.safaribooksonline.com/library/view/spring-50-cookbook/9781787128316/8b66e396-2358-4238-a5e9-533188d8ab6d.xhtml
+		https://mraddon.blog/2016/04/12/configure-tomcat-9-for-http2/
+		https://dzone.com/articles/configure-tomcat-9-forhttp2
+
 Add a Tomcat server to Eclipse
 	Preferences - Server - Runtime Environment - Add 
 

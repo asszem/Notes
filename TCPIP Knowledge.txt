@@ -1,0 +1,56 @@
+Definitions
+	TCP - Transmission Control Protocol - to provide a reliable end-to-end connection 
+	UDP - Used Datagram Protocol - connection less protocol which doesn't guarantee delivery.
+	IP - Internet Protocol - Main networking protocol
+	Protocol
+		A protocol is a set of rules that govern how systems communicate. For networking they govern how data is transferred from one system to another.	
+	Protocol suite
+		A collection of protocols designed to work together (TCP protocol and IP protocol)
+	Layered Protocol Stacks
+		Each level of the stack performs a particular function and communicates ONLY with levels above and below.
+		Real life example: office mail delivery (Sending: office mailman - post man - physical transport - Receiveng: post man - office mailman)
+		Any layer of stacks can be changed without affecting other stacks (example: physical transport can be changed from van to train)
+		7 layer OSI modell (idealised networking modell)
+			- Application
+			- Presentation
+			- Session
+			- Transport
+			- Networking
+			- Datalink
+			- Physical
+		4 layer TCP/IP model (practical implementation)
+			- Application
+			- Transport
+			- Networking
+			- Physical
+			
+TCP/IP Layers
+	Application - Protocols: SMTP, FTP, HTTP, POP3, IMAP4, SNMP
+	Transport - Protocols: TCP & UDP
+	Networking - Protocol: IP
+	Physical (datalink) - Protocol: Ethernet (it is a 2 layer protocol/standard covering OSI layers: physical and data link)
+
+TCP vs UDP
+	TCP (Transmission Control Protocol)
+		- It provides error correction
+		- There is a handshake mechanism
+		- Analogy: a telephone call, that needs to be set up to have an open connection
+		- Used by application protocols that need guaranteed message delivery (HTTP, FTP, SMTP, POP3, IMAP4)
+	UDP (Used Datagram Protocol)
+		- Connectionless protocol
+		- Analogy: email or normal post. The letter is sent, but the recieving is not validated.
+		- No error correction. The receiving application is responsible for error correction
+		- No handshake mechanism
+		- Faster than TCP
+		- Used by applications like DNS, DHCP and IOT as sensor type data is ideal for ssending via UDP
+	Common
+		- Both use Port 80 by default
+		- Both can use the same port at the same time, because they are different protocols: a machine can be communicating on UDP port 2000 and TCP port 2000 at the same time.
+
+Sources
+	Excellent basice explanation
+		http://www.steves-internet-guide.com/internet-protocol-suite-explained/
+	TCP vs UDP differences
+		http://www.steves-internet-guide.com/tcp-vs-udp/
+		https://www.diffen.com/difference/TCP_vs_UDP
+

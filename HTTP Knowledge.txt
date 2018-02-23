@@ -1,0 +1,38 @@
+Overview
+	- Communication between a host and a client occurs, via a request/response pair. 
+	- The client initiates an HTTP request message, which is serviced through a HTTP response message in return.
+	- Tt assumes very little about a particular system, and does not keep state between different message exchanges.
+	- This makes HTTP a stateless protocol. 
+	- The communication usually takes place over TCP/IP, but any reliable transport can be used. 
+	- The default port for TCP/IP is 80, but other ports can also be used.
+Structure
+	HEADER
+	Body
+
+HTTP VERBS
+	GET: fetch an existing resource. The URL contains all the necessary information the server needs to locate and return the resource.
+	POST: create a new resource. POST requests usually carry a payload that specifies the data for the new resource.
+	PUT: update an existing resource. The payload may contain the updated data for the resource.
+	DELETE: delete an existing resource.
+
+BKV
+	Sensitive info was sent in a GET request.
+	It should have been a POST request, encrypting the data in the body
+
+Versions
+	HTTP/1.0
+	HTTP/1.1
+		- Each request sent to a server resource corresponds to only one response. 
+		- If the server resources generated a longer processing time, then all other incoming requests are blocked.
+	HTTP/2
+		- Superb performance when it comes to web browsing experience, notwithstanding the security it provides to the simple web applications and complex portals using SSL certificates. 
+		- Backward compatible with HTTP/1.1
+
+Tools
+	Chrome Inspector
+		- Network tab (to see Headers, timing, cookies, etc)
+
+
+Sources
+	https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177
+	https://learn.onemonth.com/understanding-http-basics/
