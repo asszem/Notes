@@ -398,6 +398,10 @@ CONFLICT
 	source
 		http://docs.oracle.com/cd/E50453_01/doc.80/e50452/create_japps.htm#NBDAG2974
 
+Setting up HTTPS with two factor (2FA) authentication
+	1. Request a Personal Access Token on Github (Settings -> Developer Settings -> Personal Access Tokens
+	2. When prompted in GitBash, use the token instead of the normal GitHub password
+
 ********************GIT Documentation Sources********************
 	https://www.kernel.org/pub/software/scm/git/docs/user-manual.html
 		Comprehensive Documentation of Git
