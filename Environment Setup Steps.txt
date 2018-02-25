@@ -1,8 +1,5 @@
-Install GitHub
-	Add Github to Windows PATH
-Install vim
-	Add Vim to Windows PATH
 Vim setup
+	Add Vim to Windows PATH
 	Vundle
 		1. Install curl
 			Windows https://chocolatey.org/packages/curl
@@ -17,6 +14,19 @@ Vim setup
 		git clone https://github.com/powerline/fonts.git
 		./install.ps1
 		./install.sh
+Git setup
+	Windows
+		Download Git for Windows
+			https://gitforwindows.org/
+		Download Windows Credential Manager
+			https://github.com/Microsoft/Git-Credential-Manager-for-Windows
+		Add Github to Windows PATH
+	Download .gitconfig file from Github
+		Set editor to Vim
+			git config --global core.editor "'C:\Program Files (x86)\Vim\vim80\gvim.exe'  -f -i NONE"
+	HTTPS authentication setup
+		1. Request a Personal Access Token on Github (Settings -> Developer Settings -> Personal Access Tokens
+		2. When prompted in GitBash, use the token instead of the normal GitHub password
 GitBash setup
 	Copy 'git-promt.sh' from mydotfiles repo to C:\Program Files\Git\etc\profile.d
 	Set font to Droid Sans Mono Slashed for Pow
@@ -104,21 +114,6 @@ IDE setup
 						sout - System.out.println
 						souf - System.out.printf
 						sou  - System.out.print
-Git setup
-	Download .gitconfig file from Github
-		Set editor to Vim
-			git config --global core.editor "'C:\Program Files (x86)\Vim\vim80\gvim.exe'  -f -i NONE"
-		Set alias configs
-			git log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'
-		Set colors
-			git config color.interactive.prompt red
-		Set difftool to gvim
-			git config --global diff.tool gvimdiff
-	Set gvimdiff as Mergetool
-		git config --global merge.tool vimdiff
-		git config merge.conflictstyle diff3
-		git config mergetool.prompt false
-		http://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/	
 Maven setup
 	CLI - http://maven.apache.org/install.html
 	1. Download Maven BINARY from http://maven.apache.org/download.cgi
@@ -141,11 +136,6 @@ Dotfile symlink setup
 		1. Clone the dotfiles somewhere
 		2. Create a hard link from the HOME dir pointing to the dotfiles location
 		mklink /H _vimrc C:\java\GitHub\mydotfiles\_vimrc	
-
-
-
-
-Clone Projects and start working
 
 Archive - not used anymore
 VIM

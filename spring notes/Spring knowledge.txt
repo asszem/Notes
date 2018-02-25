@@ -7,8 +7,8 @@ Overview
 	
 Dependency Injection (DI)
 	When writing a complex Java application, application classes should be as independent as possible of other Java classes
-		to increase the possibility to reuse these classes
-		to test them independently of other classes while unit testing. 
+		- to increase the possibility to reuse these classes
+		- to test them independently of other classes while unit testing. 
 	Dependency Injection helps in gluing these classes together and at the same time keeping them independent.
 	Dependency injection can happen in the way of passing parameters to the constructor or by post-construction using setter methods.
 	
