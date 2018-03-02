@@ -55,23 +55,23 @@ IDE setup
 			Install Vrapper for VIM 
 				http://vrapper.sourceforge.net/home/
 			Create _vrapperrc in $HOME
-		Theme
-			Install Darkest Dark Theme from Marketplace
-				https://marketplace.eclipse.org/content/darkest-dark-theme
-				Enable DevStyle for BreadCrumb and special launch configuration
-			or
-				Install Color Theme  plugin from Marketplace
-					http://marketplace.eclipse.org/content/eclipse-color-theme
-				Preferences - Appearance - change it to Dark
-				Preferences - Color Theme 
-					Select RecognEyes
+		Marketplace plugins
+			Darkest Dark Theme
+				- Enable DevStyle for BreadCrumb and special launch configuration
+			Spring Tools Suite (STS)
+				- For Spring stuff
+			ANSI Escape in Console
+				- To display colored results in Eclipse's console (monochrome off for Selenium )
+			Cucumber Eclipse Plugin
+				- For Cucumber functions
+			Natural 
+				- For Gherking syntax highlighting
 		Set Windows USER HOME env.variable
 			https://wiki.eclipse.org/EGit/User_Guide#Setting_up_the_Home_Directory_on_Windows
-		Cucumber p
+		Cucumber 
 			Eclipse -> Help -> Install New Software -> Add
 				Name: cucumber
 				Location:  http://cucumber.github.com/cucumber-eclipse/update-site
-			Marketplace: Install Natural pluging for syntax coloring
 		Load Eclipse Preferences
 			File - Import - General - Preferences
 			Manual Settings of Preferences

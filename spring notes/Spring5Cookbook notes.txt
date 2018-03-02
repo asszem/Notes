@@ -1,0 +1,4 @@
+
+Chapter 02 - xml
+	Step 7: Inside the WEB-INF folder, create a deployment descriptor or drop a web.xml template inside the src\main\webapp\WEB-INF directory.
+		Source: https://docs.oracle.com/cd/E13222_01/wls/docs70/webapp/webappdeployment.html

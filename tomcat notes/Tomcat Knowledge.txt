@@ -48,12 +48,15 @@ Installing Apache Tomcat
 				https://slproweb.com/products/Win32OpenSSL.html
 			Generating key
 				openssl req -newkey rsa:2048 -nodes -keyout spring5packt.key -x509 -days 3650 -out spring5packt.crt.
+				- Make sure that 'COMMON NAME (eg. server FQDN or YOUR Name)' option is set to 'spring5server' because that will be the host name
 		2. Add to keystores using Keytool
-			Import the key to the keystore used by Tomcat
+			Import the key to the keystore used by Tomcat (this will also create the .keystore file)
 				keytool -import -alias spring5server -file spring5packt.crt -keystore spring5server.keystore
+				- You can create any custom pwd for this keystore
 			Import the key to JRE's 'cacert' keystore
 				keytool -import -alias spring5server -file spring5packt.crt -keystore "<PATHTOJAVA>" -storepass changeit
-				Example: 'C:\Program Files\Java\jre1.8.0_161\lib\security\cacerts'
+				- Example: 'C:\Program Files\Java\jre1.8.0_161\lib\security\cacerts'
+				- Defaultt pwd: 'changeit'
 		3. Copy .crt, .key and .keystore file to Tomcat /conf and Java (JDK) /jre/lib/security folders
 		4. Set Tomcat's /conf/xml.server to enable https://localhost:8443
 			<Connector port="8443" protocol="org.apache.coyote.http11.Http11AprProtocol" maxThreads="150" SSLEnabled="true"> 
@@ -74,6 +77,11 @@ Installing Apache Tomcat
 		https://www.safaribooksonline.com/library/view/spring-50-cookbook/9781787128316/8b66e396-2358-4238-a5e9-533188d8ab6d.xhtml
 		https://mraddon.blog/2016/04/12/configure-tomcat-9-for-http2/
 		https://dzone.com/articles/configure-tomcat-9-forhttp2
+
+	Fix Tomcat7plugin access denied error
+		- add 'manager-script' to Tomcat /conf folder tomcat-users.xml
+			- Example: <user username="packt" password="packt" roles="admin-gui,manager-gui, manager-script" />
+
 
 Add a Tomcat server to Eclipse
 	Preferences - Server - Runtime Environment - Add 

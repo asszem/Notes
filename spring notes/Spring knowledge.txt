@@ -97,9 +97,6 @@ Spring Bean
 		session - This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
 		global-session - This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
 		
-
-	
-		
 Setting up environment
 	Environment setup based on:
 		https://www.tutorialspoint.com/spring/spring_environment_setup.htm
@@ -113,11 +110,27 @@ Setting up environment
 		Spring 5 Cookbook
 			1. Install Java 1.8 SDK
 			2. Install Tomcat 9 and configure HTTP/2
+				- make sure to set the hostname in certificate is "spring5server" and not anything else
+				- add role 'manager-script" to tomcat-users.xml 
+					<user username="packt" password="packt" roles="admin-gui,manager-gui, manager-script" /> 
+			3. Install STS - Spring Tool Suite(STS) Eclipse 3.8 IDE - Install from Eclipse Marketplace
+			4. Install MySQL 5.7 database server
+				- set password for root to packt (or use existing root pwd already set for Cucumber book)
+				- Create MySQL_HOME system environemnt variable and assign folder: <installation_folder>MySQLMySQL Server 5.7/bin
+				- Add to CLASSPATH: %MySQL_HOME%
+			5. Install MongoDB 3.2 Community Server - https://www.mongodb.com/download-center?jmp=nav#community
+				- Create MONGODB_HOME system environment variable and assign folder: C:\Program Files\MongoDB\Server\3.6\bin
+				- Add to PATH: %MONGODB_HOME% (not classpath!)
+				- create c:\data\db directory (default db location)
 	
 Create an Eclipse Project using Spring
 	1. Create new Java project
 	2. Add CommonLogging API and Spring Framework libraries to the project
 		Project Properties - Java Build Path - Libraries - Add external JAR - add all .jar files from spring & common logging folder
+
+Deploying Spring projects using Maven (from Spring 5 Cookbook)
+	Our application server is Tomcat 9
+	We will be using HTTP/2 to execute all Spring 5.0 projects at port 8443 with some certificates stored in the server's keystore.
 	
 Tutorials
 	TutorialsPoint's Spring tutorial - in progress
@@ -134,3 +147,5 @@ Books
 		https://www.safaribooksonline.com/library/view/spring-in-action/9781617291203/
 	Spring 5.0 Cookbook
 		https://www.safaribooksonline.com/library/view/spring-50-cookbook/9781787128316/5dc28987-48f1-4b33-bdca-0015544b49a0.xhtml
+	Spring Documentation
+		https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/index.html

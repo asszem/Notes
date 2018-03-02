@@ -6,6 +6,9 @@ Commands
 		mysql -h localhost -u <username> -p <databasename>
 	To run a script:
 		mysql -h localhost -u root -p <scriptname.sql
+	Finding the datadir
+		- Run the following SQL once connected to a db using MySQLWorkbench:
+			SHOW VARIABLES WHERE Variable_name LIKE '%dir'
 
 Mysql commands
 	Select data
