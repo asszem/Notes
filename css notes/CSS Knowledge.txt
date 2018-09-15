@@ -1,0 +1,5 @@
+Sources
+	Cascading in CSS explained
+		http://www.blooberry.com/indexdot/css/topics/cascade.htm
+	CSS Wildcards explained
+		https://stackoverflow.com/questions/5110249/wildcard-in-css-for-classes

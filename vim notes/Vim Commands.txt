@@ -1,15 +1,8 @@
 ==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
-	1gt	- jump to the first tab
-	g; - jump back to the position of the previous (older) change.
-	g, - jump to the position of the next (newer) change.
-	space - EasyMotion trigger - add any motion command to be interpreted by Easymotion
-	s - EasyMotion multiwindow bidirectional 1 character Search
-	Enter - EasyMotion single window multicharacter search
-	'0 - a legutoljára megnyitott fájlt nyitja meg (VIM újraindításkor jól jön)
-	gv - Utolsó kijelölés újrakijelölése
-	o - Visual módban az aktuális kijelölés másik végére viszi a kurzort. Baromi hasznos!!!
+	s - Sneak plugin, 2 character forward search
+	S - Sneak plugin, 2 character backward search
 ==============================VIM PARANCSOK éS BEáLLíTáSOK (ANDRáS) ===========================================
 
 MOZGÁS, KURZORKEZELÉS

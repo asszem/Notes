@@ -1,0 +1,7 @@
+Sources
+	Navbar 
+		Usable examples
+			https://getbootstrap.com/docs/4.1/components/navbar/
+	Grid system
+		Despite being a YouTube video it is worth watching
+			https://www.youtube.com/watch?v=g3LRU3JF-rQ

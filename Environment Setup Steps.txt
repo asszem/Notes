@@ -27,19 +27,40 @@ Git setup
 	HTTPS authentication setup
 		1. Request a Personal Access Token on Github (Settings -> Developer Settings -> Personal Access Tokens
 		2. When prompted in GitBash, use the token instead of the normal GitHub password
-GitBash setup
-	Copy 'git-promt.sh' from mydotfiles repo to C:\Program Files\Git\etc\profile.d
-	Set font to Droid Sans Mono Slashed for Pow
-PowerShell setup
-	Create PowerShell Profile
-		New-Item -path $profile -type file -force
-			http://www.computerperformance.co.uk/powershell/powershell_profile_ps1.htm
-			http://www.expatpaul.eu/2014/04/vim-in-powershell/
-	Update Profile file based on existing profiles adapting to current system
-		https://github.com/asszem/Notes/blob/master/powershell%20notes/powershell%20settings.txt
-		https://github.com/asszem/Notes/blob/master/powershell%20notes/Microsoft.PowerShell_profile.ps1
-	Change background to black
-		Right click on powershell and set it to black
+	Git Troubleshooting
+		Fix the CRLF warning
+			git config core.autocrlf true
+			https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important
+Console / Terminal setup
+	GitBash setup
+		Copy 'git-promt.sh' from mydotfiles repo to C:\Program Files\Git\etc\profile.d
+		Set font to Droid Sans Mono Slashed for Pow
+	CMDer setup
+		- Download, extract and place somewhere full cmder
+		- Set up hotkey for Minimize/Maximize
+		- Setup Git Bash to be the default prompt
+			- Press Win-Alt-P to open settings
+			- Goto Startup / Tasks
+			- Enter"C:\Program Files\Git\bin\sh.exe" --login -i
+		- Set up "Open ConEmu here in Explorer
+			- Press Win-Alt-P to open settings
+			- Goto Integrations
+			- Enter
+				Menu item: ConEmu Here [Git Bash]
+				Command: /single /cmd {Git Bash}
+				Icon file: C:\Program Files\Git\mingw64\share\git\git-for-windows.ico
+			Source
+				https://superuser.com/questions/454380/git-bash-here-in-conemu
+	PowerShell setup
+		Create PowerShell Profile
+			New-Item -path $profile -type file -force
+				http://www.computerperformance.co.uk/powershell/powershell_profile_ps1.htm
+				http://www.expatpaul.eu/2014/04/vim-in-powershell/
+		Update Profile file based on existing profiles adapting to current system
+			https://github.com/asszem/Notes/blob/master/powershell%20notes/powershell%20settings.txt
+			https://github.com/asszem/Notes/blob/master/powershell%20notes/Microsoft.PowerShell_profile.ps1
+		Change background to black
+			Right click on powershell and set it to black
 IDE setup
 	NetBeans setup
 		Install jVI to Netbeans
@@ -116,10 +137,13 @@ IDE setup
 						sou  - System.out.print
 	VisualCode setup
 		Install VSCodeVim
-		Copy or create symlinc to settings.json for VIM settings
-			Location:
+			- Enable VIM keybindings
+			- Copy or create symlinc to settings.json for VIM settings
+				Location:
 				Windows %APPDATA%\Code\User\settings.json
 				Linux $HOME/.config/Code/User/settings.json
+		Install extensions
+			- VIM, tslint, eslint, 
 Maven setup
 	CLI - http://maven.apache.org/install.html
 	1. Download Maven BINARY from http://maven.apache.org/download.cgi
@@ -135,25 +159,86 @@ Cucumber Setup
 			Name: cucumber
 			Location:  http://cucumber.github.com/cucumber-eclipse/update-site
 		Marketplace: Installl Natural pluging for syntax coloring
-Dotfile symlink setup
-	When the dotfiles are updated, they will automatically updated at the location that is tracked by github
-	https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/
-	mklink /H Link Target
-		1. Clone the dotfiles somewhere
-		2. Create a hard link from the HOME dir pointing to the dotfiles location
-		mklink /H _vimrc C:\java\GitHub\mydotfiles\_vimrc	
-Angular5 setup
+Dotfile symlink setup on Windows
+	Steps
+		1. Open administrative cmd
+		2. mklink (read help)
+		3. mklink linkFileName RealFileLocation\realfilename
+	Info
+		When the dotfiles are updated, they will automatically updated at the location that is tracked by github
+		https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/
+Angular setup
 	Source
 		https://angular.io/guide/quickstart
 	Install Angular
 		1. Install Node.js with npm
 		2. 'npm install -g @angular/cli'
 		3. verify with: 'ng version'
+	Update Angular/Node to major version
+		1. Uninstall Node.js
+		2. Delete npm folder from user\appdata\roaming
+		3. Reinstall Node.js LTS
+		4. Reinstall Angular CLI
+		5. ng update
+		6. npm update (if ng update finds everything ok and ng serve still complains for missing modules)
+	Angular Upgrade Troubleshooting
+		To fix the issue related to "angular.json" 		
+			ng update @angular/cli --migrate-only --from=1.7.4
+		Cannot read property 'config' of null
+			ng update (after angular.json error is fixed)
+		Can not find webpack
+			npm link webpack	
+		Could not find module angular-devkit (after upgrading in a project repository)
+			npm install --save-dev @angular-devkit/build-angular
 	Create a new Angular project:
 		ng new my-app
 	Cloning an existing GIT repository when Angular is already installed
 		1. Clone the repo
 		2. 'ng update'
+Bootstrap setup
+	1. Add Bootstrap and JQuery to project
+		Add bootstrap from CDN
+			https://getbootstrap.com/docs/4.1/getting-started/download/
+		Add bootstrap via npm
+			npm install bootstrap jquery --save
+	2. Add bootstrap and jquery to angular.json (from Angular version 6)
+		"styles": [
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+	3. Add Ng-Bootstrap
+			npm install --save @ng-bootstrap/ng-bootstrap
+			import to root module
+				import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+				@NgModule({
+				  declarations: [AppComponent, ...],
+				  imports: [NgbModule.forRoot(), ...],
+				  bootstrap: [AppComponent]
+				})
+	Sources
+		https://medium.com/codingthesmartway-com-blog/using-bootstrap-with-angular-c83c3cee3f4a
+Windows Productivity Tools
+	Dexpot
+		- Set Desktop names
+			- Settings / Switching Desktops
+				- Show desktop name: permanently
+				- Position: top center
+				- Text: #%g %G
+		- Set Double Control for 'Find window'
+			- Settings / Plugings and Extras / Mouse Event / Keyboard / 'Find window' for left control key 
+		- Set hotspots 
+			- Settings / Plugings and Extras / Mouse Event / Hot Corners
+			- Top left: 'Full-screen preview'
+			- Bottom left: 'Window catalog'
+		- Set hotkeys
+			- Ctrl-Alt-UP: Window catalog (only on current desktop)
+			- Ctral-Alt-Down: Full-screen preview (all virtual desktops)
+	Process Explorer - Full sysinternals suite
+	GridMove
 ****Archive - not used anymore***
 VIM
 	Pathogen

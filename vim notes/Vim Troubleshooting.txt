@@ -1,3 +1,13 @@
+vim lineendings with ^M
+	set fileformat=unix
+	On a Windows machine
+		:%s/ctrl-Qctrl-M//g	(actually press CTRL-Q and then CTRL-M
+
+vim airline setup
+	General
+		:h airline-topic
+	Fix Tab Numbers
+		:h airline-tabline
 vim diff error E97
 	Workaround Remove shell=powershell and set shellcmnd=-c from vimrc. Gvim will use cmd as shell
 	Error
