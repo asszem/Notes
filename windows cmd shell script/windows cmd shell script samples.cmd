@@ -51,6 +51,16 @@ REM PIPE the output of a command to another command
 REM redirect the CONsole input to a file
 ::TYPE CON > testLog.txt
 
+REM Asking for user input and accepting only y/n
+:input
+SET /P input="Enter your input (y/n):"
+echo %input% | FINDSTR /I /R "^[yn]" > nul || goto :input
+echo input=%input%
+IF /I NOT "%input%"=="y" (
+  echo Not yes
+) ELSE (
+  echo Yes
+)
 REM To run a 2nd command based on the success/fail of prev
 cd %parent% && ECHO cd %parent% successfull, errorlevel=%ERRORLEVEL% > testLog.txt
 cd %parent% || ECHO not failed, errorlevel=%ERRORLEVEL%
