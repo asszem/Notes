@@ -1,8 +1,18 @@
 ==============================================================================================================
 						Recently learned commands to Memorize
 ===============================================================================================================
-	s - Sneak plugin, 2 character forward search
-	S - Sneak plugin, 2 character backward search
+	:g/reagular-expressiong/p - GREP :-)
+	:g/searchterm
+	:g/searchterm/-1,+1 | echo "=============" - search with -1 +1 context and separate with ===
+	:g/searchterm/y A - copies the search result to register A
+	[I - search for every occurence under cursor
+	/\V%pattern - search in the visual selected area only
+	:lvmigrep /searchterm/% - adds search term to the location list
+	:lli - list the locationlist elements
+	:lopen - opens the location list
+	:lclose - closes the location list
+	* - search for the word under cursor
+	:%s/ctrl-Qctrl-M//g	- remove ^M characters (actually press CTRL-Q and then CTRL-M
 ==============================VIM PARANCSOK éS BEáLLíTáSOK (ANDRáS) ===========================================
 
 MOZGÁS, KURZORKEZELÉS
@@ -93,6 +103,15 @@ BUFFERKEZELÉS  :help ls
 		[+] - azt jelenti, hogy módosítva volt
 		39,1 - sor, oszlopszám
 		54% - a dokumentumban hol tartok.
+SEARCH
+	:g/reagular-expressiong/p - GREP :-)
+	:g/searchterm
+	:g/searchterm/-1,+1 | echo "=============" - search with -1 +1 context and separate with ===
+	:g/searchterm/y A - copies the search result to register A
+	[I - search for every occurence under cursor
+	/\V%pattern - search in the visual selected area only
+	:lvmigrep /searchterm/% - adds search term to the location list
+	:vmigrep /searchterm/% - adds search term to the quickfix list
 SZÖVEGSZERKESZTÉS
 	CTRL-> és CTRL-< - behúzza vagy visszaviszi az aktuális szöveget a TAB-ban beállított értéknyit.
 	daw - a kurzortól balra lévő szót törli
@@ -109,31 +128,31 @@ SZÖVEGSZERKESZTÉS
 		"+p - a Windows vágólapról pasztézza
 		:put - copies Windows clipboard
 		:113put + - copies windows clipboard to line 113
-	HELYETTESÍTÉS - SUBSTITUTE
-		substitionton character can be anything that immediately follows s
-			examples
-			:%s/from/to/g
-			:%s-from-to-g
-		range
-			:{hol, range} s /mit /mire /flagek
-			range minták
-				:%s - a teljes dokumentumban
-				:4,$ - a 4. sortól a kijelölés végéig
-		flagek
-			/  - nincs flag, akkor csak a következő előfordulást fogja cserélni
-			/g - az adott sorban végig
-			/c - rákérdez minden cserénél
-		Kifejezésre vonatkozó dolgok
-			\<teljes szó\> - csak a teljes szót helyettesíti
-				példa: \<alma\> az "almafa" szóban nem helyettesíti az alma kifejezést
-			\(vagyez\|vagyemez\) - a két szó bármelyik előfordulása
-		Select and Substitute Unicode characters
-			:%s/\%u200b//g	- replaces <u200b> unicode character (linebreak) in the entire document
-		Minták
-			:%s/mit/mire/g - a teljes dokumentumban (%) kicseréli a mit, mire, minden sorban /g flag
-			:%s/mit/mire/gc - ugyanez, csak minden egyes csere előtt rákérdez /c flag
-			hasznos példák helyettesítésre:
-				http://www.thegeekstuff.com/2009/04/vi-vim-editor-search-and-replace-examples/
+SUBSTITUTE
+	substitionton character can be anything that immediately follows s
+		examples
+		:%s/from/to/g
+		:%s-from-to-g
+	range
+		:{hol, range} s /mit /mire /flagek
+		range minták
+			:%s - a teljes dokumentumban
+			:4,$ - a 4. sortól a kijelölés végéig
+	flagek
+		/  - nincs flag, akkor csak a következő előfordulást fogja cserélni
+		/g - az adott sorban végig
+		/c - rákérdez minden cserénél
+	Kifejezésre vonatkozó dolgok
+		\<teljes szó\> - csak a teljes szót helyettesíti
+			példa: \<alma\> az "almafa" szóban nem helyettesíti az alma kifejezést
+		\(vagyez\|vagyemez\) - a két szó bármelyik előfordulása
+	Select and Substitute Unicode characters
+		:%s/\%u200b//g	- replaces <u200b> unicode character (linebreak) in the entire document
+	Minták
+		:%s/mit/mire/g - a teljes dokumentumban (%) kicseréli a mit, mire, minden sorban /g flag
+		:%s/mit/mire/gc - ugyanez, csak minden egyes csere előtt rákérdez /c flag
+		hasznos példák helyettesítésre:
+			http://www.thegeekstuff.com/2009/04/vi-vim-editor-search-and-replace-examples/
 INSERT MÓDBAN SZÖVEGSZERKESZTÉS
 	- CTRL-W - balra lévő szót törli
 	- CTRL-T/D - tabokat állítja
@@ -159,6 +178,19 @@ DIFF HASZNÁLAT :h :diff
 	:diffoff! - az összes diff módban lévő ablakot bezárja
 	:diffput - az aktuális ablak változásait átmásolja a másik diff ablakba
 	:diffget - a másik ablak változásait visszamásolja az aktuális ablakba
+QUICFIX and LOCATIONLIST
+	Quickfix List
+		:vmigrep /searchterm/% - adds search term to the quickfix list
+		:copen - open Quickfix list
+		:ccl (:cclose) - close Quickfix list
+		:cl - list the quickfix items
+		:.cc - jump to the error under cursor
+	Location List
+		:lvmigrep /searchterm/% - adds search term to the location list
+		:lli - list the locationlist elements
+		:lopen - opens the location list
+		:lclose - closes the location list
+
 EGYÉB DOLGOK
 	A sortörés helyének vizuális jelzése
 		:set colorcolumn=80 
