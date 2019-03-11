@@ -1,0 +1,46 @@
+Terms
+	rmic 
+		- RMI compiler
+		- stubs and skeletons are generated from server class files by rmic
+		- the names of the generated classes will be the original class name, appended with _Skel and _Stub.
+	stub 
+		- client-side object that 
+		- repressents a single server object inside the client's JVM
+		- implements same methods as the server object
+		- maintains socket connection to server objedt's JVM
+		- responsible for marshalling and demarshalling data on client side
+	skeleton 
+		- server side object
+		- responsible for maintaining network connections
+		- marshalling and dmearshalling data on server side
+	marshalling and demarshalling 
+		- the proces in which a client takes a request, including arguments and data and puts it into a format suitable for sending over a socket connection 
+	remote objects 
+		- remote objects are servers (fixed location, run a specific JVM on a particulaar computer somewhere in the network)
+		- passed by REFERENCE
+			- if two instances of remote object type exitst, they are logically DISTINCT
+	serializable objects
+		- objects whose locations is not relevant to their state
+		- encapsulate data and are mobile (can be passed from one JVM to another)
+		- passed by VALUE
+	RMI registry 
+		- the default naming service ships with Sun's JDK
+		- java.rmi.Naming class have static methods for messages to the registry
+	pass by
+		- value 	- the caller and the callee have two indepenent variables with the same value. If the callee modifies the parameter variable, the effect is not visible to the caller.
+		- reference - the caller and the callee use the same variale for the parameter. If the callee modifies the parameter variable, the effect is visible to the caller.
+			int callerVariable=42;
+			public void someMethodCall(int calleeVariable) {
+				calleeVariable=99;
+			}
+			someMethodCall(callerVariable);
+			// reference 	- callerVariable=99
+			// value 		- callerVariable=42		
+
+
+
+
+Sources
+	- Java RMI book by William Grosso, O'Reilly Media, Inc. 2001.
+	- Oracle Java 8 doc - https://docs.oracle.com/javase/8/docs/platform/rmi/spec/rmiTOC.html
+	- Oracle RMI tutorial for Java 8 - https://docs.oracle.com/javase/tutorial/rmi/overview.html

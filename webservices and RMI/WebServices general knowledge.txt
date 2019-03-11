@@ -1,0 +1,20 @@
+
+
+
+
+Terms and definitions
+	Web Service is a software application that conforms to the Web Service Interoperability Organization's Basic Profile 1.0.
+	Interoperability is the capability of two different software applications to communicate.
+	XML (eXtensible Markup Language) and XML Schema
+	SOAP (Simple Object Access Protocol)
+	WSDL (Web Services Description Language)
+	UDDI (Universal Description, Discovery, and Integration)
+	JAX-RPC (Java API for XML-based RPC)
+	SAAJ (SOAP with Attachments API for Java)
+	JAXR (Java API for XML Registries)
+	JAXP (Java API for XML Processing)
+
+
+Sources
+	- Web Services book "J2EE Web Services: XML SOAP WSDL UDDI WS-I JAX-RPC JAXR SAAJ JAXP"
+		- https://learning.oreilly.com/library/view/j2eetm-web-services/0321146182/

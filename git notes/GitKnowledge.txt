@@ -102,6 +102,7 @@ git log
 		https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection
 
 git add
+	git add *partofpath*
 	git add -p 
 		To add specific part (hunk) of the file to the staging area only. Same as git add --patchk
 		Patch commands:
@@ -129,6 +130,8 @@ git commit
 git diff 
 	git diff 
 		Diff between Index and WORKING TREE
+		* masks works
+		git diff *java*
 	git diff <commit>
 		Diff between WORKING TREE and <commit>
 		This form is to view the changes you have in your WORKING TREE relative to the named <commit>.
@@ -263,6 +266,9 @@ git merge
 			git commit						//commits the change
 	abort a merge
 		git reset --merge
+	force local (ours) or remote (theirs) to resolve merge conflicts
+		git merge -X theirs branchName
+		git merge -s ours branchName
 
 git reflog
 	Show all SHA checksums of every commit
