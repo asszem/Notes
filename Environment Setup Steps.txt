@@ -75,6 +75,7 @@ IDE setup
 		VIM-like shortcuts
 			Install Vrapper for VIM 
 				http://vrapper.sourceforge.net/home/
+				http://vrapper.sourceforge.net/update-site/stable
 			Create _vrapperrc in $HOME
 		Marketplace plugins
 			Darkest Dark Theme
