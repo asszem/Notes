@@ -1,0 +1,51 @@
+General
+	Sources
+		https://jquery.com/
+		https://www.w3schools.com/jquery/jquery_syntax.asp
+	Basic syntax is:
+		$(selector).action()
+			- A $ sign to define/access jQuery
+			- A (selector) to "query (or find)" HTML elements
+			- A jQuery action() to be performed on the element(s)
+	Selectors
+		Source
+			https://www.w3schools.com/jquery/jquery_selectors.asp
+	Events (actions)
+		Source
+			https://www.w3schools.com/jquery/jquery_events.asp
+		Description
+			All the different visitor's actions that a web page can respond to are called events.
+			An event represents the precise moment when something happens.
+		Examples:
+			- moving a mouse over an element
+			- selecting a radio button
+			- clicking on an element
+	Event Methods
+		Source
+		Description
+			Event methods trigger or attach a function to an event handler for the selected elements.
+		Example
+			https://www.w3schools.com/jquery/jquery_ref_events.asp	
+			https://www.w3schools.com/jquery/event_click.asp
+
+.on()
+	Source
+		http://api.jquery.com/on/
+	Description
+		Attach an event handler function for one or more events to the selected elements.
+	Example
+		$( "#this_is_an_ID" ).on( "click", functionToRun)
+
+.trigger()
+	Source
+		http://api.jquery.com/trigger/
+	Description
+		Execute all handlers and behaviors attached to the matched elements for the given event type.
+	Example
+		$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').trigger('focus')
+		});
+		$( "#foo" ).on( "click", function() {
+		  alert( $( this ).text() );
+		});
+		$( "#foo" ).trigger( "click" );
