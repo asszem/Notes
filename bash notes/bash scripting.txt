@@ -1,0 +1,31 @@
+Parameters
+	$ parameteres
+		$1, $2, $3, ... - are the positional parameters.
+		"$@"	-	is an array-like construct of all positional parameters, {$1, $2, $3 ...}.
+		"$*"	-	is the IFS expansion of all positional parameters, $1 $2 $3 ....
+		$#		-	is the number of positional parameters.
+		$- 		-	current options set for the shell.
+		$$ 		-	pid of the current shell (not subshell).
+		$_ 		-	most recent parameter (or the abs path of the command to start the current shell immediately after startup).
+		$? 		-	is the most recent foreground pipeline exit status.
+		$! 		-	is the PID of the most recent background command.
+		$0 		-	is the name of the shell or shell script.
+		$IFS 	-	is the (input) field separator.
+	Source
+		https://stackoverflow.com/questions/5163144/what-are-the-special-dollar-sign-shell-variables
+Conditional Expressions
+	Example
+		if [-z $1 ] then echo "$1 length is zero" fi	
+	-z string
+		True if the length of string is zero.
+	-n string
+		True if the length of string is non-zero.
+
+set
+	-x	xtrace	Print commands (after expansions) before running them.
+	Source
+		https://learning.oreilly.com/library/view/learning-the-bash/1565923472/apbs05.html
+
+Source
+	http://tiswww.case.edu/php/chet/bash/bash.html#lbBW
+

@@ -23,6 +23,7 @@ Terms
 		- objects whose locations is not relevant to their state
 		- encapsulate data and are mobile (can be passed from one JVM to another)
 		- passed by VALUE
+		- transient variable - Java keyword to exclude the variable value serialization
 	RMI registry 
 		- the default naming service ships with Sun's JDK
 		- java.rmi.Naming class have static methods for messages to the registry

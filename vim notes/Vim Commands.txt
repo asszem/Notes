@@ -1,21 +1,30 @@
 ==============================================================================================================
-						Recently learned commands to Memorize
-===============================================================================================================
-	:g/reagular-expressiong/p - GREP :-)
-	:g/searchterm
-	:g/searchterm/-1,+1 | echo "=============" - search with -1 +1 context and separate with ===
-	:g/searchterm/y A - copies the search result to register A
-	[I - search for every occurence under cursor
-	/\V%pattern - search in the visual selected area only
-	:lvmigrep /searchterm/% - adds search term to the location list
-	:lli - list the locationlist elements
-	:lopen - opens the location list
-	:lclose - closes the location list
+Recently learned commands to Memorize
+	vim filename + - open the file at the end
+	qaq:g/pattern/y A - copy pattern to register A
 	* - search for the word under cursor
-	:%s/ctrl-Qctrl-M//g	- remove ^M characters (actually press CTRL-Q and then CTRL-M
-==============================VIM PARANCSOK éS BEáLLíTáSOK (ANDRáS) ===========================================
+	Search under cursor [i [I ]i ]I
+		from the beginning [
+		from the current position ]
+		i first occuerrence
+		I all occurence
+		:help include-search
+	:vim pattern % - adds the pattern to the quickfix list
+	U - undo all changes in a line
+	:'a,'bfo - make a fold from reg a to reg b
+	:'a,'b<command> - execute command on selected range between 'a and 'b register
+	:bufdo tab split - opens every buffer in a new tab
+	:tab sball - opens every buffer in a new tab
+	:tab sb 2 - oppens buffer 2 in a new tab
+	Why Buffers? - https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs/26710166#26710166
+	q? - opens Command-Line window for previous search
+	q/ - opens Command-Line window for next search
+	q: - opens Command-Line window to execute command
+	gf - opens the file under the cursor
+	:! - executes the command in shell
+===============================================================================================================
 
-MOZGÁS, KURZORKEZELÉS
+MOVEMENT
 	j / k soron belül mozog
 	gj /gk sorok között mozog
 	^ - az adott sor első nem üres karakterére ugrik (ALTgr-3, utána sajnos még egy extra gombot nyomni kell különben nem érzi) - remap: H
@@ -48,7 +57,7 @@ MOZGÁS, KURZORKEZELÉS
 		Leader key mapped to <space>
 		Enter key opens a multi-word search (only in current window)
 		s - bidirectional, multi-window one character search
-ABLAKKEZELÉS :help window
+WINDOWS :help window
 	CTRL-W - ablakkezelő parnacsok
 		hjkl - Megfelelő irányban lévő ablakba mozdítja a kurzort
 		w - a nyitott ablakok között váltogat
@@ -81,15 +90,18 @@ ABLAKKEZELÉS :help window
 	zb - a kurzor alatti sort az ablak aljára állítja
 	:set wrapmargin:={szám} - beállítja, hogy jobb oldalt hány karakter legyen a margó a szélétől :set wm is jó.
 	:set textwidth={szám} - beálítja, hogy hány karakter után törjön a sor, default=0, ekkor az 
-BUFFERKEZELÉS  :help ls
+BUFFERS  :help ls
 	:ls - kilistázza az adott buffereket (ha nem ENTER-t nyomok utána, hanem b, akkor lehet továbbiakat írni
-		% - aktuális ablak
-		# - alternatív buffer, váltogatás: :e# és :b#
-		a - aktív buffer (betöltött és látható)
-		h - hidden (betöltött, de nem látható)
-		+ - módosítás van rajta
-		%a - ez mutatja, hogy mi az aktív buffer éppen
-		:ls! - az unlisted buffferekt is kimutatja
+	:ls! - az unlisted buffferekt is kimutatja
+		u	an unlisted buffer (only displayed when [!] is used)
+		%	the buffer in the current window
+		#	the alternate buffer for ":e #" and CTRL-^
+		a	an active buffer: it is loaded and visible
+		h	a hidden buffer: It is loaded, but currently not
+		-	a buffer with 'modifiable' off
+		=	a readonly buffer
+		+	a modified buffer
+		x   a buffer with read errors
 	:b (:bu vagy :buffer) - a megadott buferre ugrik (lehet buffer száma, egy vagy több, lehet szöveg, TAB-al kiegészít)
 	:b# - az alternatív bufferek között váltogat (EZT MÉG KICSIT ÁTNÉZNI)
 	:bd - törli a megadott buffereket
@@ -98,11 +110,6 @@ BUFFERKEZELÉS  :help ls
 		:bd! - törli az olyan buffert is, amit amúgy nem engedne
 		:ball! - szépen letöröl mindent.
 	:hide -elrejti az adott buffert
-	A státuszsorban alul:
-		File név
-		[+] - azt jelenti, hogy módosítva volt
-		39,1 - sor, oszlopszám
-		54% - a dokumentumban hol tartok.
 SEARCH
 	:g/reagular-expressiong/p - GREP :-)
 	:g/searchterm
@@ -112,7 +119,10 @@ SEARCH
 	/\V%pattern - search in the visual selected area only
 	:lvmigrep /searchterm/% - adds search term to the location list
 	:vmigrep /searchterm/% - adds search term to the quickfix list
-SZÖVEGSZERKESZTÉS
+		:noh - no highlight, a legutóbbi keresés highlightolását kapcsolja ki.
+		q/ - legutóbbi keresési lista
+		// legutóbbi keresést megismétli
+TEXT EDIT
 	CTRL-> és CTRL-< - behúzza vagy visszaviszi az aktuális szöveget a TAB-ban beállított értéknyit.
 	daw - a kurzortól balra lévő szót törli
 	caw - a kurzortól balra lévő szót törli és inzert módba lép
@@ -120,7 +130,7 @@ SZÖVEGSZERKESZTÉS
 	D - a kurzor alattól jobbra mindent töröl 
 	CTRL-Q (Block módban Visual mód) I - a kijelölt terület elé minden sorba beszúrja a beírt szöveget (CTRL-Q A pedig append a végére)
 	gqip / gwip - adott paragrafust átalakítja sorokká a sortöréseknél (hard wrap), gwip a kurzort eredeti helyén tartja, gqip pedig a legutolsó sor alá viszi
-	COPY-PATE
+	COPY-PASTE
 		:reg - a register tartalmát mutatja, innen lehet pastelni. 
 		"{regiszterazonosító}p - a regiszterszámba írt értéknek megfelelő sort bepásztézza
 		"{regiszterazonosító}y - berakja a megnevezett regiszterbe a kijelölt tartalmat (Visual módban)
@@ -153,17 +163,17 @@ SUBSTITUTE
 		:%s/mit/mire/gc - ugyanez, csak minden egyes csere előtt rákérdez /c flag
 		hasznos példák helyettesítésre:
 			http://www.thegeekstuff.com/2009/04/vi-vim-editor-search-and-replace-examples/
-INSERT MÓDBAN SZÖVEGSZERKESZTÉS
+INSERT MODE
 	- CTRL-W - balra lévő szót törli
 	- CTRL-T/D - tabokat állítja
 	- CTRL-N/P - korábbi mintázatok alapján megpróbálja autocompletelni a kurzor alatti szót (a listában a ctrl-n/p nyomogatásával lehet haladni, nem kell entert nyomni, automatikusan beírja, amit akarunk, lehet tovább gépelni. Ha mégsem szeretnénk semmit, akkor CTRL-P-t válasszunk legfelül).
 	- CTRL-xl - a teljes sort beilleszti 
 	- CTRL-xf - a mappában lévő fájlokra egészíti ki a beírt szöveget, alul látszik, mikkel lehet le-föl haladni
-VISUAL MóD KEZELéS
+VISUAL MODE
 	gv - az előző visual módba kijelölt sorokat újra kijelöli
 	o - Visual módban az aktuális kijelölés másik végére viszi a kurzort. Baromi hasznos!!!
 	viW - visual inside Words (space közötti terület kijelölése)
-FOLD kezelés
+FOLD
 	,fi - set foldmethod=indent - automatikusan behúzza a foldokat
 	,fm - set foldmethod=manual - kézi foldolás
 	zf - set new fold (only works in manual)
@@ -173,13 +183,14 @@ FOLD kezelés
 	zc - close fold
 	zM - close all folds
 	zC, zO, ZA - on all fold levels under cursor
-DIFF HASZNÁLAT :h :diff
+DIFF :h :diff
 	:vert diffsplit {file} - az aktuális ablakot összehasonlítja a beírt fájllal.
 	:diffoff! - az összes diff módban lévő ablakot bezárja
 	:diffput - az aktuális ablak változásait átmásolja a másik diff ablakba
 	:diffget - a másik ablak változásait visszamásolja az aktuális ablakba
 QUICFIX and LOCATIONLIST
 	Quickfix List
+		:vim pattern % - adds pattern to quickfix list
 		:vmigrep /searchterm/% - adds search term to the quickfix list
 		:copen - open Quickfix list
 		:ccl (:cclose) - close Quickfix list
@@ -190,28 +201,42 @@ QUICFIX and LOCATIONLIST
 		:lli - list the locationlist elements
 		:lopen - opens the location list
 		:lclose - closes the location list
-
-EGYÉB DOLGOK
-	A sortörés helyének vizuális jelzése
-		:set colorcolumn=80 
-	Az aktuális ablak útvonalát állítja be PWD-nek:
-		:cd %:h
-	KERESÉS
-		:noh - no highlight, a legutóbbi keresés highlightolását kapcsolja ki.
-		q/ - legutóbbi keresési lista
-		// legutóbbi keresést megismétli
-	Hosszú listák végének mutatása:
-		:history -5, - csak az utolsó ötöt mutatja (a vessző kell a végére) - kérdés, hogy lehet ezen megnyitni adott számő parancsot.
-	MACRO HASZNáLAT :helpgrep macro
+NETRW
+	Shortcuts
+		i 		- Cycle between thin, long, wide, and tree listings
+		{cbt}mb	- make bookmark
+		{cnt}gb - open the {cbt} numbered bookmark
+		qb 		- list the bookmarks and history
+		u		- goes back in history
+		{cnt}u 	- goes back {cnt} in history
+	Commands
+		:Vex - open Vertical Explorer
+		:E ~ - opens netrw at ~
+	Setup
+		let g:netrw_banner = 0 "remove banner
+		let g:netrw_liststyle = 3 "set directory style to tree like
+		let g:netrw_browse_split = 4 "open file in previous window
+			1 - open files in a new horizontal split
+			2 - open files in a new vertical split
+			3 - open files in a new tab
+			4 - open in previous window
+		let g:netrw_altv = 1 "
+		let g:netrw_winsize = 25 "set size of split
+	Sources
+		Setup Nerdtree-like vertical netrw
+			- https://shapeshed.com/vim-netrw/
+		List of all commands
+			- https://gist.github.com/danidiaz/37a69305e2ed3319bfff9631175c5d0f	
+MACRO HASZNáLAT :helpgrep macro
 		q{regiszternév} - elindítja a makró rögzítést
 		q - leállítja a makró rögzítést
 		@{regiszternév} - elindítja a megadott makrót
-	SESSION MANAGEMENT
+SESSION MANAGEMENT
 		:mksession {sessionnév} - elmenti a session-t (nyitott fájlokat)
 		:so {sessionnév} - session open, megnyitja az elmentett sessiont.
 		:mkview {viewnév} - elmenti a foldokat meg a nézetet (ha nem adok meg file-t, akkor bajt jelez)
 		:so {viewvév} - betölti a viewet.
-	FÁJLKEZELÉS FILEKEZELÉS FILE MANAGEMENT
+FILE MANAGEMENT
 		Reloads the file with different encoding
 			:e ++enc=UTF-8
 			" Press F12 to switch to UTF-8 encoding: nnoremap <F12> :e ++enc=utf-8<CR>
@@ -221,32 +246,23 @@ EGYÉB DOLGOK
 		:e *filenév <TAB> - bárhol szerepel a fájlnévben keres
 		:e. - az aktuális mappát nyitja meg a VIM belső nézőkéjével
 		:E - ez is megnyitja a böngit.
+		:Vex - Vertical Explorer
+		:Sex - Split Explorer
 		Megnyitáskor wildcard minták:
 			:tabe green* meet*
 			:tabe greencloud meeting*
 			:tabe *meeting*
 			:tabe *meeting*EN
 			:tabe greencloud meeting**
-	VIM beállítások
+	VIM Settings
 		:set valami? - a kérdőjel után kiírja az aktuális setting értékét.
-	MARKS STANDARDEK
-		A - aktuális feladat
-		V - VIM setup (vimRC file)
-		H - Help, azaz ez a file
-		Marks defaultok
-			'. - legutolsó változtatás helyére ugrik
-			'" - fájlbezárás előtti utolsó pozícióra ugrik
-	EGYEDI MAPPINGEK (VIMRC-be be kell írni őket)
-		ii - ESC
-		shift-space - ESC
-		á :
-		í :e $MYVIMRC
-		j gj
-		k gk
-		gj j
-		gk k
-		CTRL-H gT
-		CTRL-L gt
-		CTRL-J CTRL-Wj
-		CTRL-K CTRL-Wk
-		CTRL-G - CTRL-]
+GENERAL STUFF
+	A sortörés helyének vizuális jelzése
+		:set colorcolumn=80 
+	Az aktuális ablak útvonalát állítja be PWD-nek:
+		:cd %:h
+	Hosszú listák végének mutatása:
+		:history -5, - csak az utolsó ötöt mutatja (a vessző kell a végére) - kérdés, hogy lehet ezen megnyitni adott számő parancsot.
+SOURCES
+	https://www.fprintf.net/vimCheatSheet.html
+

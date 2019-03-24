@@ -1,0 +1,138 @@
+cd - Change Directory 
+	cd - 
+		switches to the previous directory
+	cd ~3
+		cd to #3 in directory stack
+	dirs -v
+		displays the directory stack
+	pushd path
+		adds path to the directory stack
+	pushd +2
+		rotates (and changes dir) starting from #2 in the stack list
+	popd 
+		moves to the top (left) directory and removes it from the stack
+	shopt -s cdspell
+		automatically correct mistyped directory names
+	dirname
+		output each NAME with its last non-slash component and trailing slashes removed. 
+		command: 'dirname /usr/bin'
+		output: '/usr'
+	dirname -z ~
+		-z end each output line with NUL, not newline 
+
+history - Command history
+	history
+		displays the command history
+	history -c
+		deletes all entries from history
+
+! (execute previous command)
+	!ps
+		execute previous command starts with ps
+	!3
+		executes the 3rd command in history
+
+df - Find available disk space
+	df -h
+		-h human readable output
+
+du - Find disk usage by files
+	du -as
+		-s summarize the space a directory is using
+		-h human readable output
+
+ps - Find all processes
+	ps -ef | grep java
+
+locate - find - Search for specific files
+	find
+		search under home directory recursively for filename
+			find ~ -name "filename"
+		search under current directory recursively for filename
+			find . -name "filename"
+	locate
+		locate -ir '˘samlple\.txt$'
+			-i - ignore case
+			-r - regex
+		locate "filename" | xargs -ls aldh
+		
+ls - List 
+	ls -lSh
+		-l - list one file per line
+		-S - Sort by file size
+		-h - human readable
+	Exmaple
+		ls -lSh | head
+
+sort - Sort output
+	output | sort -n -r
+		-n - number
+		-h - human readable numbers (1g, 1m, 1kb)
+		-r - reversed
+		-k - value of the field to sort on (start with 1)
+	Example
+		ls -lah | sort -h -r -k5
+
+tar - Compress and Extract folders
+	tar [commands] target source
+	Compress
+		tar -czvf name.of.archive.tar.gz /path/to/direcotry-or-file
+			- c create
+			- z compress uzing gzip
+			- v verbose display progress
+			- f filename can be specified
+	Extract
+		tar -xzvf name.of.archive.tar.gz /path/to/direcotry-or-file
+			- x extract
+			- z compress uzing gzip
+			- v verbose display progress
+			- f filename can be specified
+
+head - Display only the top of the output
+	output | head -n 10
+		- n Number - the top 10 results only
+
+read - Read input from keyboard (also pause execution
+	read -t5 -n1 -r -p "Press any key to continue..." key
+		-n1 - wait for a single character
+		-r 	- raw mode, so special keys like backslash also register as press
+		-p  - specifies the prompt to display
+		-t5 - wait only for 5 seconds
+		key - the variable that will store the input
+
+cat - display content to stdout
+	cat -n - sorszámokat is kiírja
+
+grep - filter for specific content
+	Find everything that NOT matches the expression 
+		grep -v expression
+
+less - add pagebreak to output
+	-N (capital N, to display line numbers) 
+	+18 - jumps to the 18th row
+	Read long logs
+		cat "logfile" | grep "searchterm" | less
+	Read log and cut the first 261 characters of each line and write the result to a file
+		cat invservlog.txt | grep IBASEFix | sed 's/^.\{261\}//g' >> ibaseLog-DST.txt
+
+ip - Find ip
+	ip a
+
+Set autocomplete case insensitive
+	~/.inputrc
+		set completion-ignore-case on
+	https://askubuntu.com/questions/87061/can-i-make-tab-auto-completion-case-insensitive-in-bash
+
+eval [arg ...]
+    The  args  are read and concatenated together into a single com-
+    mand.  This command is then read and executed by the shell,  and
+    its  exit status is returned as the value of eval.  If there are
+    no args, or only null arguments, eval returns 0.
+	$cmd = "echo hello world"
+	echo $cmd // output: echo hello world
+	eval $cmd // output: hello world
+
+sources
+	https://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/
+	https://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/
+	http://tiswww.case.edu/php/chet/bash/bash.html#lbBW
