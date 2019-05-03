@@ -1,27 +1,20 @@
 ==============================================================================================================
 Recently learned commands to Memorize
+	zj zk - jump rom fold to fold
+	Ctrl-b - open CtrlP in Buffers mode
 	vim filename + - open the file at the end
-	qaq:g/pattern/y A - copy pattern to register A
 	* - search for the word under cursor
 	Search under cursor [i [I ]i ]I
 		from the beginning [
 		from the current position ]
-		i first occuerrence
 		I all occurence
 		:help include-search
+	:il {pattern> - just like [I but for the pattern
 	:vim pattern % - adds the pattern to the quickfix list
-	U - undo all changes in a line
-	:'a,'bfo - make a fold from reg a to reg b
-	:'a,'b<command> - execute command on selected range between 'a and 'b register
-	:bufdo tab split - opens every buffer in a new tab
-	:tab sball - opens every buffer in a new tab
-	:tab sb 2 - oppens buffer 2 in a new tab
-	Why Buffers? - https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs/26710166#26710166
 	q? - opens Command-Line window for previous search
 	q/ - opens Command-Line window for next search
 	q: - opens Command-Line window to execute command
 	gf - opens the file under the cursor
-	:! - executes the command in shell
 ===============================================================================================================
 
 MOVEMENT
@@ -115,7 +108,15 @@ SEARCH
 	:g/searchterm
 	:g/searchterm/-1,+1 | echo "=============" - search with -1 +1 context and separate with ===
 	:g/searchterm/y A - copies the search result to register A
-	[I - search for every occurence under cursor
+	Search under cursor [i [I ]i ]I
+		from the beginning [
+		from the current position ]
+		i first occuerrence
+		I all occurence 
+		:help include-search
+	[I - search for every occurence under cursor, from the beginning
+	]I - search for every occurence under cursor, from the current position
+	:il {pattern> - just like [I but for the pattern
 	/\V%pattern - search in the visual selected area only
 	:lvmigrep /searchterm/% - adds search term to the location list
 	:vmigrep /searchterm/% - adds search term to the quickfix list
@@ -183,6 +184,9 @@ FOLD
 	zc - close fold
 	zM - close all folds
 	zC, zO, ZA - on all fold levels under cursor
+	zj zk - jump rom fold to fold
+	[z - move to the beginning of the current open fold
+	]z - move to the end of the current open fold
 DIFF :h :diff
 	:vert diffsplit {file} - az aktuális ablakot összehasonlítja a beírt fájllal.
 	:diffoff! - az összes diff módban lévő ablakot bezárja
@@ -203,12 +207,15 @@ QUICFIX and LOCATIONLIST
 		:lclose - closes the location list
 NETRW
 	Shortcuts
-		i 		- Cycle between thin, long, wide, and tree listings
-		{cbt}mb	- make bookmark
-		{cnt}gb - open the {cbt} numbered bookmark
-		qb 		- list the bookmarks and history
-		u		- goes back in history
-		{cnt}u 	- goes back {cnt} in history
+		i 			- Cycle between thin, long, wide, and tree listings
+		{cbt}mb		- make bookmark
+		{cnt}gb 	- open the {cbt} numbered bookmark
+		qb 			- list the bookmarks and history
+		u			- goes back in history
+		{cnt}u 		- goes back {cnt} in history
+		a			- changes hiding mode (none, show, hide)
+		Backspace 	- edits the hiding list, comma separated values
+		Ctrl-l		- refresh view
 	Commands
 		:Vex - open Vertical Explorer
 		:E ~ - opens netrw at ~
@@ -257,12 +264,27 @@ FILE MANAGEMENT
 	VIM Settings
 		:set valami? - a kérdőjel után kiírja az aktuális setting értékét.
 GENERAL STUFF
+	q? - opens Command-Line window for previous search
+	q/ - opens Command-Line window for next search
+	q: - opens Command-Line window to execute command
 	A sortörés helyének vizuális jelzése
 		:set colorcolumn=80 
 	Az aktuális ablak útvonalát állítja be PWD-nek:
 		:cd %:h
 	Hosszú listák végének mutatása:
 		:history -5, - csak az utolsó ötöt mutatja (a vessző kell a végére) - kérdés, hogy lehet ezen megnyitni adott számő parancsot.
+	Remap - Noremap
+		map - recursive mapping
+		noreamp - non-recursive mapping
+		Source: https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping 
+		Example
+			nmap K H - causes K to expand to H and continue
+			nnoremap H G - causes H to expand to G and stop
+			nnoremap G gg - causes G to expand to gg and stop
+		Explanation
+			K - K to expand to H, H to expand to G, G to be executed
+			H - H to expand to G, G to be executed
+			G - G to expand to gg, gg to be executed
 SOURCES
 	https://www.fprintf.net/vimCheatSheet.html
 
