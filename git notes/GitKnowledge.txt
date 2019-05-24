@@ -70,6 +70,8 @@ git checkout
 		- staged files will not be deleted when changing branches
 	Checkout a specific file from another branch
 		git checkout sourcebranch -- filename
+	Checkout selective parts of a file
+		git checkout --patch <branch> -- <filename>
 
 git log
 	To display the number of deletions/additions in commits

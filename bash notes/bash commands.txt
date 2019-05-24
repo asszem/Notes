@@ -7,8 +7,13 @@ cd - Change Directory
 		displays the directory stack
 	pushd path
 		adds path to the directory stack
+	- Add MVM products to 
+		- Standalone
+		- Sysplex
 	pushd +2
 		rotates (and changes dir) starting from #2 in the stack list
+	pushd ~2 
+		jumps to the second element in the stack
 	popd 
 		moves to the top (left) directory and removes it from the stack
 	shopt -s cdspell
@@ -106,6 +111,16 @@ cat - display content to stdout
 grep - filter for specific content
 	Find everything that NOT matches the expression 
 		grep -v expression
+	Find something at a specific location starting with grep command
+		grep -R "expression" target
+	Sending errors (like "permission denied" to dev null)
+		grep "expression" target 2> /dev/null
+	Use extended grep for regular expression patterns
+		egrep "foo|bar" . 
+		grep -E "foo|bar" .
+	Search only in specific file types and case insensitive (-i)
+		grep -i -r --include=\*.log expression target
+		grep -i -r --include=\*.{log, txt, info} expression target
 
 less - add pagebreak to output
 	-N (capital N, to display line numbers) 
@@ -131,6 +146,14 @@ eval [arg ...]
 	$cmd = "echo hello world"
 	echo $cmd // output: echo hello world
 	eval $cmd // output: hello world
+
+usermod - change user account properties (like home directory)
+	Find out home directory for user
+		grep -E --color '/path/to/home' /etc/passwd
+	Change home directory
+		sudo usermod -d /path/new/home username
+	Source 
+		https://www.tecmint.com/usermod-command-examples/
 
 sources
 	https://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/
