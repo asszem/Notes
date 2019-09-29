@@ -398,6 +398,10 @@ HEAD
 CONFLICT
 	When the exact same line was modified in two different ways - git can't determine which version to keep
 
+Fix .gitignore not ignoring file
+https://bytefreaks.net/programming-2/my-gitignore-file-is-ignored-by-git-and-it-does-not-work
+	git rm -r --cached .
+	git add .
 ********************Netbeans Versioning Considerations********************
 	The build (or nbbuild), dist (or nbdist), and the nbproject/private folders should not be checked into that version control system.
 	Though nbproject/private should be ignored, nbproject should be checked into the version control system.

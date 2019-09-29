@@ -1,6 +1,7 @@
 ==============================================================================================================
 Recently learned commands to Memorize
-	zj zk - jump rom fold to fold
+	z{number}CR - resize window...
+	zj zk - jump from fold to fold
 	Ctrl-b - open CtrlP in Buffers mode
 	vim filename + - open the file at the end
 	* - search for the word under cursor
@@ -206,18 +207,32 @@ QUICFIX and LOCATIONLIST
 		:lopen - opens the location list
 		:lclose - closes the location list
 NETRW
-	Shortcuts
-		i 			- Cycle between thin, long, wide, and tree listings
+	Navigation
+		- 			- goes up one directory
+		u			- goes back in history
+		{cnt}u 		- goes back {cnt} in history
+	File management
+		%			- create new file in nterw's CURRENT directory ( c - make browsing directory current directory)
+		v			- open in vertical split
+		o			- open in horizontal split
+		p			- preview windows (every file for preview will be opened in the same window)
+		D			- Delete file/Directory
+		mf/mF		- Mark / unMark File
+	Bookmarks
 		{cbt}mb		- make bookmark
 		{cnt}gb 	- open the {cbt} numbered bookmark
 		qb 			- list the bookmarks and history
-		u			- goes back in history
-		{cnt}u 		- goes back {cnt} in history
+	View
+		i 			- Cycle between thin, long, wide, and tree listings
 		a			- changes hiding mode (none, show, hide)
 		Backspace 	- edits the hiding list, comma separated values
 		Ctrl-l		- refresh view
+		s			- sorting order
+		r			- reverse sorting order
+		gh			- hide/unhide dotfiles
 	Commands
 		:Vex - open Vertical Explorer
+		:Sex - FUN
 		:E ~ - opens netrw at ~
 	Setup
 		let g:netrw_banner = 0 "remove banner

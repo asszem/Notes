@@ -46,15 +46,26 @@ du - Find disk usage by files
 		-s summarize the space a directory is using
 		-h human readable output
 
+free - display free memory
+
 ps - Find all processes
-	ps -ef | grep java
+	Show all processes with details
+		ps -ef | grep java
+	Show how long the process is running (elapsed time)
+		ps -p processNumber -o etime="Header text"
+	Show processes for a specified user
+		ps -u userName
 
 locate - find - Search for specific files
 	find
-		search under home directory recursively for filename
-			find ~ -name "filename"
-		search under current directory recursively for filename
-			find . -name "filename"
+		- search for a file based on its name
+			find -name pattern
+			- search under home directory recursively for filename
+				find ~ -name "filename"
+			- search under current directory recursively for filename (works without . on 
+				find . -name "filename"
+			- search for empty files
+				find -empty
 	locate
 		locate -ir '˘samlple\.txt$'
 			-i - ignore case
@@ -155,6 +166,16 @@ usermod - change user account properties (like home directory)
 	Source 
 		https://www.tecmint.com/usermod-command-examples/
 
+skill - logout user
+	Kill the user on specific PTS (Pseudo Terminal Slave)
+		sudo skill -KILL -v pts/1
+	Kill a user's all connected sessions at once
+		sudo skill -KILL -u username
+
+reverse-i-search in history
+	ctrl-r - repeat ctrl-r to move to next result
+	ctrl-s - i-search
+		add set stty -ixon to enable this
 sources
 	https://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/
 	https://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/
