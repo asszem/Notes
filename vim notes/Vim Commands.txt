@@ -1,5 +1,6 @@
 ==============================================================================================================
 Recently learned commands to Memorize
+	:w !sudo tee % - saves the file even if vim was not started as root https://www.geekyboy.com/archives/629
 	z{number}CR - resize window...
 	zj zk - jump from fold to fold
 	Ctrl-b - open CtrlP in Buffers mode
