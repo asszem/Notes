@@ -1,0 +1,3 @@
+Switching tabs
+	- shift-left / shift right (if Conemu has focus)
+	- shift-í to give Focus to conemu from Gui

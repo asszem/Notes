@@ -1,17 +1,21 @@
 Learning Todo
-	- Learn how to copy files to an existing docker image
-	- Create a Dockerfile that creates an image which
+	DONE - Create a Dockerfile that creates an image which
 		DONE - Based on Alpine linux
 		DONE - Has VIM installed
 		DONE - Has .vimrc and .bashrc added
 		DONE - Pushed to asszem
-		- Has a volume mounted (?)
-		- Has a bind point
-	- Understand when files are lost from a container
+		DONE - Has a volume mounted
+		DONE - Has a bind point (not the file itself, it is binded when run issued)
+		- has tmux installed
+	DONE - Understand when files are lost from a container
 	- Learn Compose
 	- Try to stuff webservice to a docker container
 		- With a simple server
 		- With a WebSphere server
+	- Complete Udemy course
+	- Add a simple java hello world application that runs in a container
+		- add  something that automatically refreshes the application in the container 
+		- just like yarn/react 
 
 First Steps
 	Install Docker
@@ -27,17 +31,24 @@ Concepts
 	Host - the machine on which Docker is running
 	Ports 
 		- The application inside the container is listening on a specified port, but it needs to be bind to the host's port
+	Network
+		- If two containers are on the same network, they can talk to each other. If they aren't, they can't.
+	Persistence
+		- A container will store data inside, and it will be lost when the container is destroyed 
+		- If a new image is created with docker commit from the running container, it will have the data inside
+		- If a container is stopped and restarted the inside data will still be available
 	Bind Mount vs Volume
 		- Bind Mount:  
 			- mounts a folder from the Host machine to the container.  The Host machine other processes can write to that folder
-			- Example:
+			- Example (using Git Bash):
+				docker run -it -v //$(pwd)/path/in/host:/path/in/container {image_id}
 		- Volume: 
 			- mounts a folder handled by Docker, so other processes can not use it. It is preferred to store persistent data (if data is not needed to be added from outside the container)
 			- Docker maintains the physical location on the disk and you only need to remember the name of the volume.
 			- Files will be available for any other attached
 			  containers
 			- Example:
-				docker run -it -v {volume-name}:{host-location}
+				docker run -it -v {volume-name}:{host-location} {image_id}
 		- Sources
 			- General descriptions
 				https://4sysops.com/archives/introduction-to-docker-bind-mounts-and-volumes/
@@ -45,72 +56,92 @@ Concepts
 				https://stackoverflow.com/questions/47942016/add-bind-mount-to-dockerfile-just-like-volume
 
 
-Docker Commands
-	docker run 
-		- The docker run command first creates a writeable container layer over the specified image, and then starts it using the specified command.
-		- Documentation: https://docs.docker.com/engine/reference/commandline/run/
-		- Start an image and execute a command inside it
-			docker run -it -d --rm --name ubuntuContainer1 ubuntu bash
-				docker 	[CLI] - it tells that the following will be a docker CLI command. It will communicate with the Docker application running on the host machine
-				
-				run		[COMMAND] - it will execute a command, in this example 'run'
-				-it		[OPTION] - it will have an interactive shell stdin
-				-d		[OPTION] - run it detached mode (can be attached with docker attach)
-				-p		[OPTION] - short for --publish, port binding  [host port]:[container port]
-				-v 		[OPTION] - bind mound a VOLUME
-				-w 		[OPTION] - lets the command being executed inside directory given, here /path/to/dir/. If the path does not exist it is created inside the container.
-				--rm 	[OPTION] - it will be removed after exiting
-				--name  [OPTION] - name of the container
-				ubuntu	[ARGUMENTS] it is the name of the image to run
-				bash 	[ARGUMENTS] it is the command to execute inside the container, it must be an executable, for example /bin/bash
-	docker ps
-		- display running containers
-		- options
+docker commands
+	- Container related commands
+		docker ps
+			- display running containers
 			-a - displays all contaniers (even stopped ones)
-	docker image 
-		- ls - lists all available images
-	docker start/stop/restart {container id, name, etc}
-		- start/stop a container
-	docker attach {container id} 
-		- attach to a started container
-	docker rm {container id}
-		- remove the container
-		-f [OPTION] - force. It can be used to force remove a still running container, without the need of stopping it first
-	docker inspect {container id}
-		- displays information about the container
-	docker tag {image-name} {username/tagname}
-	docker system df -v
-		- display images space usage
-	docker build {image name} /path/to/dockerfile
-		- builds an image
-		- flags
-			-t - tag the image
-	docker exec {container-id} {command}
-		- Execute a command inside the container: docker exec 885 cat data.txt
-	docker volume 
-		- create {volume-name}
-		- ls 
-	docker network 
-		- creates a network in witch containers can communicate with each other
-	docker cp
-		- Copies to or from host to or from a running container
-		- docker cp source/path/in/host container:target/path/in/cont
-	docker commit {container-id} new_image_name
-		- creates a new image from current container
+		docker start/stop/restart {container id, name, etc}
+			- start/stop a container
+		docker attach {container id} 
+			- attach to a started container
+		docker rm {container id}
+			- remove the container
+			-f [OPTION] - force. It can be used to force remove a still running container, without the need of stopping it first
+		docker inspect {container id}
+			- displays information about the container
+		docker exec {container-id} {command}
+				- Execute a command inside the container: docker exec 885 cat data.txt
+		docker cp
+			- Copies to/from between host and running container  
+			- docker cp host/from/path container:to/path
+			- docker cp container:/from/path /host/to/path
+		docker commit {container-id} {new_image_name}
+			- creates a new image from current container
+	- Image manipulation
+		docker run (short for create and start) {image_id}
+			- The docker run command first creates a writeable container layer over the specified image, and then starts it using the specified command.
+			- Documentation: https://docs.docker.com/engine/reference/commandline/run/
+			- Start an image and execute a command inside it
+				docker run -it -d --rm --name ubuntuContainer1 ubuntu bash
+					docker 	[CLI] - it tells that the following will be a docker CLI command. It will communicate with the Docker application running on the host machine
+					
+					run		[COMMAND] - it will execute a command, in this example 'run'
+					-it		[OPTION] - it will have an interactive shell stdin
+					-d		[OPTION] - run it detached mode (can be attached with docker attach)
+					-p		[OPTION] - short for --publish, port binding  [host port]:[container port]
+					-v 		[OPTION] - bind mound a VOLUME
+					-w 		[OPTION] - lets the command being executed inside directory given, here /path/to/dir/. If the path does not exist it is created inside the container.
+					--rm 	[OPTION] - it will be removed after exiting
+					--name  [OPTION] - name of the container
+					ubuntu	[ARGUMENTS] it is the name of the image to run
+					bash 	[ARGUMENTS] it is the command to execute inside the container, it must be an executable, for example /bin/bash
+		docker image {command}
+			- ls - lists all available images
+			- rm - removes image
+		docker build {image name} /path/to/dockerfile
+			- builds an image
+				-t - tag the image (repository/imagename:tag)
+				- example
+					docker build -t asszem/vim:2.0 .
+		docker tag {image-name} {username/tagname}
+	- General commands
+		docker system df -v
+			- display images space usage
+		docker volume 
+			- create {volume-name}
+			- ls 
+		docker network {command}
+			- create {network-name}
+				- creates a network in witch containers can communicate with each other
+			- ls
+				- lists all available networks
 
 	Examples
-		docker run -it -d --rm --name ubuntu1 ubuntu bash
-		docker run -it --rm --name node node:latest
-		docker system df -v
-		docker build -t image-name .
-		docker exec 885 cat data.txt
-		docker run -dp 3000:3000 -w /app -v "$(pwd):/app" node:12-alpine sh -c "yarn install && yarn run dev"
+		Create and start (=run) and detach a new container from an ubuntu image with interactive shell and run bash
+			docker run -it -d --name ubuntu1 ubuntu bash
+		Create and start (=run) a new interactive container with node that will be removed when it exits
+			docker run -it --rm --name node node:latest
+		Build an image
+			docker build -t image-name .
+		Execute a command inside a running container
+			docker exec 885 cat data.txt
+		Start a container that creates a file with a random number
+			docker run -d ubuntu bash -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"
+		Start install node with yarn	
+			docker run -dp 3000:3000 -w /app -v "$(pwd):/app" node:12-alpine sh -c "yarn install && yarn run dev"
 		Bind Mount example:
 			 docker run -it --name ubuntuBindMount -v //$(pwd)/test:/bindMountTest ubuntu bash
 		Volume Mount example
 
-Tag a new build
-	
+docker-compose
+	Summary
+		Docker Compose is a tool that was developed to help define and share multi-container applications.	
+	Commands
+		docker-compose up -d
+			- Start an application stack detached
+		docker-compose logs -f
+			- See the logs
 
 Troubleshooting
 	- Git Bash / ConEmu
@@ -127,14 +158,8 @@ Troubleshooting
 		- https://github.com/git-for-windows/build-extra/blob/main/ReleaseNotes.md
 			If you specify command-line options starting with a slash, POSIX-to-Windows path conversion will kick in converting e.g. "/usr/bin/bash.exe" to "C:\Program Files\Git\usr\bin\bash.exe". 
 			Alternatively, you can double the first slash to avoid POSIX-to-Windows path conversion, e.g. "//usr/bin/bash.exe".
-	- Install VIM inside a container
-		- Build an Image From a Dockerfile
-			FROM ubuntu
-			RUN ["apt-get", "update"]
-			RUN ["apt-get", "install", "-y", "vim"]
 	- Set WSL (Windows Subsystem Linux) to version 2 in shell (Git Bash, PowerShell, etc)
 		wsl --set-default-version 2
-				
 
 Sources
 	- Docker from SCRATCH - good demonstration video of core concepts

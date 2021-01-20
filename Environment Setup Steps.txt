@@ -31,11 +31,11 @@ Git setup
 		Fix the CRLF warning
 			git config core.autocrlf true
 			https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important
-Console / Terminal setup
+Console / Terminal shell setup
 	GitBash setup
 		Copy 'git-promt.sh' from mydotfiles repo to C:\Program Files\Git\etc\profile.d
 		Set font to Droid Sans Mono Slashed for Pow
-	CMDer setup
+	CMDer setup (ConEmu)
 		- Download, extract and place somewhere full cmder
 		- Set up hotkey for Minimize/Maximize
 		- Setup Git Bash to be the default prompt
@@ -61,6 +61,18 @@ Console / Terminal setup
 			https://github.com/asszem/Notes/blob/master/powershell%20notes/Microsoft.PowerShell_profile.ps1
 		Change background to black
 			Right click on powershell and set it to black
+	Windows Terminal setup
+		- TBD
+	Other useful shell programs
+		- Goto
+		- Tmux
+			- install msys2
+			- copy tmux.exe and mysis event.dll files to Program Files/Git/usr/bin
+			- start Git Bash
+			- attach git bash to ConEmu
+			- https://blog.pjsen.eu/?p=440
+		- .bashrc setup
+
 IDE setup
 	NetBeans setup
 		Install jVI to Netbeans

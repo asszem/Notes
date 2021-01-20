@@ -1,0 +1,52 @@
+ctrl-b ? keybindings
+ctrl-b z zoom - opens the current pane to max 
+https://tmuxcheatsheet.com/
+
+How to save and restore (attach) session
+	- delete session
+		tmux kill-session -t {session name or number}
+	- save session
+	- start a new tmux session
+		tmux new -s {mysession}
+	- list sessions
+		tmux ls
+	- attach to last session
+		tmux a
+	- attach to specific session
+		tmux a -t {session_name}
+
+Create a .tmux.conf if doesnt exists based on defaults (works on 1.8)
+	1.8
+		tmux show -g | cat > ~/.tmux.conf
+	3.1
+		tbd
+	Set an option in the command line
+		:set-option -g {option}
+Set the background of current window name in status bar
+	1.8
+		set-window-option -g window-status-current-bg red
+	3.1
+		setw -g window-status-current-style fg=black,bg=red
+Set the pane border colors 
+	1.8
+		set -g pane-active-border-fg red	
+	3.1
+		set -g pane-border-style 'fg=green,bg=green' 
+		set -g pane-active-border-style 'fg=red,bg=red'
+	https://stackoverflow.com/questions/25532773/change-background-color-of-active-or-inactive-pane-in-tmux
+Set mouse input
+	1.8
+		
+	3.1
+		set -g mouse on 
+		set -g mouse-select-pane on
+	Setup Ctrl-M-Ctrl-m to get status
+		bind-key C-m set-option -g mouse \; display-message 'Mouse #{?mouse,on,off}'
+Set vi mode in search
+	set-window-option -g mode-keys vi
+
+Install TMUX
+	- RHEL (1.8)
+		sudo yum install tmux
+	- Windows (GitBash ((ConEmu)) 3.1c
+		- 
