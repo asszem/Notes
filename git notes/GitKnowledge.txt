@@ -9,7 +9,6 @@ Create a new local repository & setting an upstream tracking branch
 	4. Set up the local master to be tracking the remote master
 		git push -u origin master
 
-****************COMMANDS***********************
 git status
 	git st
 		alias for git status
@@ -386,8 +385,7 @@ git submodule
 	Sources: 
 		https://www.atlassian.com/git/tutorials/git-submodule
 			
-
-*****************Visual Tools*********************** 
+*****************VISUAL TOOLS*********************** 
 gitk
 		read-only visual representation of the repository / commits / branches
 		To visualize All Branch History:
@@ -424,21 +422,17 @@ HEAD
 CONFLICT
 	When the exact same line was modified in two different ways - git can't determine which version to keep
 
+***************TROUBLESHOOTING********************
 Fix .gitignore not ignoring file
-https://bytefreaks.net/programming-2/my-gitignore-file-is-ignored-by-git-and-it-does-not-work
-	git rm -r --cached .
-	git add .
-********************Netbeans Versioning Considerations********************
-	The build (or nbbuild), dist (or nbdist), and the nbproject/private folders should not be checked into that version control system.
-	Though nbproject/private should be ignored, nbproject should be checked into the version control system.
-	Nbproject contains project metadata that enables others users to open the project in NetBeans without having to import the project first.
-
-	source
-		http://docs.oracle.com/cd/E50453_01/doc.80/e50452/create_japps.htm#NBDAG2974
+	Run commands:
+		git rm -r --cached .
+		git add .
+	Source: https://bytefreaks.net/programming-2/my-gitignore-file-is-ignored-by-git-and-it-does-not-work
 
 Setting up HTTPS with two factor (2FA) authentication
 	1. Request a Personal Access Token on Github (Settings -> Developer Settings -> Personal Access Tokens
 	2. When prompted in GitBash, use the token instead of the normal GitHub password
+
 Setting up using SSL instead of HTTPS
 	1. Generate public/private SSL keys
 	2. Set remote to use SSL
@@ -446,6 +440,10 @@ Setting up using SSL instead of HTTPS
 		git remote remove origin 
 		git remote add origin git@github.com:user/repo.git
 
+Fix github --credentials get: github: command not found (on Windows)
+	This happens inside Tmux on Windows machines, might be something path related
+	Workaround: 
+	add: git config --global credential.helper wincred
 ********************GIT Documentation Sources********************
 	https://www.kernel.org/pub/software/scm/git/docs/user-manual.html
 		Comprehensive Documentation of Git
