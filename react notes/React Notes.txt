@@ -1,0 +1,22 @@
+Environment Setup
+	- Tools
+		- npm or yarn (for Dependency management)
+		- Webpack (for Bundler - standard for bundling small files)
+		- Babel + Presets (for compiler, to compile next-gen javascript to vanilla)
+		- Development server (so not File:// will be used to open HTML)
+		- Visual Studio Code
+		- Create React App - https://github.com/facebook/create-react-app
+	- Setup Build Workflow (according to the Udemy Complete React Guide)
+		- Explanation of build workflow (why and how):  Section 3, The Build Workflow
+		- Setup Procedure
+			- npm install -g create-react-app
+			- navigate to parent folder
+			- create-react-app {app-name} --script-version 1.1.5
+				- This does not affect React version, but the project folder structure
+			- navigate to {app-name} folder and enter command 
+				npm start 
+		
+
+
+Sources
+	- Udemy - https://ibm-learning.udemy.com/course/react-the-complete-guide-incl-redux/

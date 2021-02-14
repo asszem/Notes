@@ -1,11 +1,22 @@
-ctrl-b ? keybindings
-ctrl-b z zoom - opens the current pane to max 
-https://tmuxcheatsheet.com/
+set -g pane-border-style 'fg=green,bg=green' 
+set -g pane-active-border-style 'fg=red,bg=red'
+bind '"' split-window -c "#{pane_current_path}"
+bind '%' split-window -h -c "#{pane_current_path}"
+set-window-option -g mode-keys vi
+bind c new-window -c "#{pane_current_path}"
+
+MANUALLY RUN ABOVE LINES AS LONG AS TMUX-CONF IS NOT WORKING
+
+Keyboard shortcuts memo
+	ctrl-b ? keybindings
+	ctrl-b z zoom - opens the current pane to max 
+	https://tmuxcheatsheet.com/
 
 How to save and restore (attach) session
 	- delete session
 		tmux kill-session -t {session name or number}
 	- save session
+		- ??
 	- start a new tmux session
 		tmux new -s {mysession}
 	- list sessions
@@ -15,7 +26,9 @@ How to save and restore (attach) session
 	- attach to specific session
 		tmux a -t {session_name}
 
-Create a .tmux.conf if doesnt exists based on defaults (works on 1.8)
+TODO - Create a .tmux.conf if doesnt exists based on defaults
+	bind r source-file ~/.tmux-conf
+	- Read: https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
 	1.8
 		tmux show -g | cat > ~/.tmux.conf
 	3.1
@@ -36,17 +49,27 @@ Set the pane border colors
 	https://stackoverflow.com/questions/25532773/change-background-color-of-active-or-inactive-pane-in-tmux
 Set mouse input
 	1.8
-		
+		set -g mouse-select-pane on
 	3.1
 		set -g mouse on 
 		set -g mouse-select-pane on
 	Setup Ctrl-M-Ctrl-m to get status
 		bind-key C-m set-option -g mouse \; display-message 'Mouse #{?mouse,on,off}'
+Set opening new window, pane splits in the current path
+	1.8
+	3.1
+		bind c new-window -c "#{pane_current_path}"
+		bind '"' split-window -c "#{pane_current_path}"
+		bind % split-window -h -c "#{pane_current_path}"
 Set vi mode in search
 	set-window-option -g mode-keys vi
 
 Install TMUX
 	- RHEL (1.8)
-		sudo yum install tmux
+		- sudo yum install tmux
+	- Manjaro
+		- TBD
 	- Windows (GitBash ((ConEmu)) 3.1c
-		- 
+		- Install MSYS2 from https://www.msys2.org/ 
+		- Copy Tmux binaries to 
+		- Source: https://blog.pjsen.eu/?p=440

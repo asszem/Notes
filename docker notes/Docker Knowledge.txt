@@ -8,14 +8,14 @@ Learning Todo
 		DONE - Has a bind point (not the file itself, it is binded when run issued)
 		- has tmux installed
 	DONE - Understand when files are lost from a container
-	- Learn Compose
+	DONE - Learn Compose
+	DONE - Add a simple java hello world application that runs in a container
+		- add  something that automatically refreshes the application in the container 
+		- just like yarn/react 
 	- Try to stuff webservice to a docker container
 		- With a simple server
 		- With a WebSphere server
 	- Complete Udemy course
-	- Add a simple java hello world application that runs in a container
-		- add  something that automatically refreshes the application in the container 
-		- just like yarn/react 
 
 First Steps
 	Install Docker
@@ -55,7 +55,6 @@ Concepts
 			- Why can't add mount to a Dockerfile
 				https://stackoverflow.com/questions/47942016/add-bind-mount-to-dockerfile-just-like-volume
 
-
 docker commands
 	- Container related commands
 		docker ps
@@ -85,7 +84,6 @@ docker commands
 			- Start an image and execute a command inside it
 				docker run -it -d --rm --name ubuntuContainer1 ubuntu bash
 					docker 	[CLI] - it tells that the following will be a docker CLI command. It will communicate with the Docker application running on the host machine
-					
 					run		[COMMAND] - it will execute a command, in this example 'run'
 					-it		[OPTION] - it will have an interactive shell stdin
 					-d		[OPTION] - run it detached mode (can be attached with docker attach)
@@ -117,23 +115,7 @@ docker commands
 			- ls
 				- lists all available networks
 
-	Examples
-		Create and start (=run) and detach a new container from an ubuntu image with interactive shell and run bash
-			docker run -it -d --name ubuntu1 ubuntu bash
-		Create and start (=run) a new interactive container with node that will be removed when it exits
-			docker run -it --rm --name node node:latest
-		Build an image
-			docker build -t image-name .
-		Execute a command inside a running container
-			docker exec 885 cat data.txt
-		Start a container that creates a file with a random number
-			docker run -d ubuntu bash -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"
-		Start install node with yarn	
-			docker run -dp 3000:3000 -w /app -v "$(pwd):/app" node:12-alpine sh -c "yarn install && yarn run dev"
-		Bind Mount example:
-			 docker run -it --name ubuntuBindMount -v //$(pwd)/test:/bindMountTest ubuntu bash
-		Volume Mount example
-
+		
 docker-compose
 	Summary
 		Docker Compose is a tool that was developed to help define and share multi-container applications.	
@@ -142,6 +124,8 @@ docker-compose
 			- Start an application stack detached
 		docker-compose logs -f
 			- See the logs
+		docker compose down
+			- stops the application stack
 
 Troubleshooting
 	- Git Bash / ConEmu
@@ -161,6 +145,30 @@ Troubleshooting
 	- Set WSL (Windows Subsystem Linux) to version 2 in shell (Git Bash, PowerShell, etc)
 		wsl --set-default-version 2
 
+Use Case Examples
+	Exit without stopping
+		- Ctrl-P then CTRL-Q
+	NGINX - Run a nginx server
+		docker pull nginx
+		docker run -d -p 8080:80 nginx
+	MYSQL - Look into a mysql app
+		docker exec -it <mysql-container-id> mysql -p
+			- mysql commands: SHOW DATABASES; USE {dbname}; SHOW TABLES; SELECT * from {table_name}
+	Create and start (=run) and detach a new container from an ubuntu image with interactive shell and run bash
+		docker run -it -d --name ubuntu1 ubuntu bash
+	Create and start (=run) a new interactive container with node that will be removed when it exits
+		docker run -it --rm --name node node:latest
+	Build an image
+		docker build -t image-name .
+	Execute a command inside a running container
+		docker exec 885 cat data.txt
+	Start a container that creates a file with a random number
+		docker run -d ubuntu bash -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"
+	Start install node with yarn	
+		docker run -dp 3000:3000 -w /app -v "$(pwd):/app" node:12-alpine sh -c "yarn install && yarn run dev"
+	Bind Mount example:
+		 docker run -it --name ubuntuBindMount -v //$(pwd)/test:/bindMountTest ubuntu bash
+	Volume Mount example
 Sources
 	- Docker from SCRATCH - good demonstration video of core concepts
 		https://www.youtube.com/watch?v=i7yoXqlg48M

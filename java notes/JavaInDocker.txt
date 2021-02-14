@@ -1,0 +1,3 @@
+Simple, hello world applicatoin (no network, no Spring boot, no IDE)
+	Source: https://www.javatpoint.com/docker-java-example
+

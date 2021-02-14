@@ -1,7 +1,9 @@
 vim lineendings with ^M
 	set fileformat=unix
+	set ffs=unix or set ffs=dos
 	On a Windows machine
 		:%s/ctrl-Qctrl-M//g	(actually press CTRL-Q and then CTRL-M
+	source: https://stackoverflow.com/questions/5843495/what-does-m-character-mean-in-vim
 
 vim airline setup
 	General
