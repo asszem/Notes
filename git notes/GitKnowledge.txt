@@ -439,6 +439,12 @@ https://bytefreaks.net/programming-2/my-gitignore-file-is-ignored-by-git-and-it-
 Setting up HTTPS with two factor (2FA) authentication
 	1. Request a Personal Access Token on Github (Settings -> Developer Settings -> Personal Access Tokens
 	2. When prompted in GitBash, use the token instead of the normal GitHub password
+Setting up using SSL instead of HTTPS
+	1. Generate public/private SSL keys
+	2. Set remote to use SSL
+		git remote -v 
+		git remote remove origin 
+		git remote add origin git@github.com:user/repo.git
 
 ********************GIT Documentation Sources********************
 	https://www.kernel.org/pub/software/scm/git/docs/user-manual.html

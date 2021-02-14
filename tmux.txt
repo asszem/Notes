@@ -1,17 +1,7 @@
-set -g pane-border-style 'fg=green,bg=green' 
-set -g pane-active-border-style 'fg=red,bg=red'
-bind '"' split-window -c "#{pane_current_path}"
-bind '%' split-window -h -c "#{pane_current_path}"
-set-window-option -g mode-keys vi
-bind c new-window -c "#{pane_current_path}"
-
-MANUALLY RUN ABOVE LINES AS LONG AS TMUX-CONF IS NOT WORKING
-
 Keyboard shortcuts memo
 	ctrl-b ? keybindings
 	ctrl-b z zoom - opens the current pane to max 
 	https://tmuxcheatsheet.com/
-
 How to save and restore (attach) session
 	- delete session
 		tmux kill-session -t {session name or number}
@@ -25,7 +15,6 @@ How to save and restore (attach) session
 		tmux a
 	- attach to specific session
 		tmux a -t {session_name}
-
 TODO - Create a .tmux.conf if doesnt exists based on defaults
 	bind r source-file ~/.tmux-conf
 	- Read: https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
@@ -63,7 +52,11 @@ Set opening new window, pane splits in the current path
 		bind % split-window -h -c "#{pane_current_path}"
 Set vi mode in search
 	set-window-option -g mode-keys vi
-
+Troubleshooting
+	TMUX conf command not found error when blank lines present
+		This is caused by Windows CRLF line endings. Change the line endings via the command:
+			tr -d '\r' < input.file > output.file
+		Source: https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/		
 Install TMUX
 	- RHEL (1.8)
 		- sudo yum install tmux
