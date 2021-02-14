@@ -440,10 +440,14 @@ Setting up using SSL instead of HTTPS
 		git remote remove origin 
 		git remote add origin git@github.com:user/repo.git
 
-Fix github --credentials get: github: command not found (on Windows)
-	This happens inside Tmux on Windows machines, might be something path related
-	Workaround: 
-	add: git config --global credential.helper wincred
+Fix Credentials
+	Windows
+		github --credentials get: github: command not found (on Windows)
+		This happens inside Tmux on Windows machines, might be something path related. Workaround: 
+			git config --global credential.helper wincred
+	Linux 
+		Set credential helper
+			git config --global credential.helper store
 ********************GIT Documentation Sources********************
 	https://www.kernel.org/pub/software/scm/git/docs/user-manual.html
 		Comprehensive Documentation of Git
