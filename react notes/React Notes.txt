@@ -9,14 +9,52 @@ Environment Setup
 	- Setup Build Workflow (according to the Udemy Complete React Guide)
 		- Explanation of build workflow (why and how):  Section 3, The Build Workflow
 		- Setup Procedure
-			- npm install -g create-react-app
 			- navigate to parent folder
-			- create-react-app {app-name} --script-version 1.1.5
+			- npx create-react-app {app-name} --script-version 1.1.5
 				- This does not affect React version, but the project folder structure
 			- navigate to {app-name} folder and enter command 
 				npm start 
-		
 
+Kill every local node server
+	open CMD
+	taskkill /F /IM node.exe
+
+Build
+	npm run build
+
+Deploy
+	- Read: https://create-react-app.dev/docs/deployment/
+	- Static server
+	- Github.io
+		- Deployment setup
+			- [GitHub] Create a GitHub repository 
+			- [NPM] Create a new react app (run npx create-react-app my-project one folder ABOVE the intended target)
+			- [Git] Step into the react app folder
+			- [Git] Setup GitHub remote in react app folder
+			- [NPM] Install prerequisites
+				npm install react-router-dom
+				npm install gh-pages --save-dev
+			- [React] Update Package.json
+				- add 
+					"homepage": "https://asszem.github.io/react-githubpages/",
+				- add scripts:
+					"predeploy": "npm run build",
+					"deploy": "gh-pages -d build",
+			- [React] Update app.js
+				- import { HashRouter, Route, Switch } from "react-router-dom";
+				- wrap app.js content inside <HashRouter> tag
+			- [Git] Create branch named gh-build, commit and push code 
+			- [Git] Commit and push code to MASTER
+			- [GitHub] Setup in Github repository Settings the gh-build branch and / folder
+			- [NPM] Open a GitBash window and run npm run deploy
+		- Deployment process after setup
+			- git commit and push to master
+			- npm run deploy
+				- in case of git-upload-pack '.': git-upload-pack: command not found
+					- which git-upload-pack
+					- run it from Git Bash, not cmdr or ConEmu
+		- Fix Error 404
+			https://daryllwong.medium.com/github-pages-does-not-work-for-me-f9d48fd44a5f
 
 Sources
 	- Udemy - https://ibm-learning.udemy.com/course/react-the-complete-guide-incl-redux/
