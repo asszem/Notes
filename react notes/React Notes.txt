@@ -14,6 +14,14 @@ Environment Setup
 				- This does not affect React version, but the project folder structure
 			- navigate to {app-name} folder and enter command 
 				npm start 
+	- Additional packages
+		PropTypes
+			To have property types
+			npm install --save prop-types
+		Radium
+			To use pseudo selectors in inline CSS
+			npm install --save radium
+
 
 Kill every local node server
 	open CMD
