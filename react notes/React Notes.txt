@@ -22,7 +22,6 @@ Environment Setup
 			To use pseudo selectors in inline CSS
 			npm install --save radium
 
-
 Kill every local node server
 	open CMD
 	taskkill /F /IM node.exe
@@ -63,6 +62,15 @@ Deploy
 					- run it from Git Bash, not cmdr or ConEmu
 		- Fix Error 404
 			https://daryllwong.medium.com/github-pages-does-not-work-for-me-f9d48fd44a5f
+
+Key Points to Remember 
+	- Setting state in setState when it depends on previous state
+		- use an arrow function inside setState
+			this.setState( (prevState) => { return { doSomethingWith(prevState) }; } );
+	- Setup custom fonts (Section 8, Lecture 123)
+		- use Google fonts
+	- Prop Type Validation (Section 8, Lecture 127)
+
 
 Sources
 	- Udemy - https://ibm-learning.udemy.com/course/react-the-complete-guide-incl-redux/
