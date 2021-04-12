@@ -64,12 +64,48 @@ Deploy
 			https://daryllwong.medium.com/github-pages-does-not-work-for-me-f9d48fd44a5f
 
 Key Points to Remember 
+	- Setting a state in an inmutable way
+		- create a new object with spread operator const newObject={...this.state.property};
+		- update new object													newObject.doSomething();
+		- set state for new object											this.setState(newObject);
+		- note: do not make the mistake of using [] instead of {}, it will result in a this.state is not iterablre error
+		- example: search for addIngredientHandler  
 	- Setting state in setState when it depends on previous state
-		- use an arrow function inside setState
-			this.setState( (prevState) => { return { doSomethingWith(prevState) }; } );
+		- use an arrow function inside setState 							this.setState( (prevState) => { return { doSomethingWith(prevState) }; } );
 	- Setup custom fonts (Section 8, Lecture 123)
 		- use Google fonts
 	- Prop Type Validation (Section 8, Lecture 127)
+	- Fix Javascript decimal numbers bug
+		- call number.toFixed(2)
+		- example: search for BuildControl
+	- Slide In Modal Animation
+		- in CSS:
+			transition: all 0.3s ease-out;
+		- in Code setting dynamically based on props.showModal true/false value:
+			style={{ 
+			transform: props.showModal ? 'translateY(0)': 'translateY(-100vh)', 
+			opacity: props.showModal ? '1' :'0',
+			}}>
+		- explain:
+			- transition CSS property is to animate when it is shown
+			- transform: translate(Y) - move to the center
+				- This is the position defined in CSS
+			- transform: translateY(-100vh)
+				- vh is a special unit that refers to the viewport height, -100 will slide out vertically
+		- example: 138. Showing & Hiding the Modal (with Animation!)
+	- Backdrop (black background with 50% transparency)
+		- CSS code:
+			.Backdrop {
+				width: 100%;							- To cover the entire page 
+				height:100%;
+				position: fixed;						- To keep even if scrolled
+				z-index: 100;							- To display above content, below modal
+				left: 0;								- To keep upper left corner
+				top: 0;
+				background-color: rgba(0,0,0,0.5);		- To have 50% transparency
+			}
+		- example: 139. Implementing the Backdrop
+
 
 
 Sources
