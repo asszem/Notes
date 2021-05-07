@@ -21,6 +21,9 @@ Environment Setup
 		Radium
 			To use pseudo selectors in inline CSS
 			npm install --save radium
+		Babel Require
+			To avoid manually import React in every file that uses jsx
+			npm install babel-plugin-react-require --save-dev
 
 Kill every local node server
 	open CMD
@@ -105,6 +108,9 @@ Key Points to Remember
 				background-color: rgba(0,0,0,0.5);		- To have 50% transparency
 			}
 		- example: 139. Implementing the Backdrop
+	- Form handling:
+		- To prevent a form to reload a page when onSubmit called after a submit button or input type submit pressed:
+			event.preventDefault()		
 
 
 
